@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppLayoutComponent } from './layout/app.layout.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppLayoutComponent,
-    children: [{ path: '', component: DashboardComponent }],
-  },
-];
+  { path: '', canActivate: [AuthGuard], loadChildren: () => import('./depot/depot.module').then(m => m.DepotModule) },
+  { path: 'auth', data: { breadcrumb: 'Auth' }, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
