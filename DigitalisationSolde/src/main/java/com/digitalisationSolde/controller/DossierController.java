@@ -76,8 +76,8 @@ public class DossierController {
             if(origine != null) {
                 currentDossier.setOrigine(origine);
             }
-            String nombreAgentsConcernes = dossier.getNombreAgentsConcernes();
-            if(nombreAgentsConcernes != null) {
+            int nombreAgentsConcernes = dossier.getNombreAgentsConcernes();
+            if(nombreAgentsConcernes != 0) {
                 currentDossier.setNombreAgentsConcernes(nombreAgentsConcernes);
             }
             String status = dossier.getStatus();
