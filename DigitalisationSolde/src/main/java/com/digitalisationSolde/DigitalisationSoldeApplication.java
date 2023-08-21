@@ -25,7 +25,7 @@ public class DigitalisationSoldeApplication {
 			Set<Role> roles = new HashSet<>();
 			roles.add(new Role(RoleType.ADMIN));
 			roles.add(new Role(RoleType.USER));
-			agentService.saveAgent(new Agent( "user@gmail.com","1234",true, roles));
+			agentService.saveAgent(new Agent( "userds@gmail.com","1234",true, roles));
 
 
 		};
