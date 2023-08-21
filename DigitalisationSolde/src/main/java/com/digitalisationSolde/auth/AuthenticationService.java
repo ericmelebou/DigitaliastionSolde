@@ -32,13 +32,19 @@ public class AuthenticationService {
 
   public AuthenticationResponse register(RegisterRequest request) {
     Set<Role> roles = new HashSet<>();
-    for (String roleName : request.getRoles()) {
-    Role role = roleService.getRoleByNom(RoleType.valueOf(roleName));
-    if(role != null){
-      roles.add(role);
+    if(request.getRoles() == null){
+      Role defaultRole = roleService.getRoleByNom(RoleType.valueOf("USER"));
+      roles.add(defaultRole);
+    } else {
+      for (String roleName : request.getRoles()) {
+        Role role = roleService.getRoleByNom(RoleType.valueOf(roleName));
+        if(role != null){
+          roles.add(role);
+        }
+
+      }
     }
 
-    }
     var user = Agent.builder()
             .nom(request.getNom())
             .prenom(request.getPrenom())
