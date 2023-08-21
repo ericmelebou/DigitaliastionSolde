@@ -18,6 +18,6 @@ public class RegisterRequest {
   private String prenom;
   private String email;
   private String password;
-  private Set<Role> roles;
+  private Set<String> roles;
   private  int activated;
 }

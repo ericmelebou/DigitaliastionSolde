@@ -3,13 +3,20 @@ package com.digitalisationSolde.auth;
 
 import com.digitalisationSolde.config.JwtService;
 import com.digitalisationSolde.model.Agent;
+import com.digitalisationSolde.model.Role;
+import com.digitalisationSolde.model.RoleType;
 import com.digitalisationSolde.repository.AgentRepository;
+import com.digitalisationSolde.service.RoleService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,13 +27,24 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
+  @Autowired
+  private RoleService roleService;
+
   public AuthenticationResponse register(RegisterRequest request) {
+    Set<Role> roles = new HashSet<>();
+    for (String roleName : request.getRoles()) {
+    Role role = roleService.getRoleByNom(RoleType.valueOf(roleName));
+    if(role != null){
+      roles.add(role);
+    }
+
+    }
     var user = Agent.builder()
             .nom(request.getNom())
             .prenom(request.getPrenom())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
-            .roles(request.getRoles())
+            .roles(roles)
             .activated(true)
             .build();
     repository.save(user);

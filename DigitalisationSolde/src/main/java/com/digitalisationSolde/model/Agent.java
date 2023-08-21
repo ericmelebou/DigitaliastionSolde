@@ -53,9 +53,15 @@ public class Agent implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getNom()));
+        if(roles == null) {
+            authorities.add(new SimpleGrantedAuthority("USER"));
+            return authorities;
+        } else {
+            for (Role role : roles) {
+                authorities.add(new SimpleGrantedAuthority(""+role.getNom()));
+            }
         }
+
         return authorities;
     }
 
