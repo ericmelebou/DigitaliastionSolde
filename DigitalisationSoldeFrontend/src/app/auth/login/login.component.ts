@@ -42,7 +42,6 @@ export class LoginComponent {
 					this.agent = data.agent
 					localStorage.setItem('agentId', data.agent.id)
 					this.tokenService.saveToken(data.token)
-					this.tokenService.saveRole(data.agent.role)
 
 					this.router.navigate(['/'])
 
@@ -52,7 +51,7 @@ export class LoginComponent {
 					if (error.status == 0) {
 						this.noConnection = true
 						this.authDenied = false
-					} else {
+					} else if(error.status == 403){
 						this.authDenied = true
 						this.noConnection = false
 					}

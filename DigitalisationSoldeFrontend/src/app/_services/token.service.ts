@@ -15,14 +15,6 @@ export class TokenService {
     return !!localStorage.getItem('token')
   }
 
-  saveRole(role: string): void {
-    localStorage.setItem('role', role)
-  }
-
-  getRole(): string | null {
-    return localStorage.getItem('role')
-  }
-
   clearToken() : void {
     localStorage.removeItem('token')
     this.router.navigate(['/auth'])
