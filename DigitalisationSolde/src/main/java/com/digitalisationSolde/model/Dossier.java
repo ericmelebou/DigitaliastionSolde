@@ -29,7 +29,7 @@ public class Dossier {
     @Column(name="type")
     private String type;
     @Column(name="nombre_agents_concernes")
-    private String nombreAgentsConcernes;
+    private int nombreAgentsConcernes;
     @Column(name="status")
     private String status;
     @Column(name="url_piece")
@@ -42,6 +42,5 @@ public class Dossier {
     @JoinColumn(name = "id_dossier", referencedColumnName = "id")
     private List<Document> documents;
     @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
-    //@JsonIgnore
     private Collection<AffectationDossier> affectationDossiers;
 }

@@ -19,12 +19,9 @@ public class AffectationDossier {
     @ManyToOne
     @MapsId("idAgent")
     @JoinColumn(name = "id_agent")
-    //@JsonIgnore
     private Agent agent;
     private LocalDateTime dateAffectation;
     private Long idAffectateur;
     private Boolean status;
 
-    /*public void setDossier(Optional<Dossier> dossier) {
-    }*/
 }
