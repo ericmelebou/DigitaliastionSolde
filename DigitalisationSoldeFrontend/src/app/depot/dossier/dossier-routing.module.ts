@@ -4,7 +4,7 @@ import { DAddComponent } from './d-add/d-add.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: DAddComponent }
+		{ path: '', data: { breadcrumb: 'Form Layout' }, component: DAddComponent }
 	])],
 	exports: [RouterModule]
 })

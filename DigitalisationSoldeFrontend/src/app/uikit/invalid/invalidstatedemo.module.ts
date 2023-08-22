@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { InvalidStateDemoComponent } from './invalidstatedemo.component';
+import { InvalidStateDemoRoutingModule } from './invalidstatedemo-routing.module';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
 import { ChipsModule } from "primeng/chips";
@@ -11,19 +13,14 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
-import { DAddComponent } from './d-add/d-add.component';
-import { DossierRoutingModule } from './dossier-routing.module';
-import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from "primeng/password";
 
 @NgModule({
-	declarations: [
-		DAddComponent
-	],
 	imports: [
 		CommonModule,
 		FormsModule,
+		InvalidStateDemoRoutingModule,
 		AutoCompleteModule,
-		DossierRoutingModule,
 		CalendarModule,
 		ChipsModule,
 		DropdownModule,
@@ -31,9 +28,10 @@ import { ButtonModule } from 'primeng/button';
 		InputNumberModule,
 		CascadeSelectModule,
 		MultiSelectModule,
+		PasswordModule,
 		InputTextareaModule,
-		InputTextModule,
-		ButtonModule 
-	]
+		InputTextModule
+	],
+	declarations: [InvalidStateDemoComponent]
 })
-export class DossierModule { }
+export class InvalidStateDemoModule { }

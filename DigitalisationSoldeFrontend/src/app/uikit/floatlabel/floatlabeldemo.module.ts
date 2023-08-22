@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FloatLabelDemoComponent } from './floatlabeldemo.component';
+import { FloatlabelDemoRoutingModule } from './floatlabeldemo-routing.module';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
 import { ChipsModule } from "primeng/chips";
@@ -11,19 +13,13 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
-import { DAddComponent } from './d-add/d-add.component';
-import { DossierRoutingModule } from './dossier-routing.module';
-import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-	declarations: [
-		DAddComponent
-	],
 	imports: [
 		CommonModule,
 		FormsModule,
+		FloatlabelDemoRoutingModule,
 		AutoCompleteModule,
-		DossierRoutingModule,
 		CalendarModule,
 		ChipsModule,
 		DropdownModule,
@@ -32,8 +28,8 @@ import { ButtonModule } from 'primeng/button';
 		CascadeSelectModule,
 		MultiSelectModule,
 		InputTextareaModule,
-		InputTextModule,
-		ButtonModule 
-	]
+		InputTextModule
+	],
+	declarations: [FloatLabelDemoComponent]
 })
-export class DossierModule { }
+export class FloatlabelDemoModule { }
