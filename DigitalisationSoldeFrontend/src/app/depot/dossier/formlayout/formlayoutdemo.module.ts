@@ -32,4 +32,4 @@ import { InputTextModule } from "primeng/inputtext";
 	],
 	declarations: [FormLayoutDemoComponent]
 })
-export class FormLayoutDemoModule { }      
+export class FormLayoutDemoModule { }
