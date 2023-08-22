@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuitemComponent } from './menuitem.component';
+import { DIndexComponent } from './d-index.component';
 
-describe('MenuitemComponent', () => {
-  let component: MenuitemComponent;
-  let fixture: ComponentFixture<MenuitemComponent>;
+describe('DIndexComponent', () => {
+  let component: DIndexComponent;
+  let fixture: ComponentFixture<DIndexComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MenuitemComponent]
+      declarations: [DIndexComponent]
     });
-    fixture = TestBed.createComponent(MenuitemComponent);
+    fixture = TestBed.createComponent(DIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

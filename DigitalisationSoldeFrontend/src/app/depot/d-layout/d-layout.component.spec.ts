@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DlayoutComponent } from './dlayout.component';
+import { DLayoutComponent } from './d-layout.component';
 
-describe('DlayoutComponent', () => {
-  let component: DlayoutComponent;
-  let fixture: ComponentFixture<DlayoutComponent>;
+describe('DLayoutComponent', () => {
+  let component: DLayoutComponent;
+  let fixture: ComponentFixture<DLayoutComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DlayoutComponent]
+      declarations: [DLayoutComponent]
     });
-    fixture = TestBed.createComponent(DlayoutComponent);
+    fixture = TestBed.createComponent(DLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
