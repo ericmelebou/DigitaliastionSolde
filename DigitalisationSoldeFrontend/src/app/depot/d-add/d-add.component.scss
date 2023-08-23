@@ -1,0 +1,29 @@
+/* styles.scss */
+.dashboard-header {
+
+  color: white;
+  padding: 20px;
+}
+
+/* Personnalisation des onglets actifs */
+.nav-tabs .nav-link.active {
+  background-color: #6366F1;
+  color: white;
+}
+
+
+/* styles.scss */
+.dashboard {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: white;
+  color: white;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
