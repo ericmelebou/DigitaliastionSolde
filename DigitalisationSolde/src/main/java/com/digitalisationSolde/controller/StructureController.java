@@ -5,7 +5,6 @@ import com.digitalisationSolde.model.Structure;
 import com.digitalisationSolde.service.StructureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class StructureController {
     @Autowired
     private StructureService structureService;
 
-    PasswordEncoder passwordEncoder;
     @PostMapping("/structure")
     public Structure createStructure(@RequestBody Structure structure) {
         return structureService.saveStructure(structure);

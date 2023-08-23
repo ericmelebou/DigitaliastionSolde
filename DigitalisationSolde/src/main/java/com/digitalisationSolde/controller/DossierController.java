@@ -6,7 +6,6 @@ import com.digitalisationSolde.model.Dossier;
 import com.digitalisationSolde.service.DossierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -22,7 +21,6 @@ public class DossierController {
     @Autowired
     private DossierService dossierService;
 
-    PasswordEncoder passwordEncoder;
     @PostMapping("/dossier")
     public Dossier createDossier(@RequestBody Dossier Dossier) {
         return dossierService.saveDossier(Dossier);
@@ -40,7 +38,6 @@ public class DossierController {
 
     @GetMapping("/dossiers")
     public Iterable<Dossier> getDossiers() {
-
         return dossierService.getDossiers();
     }
 
@@ -83,10 +80,6 @@ public class DossierController {
             String status = dossier.getStatus();
             if(status != null) {
                 currentDossier.setStatus(status);
-            }
-            String type = dossier.getType();
-            if(type != null) {
-                currentDossier.setType(type);
             }
             List<Document> documents = dossier.getDocuments();
             if(documents != null) {

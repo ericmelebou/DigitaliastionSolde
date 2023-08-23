@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent } from '../modal/modal.component';
+import { TokenService } from 'src/app/_services/token.service';
 
 
 @Component({
@@ -10,13 +11,8 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class DLayoutComponent {
 
-  openModal() {
-
-
+  constructor(private tokenService: TokenService) { }
+  logOut() {
+    this.tokenService.clearToken()
   }
-
-
-
-
-
 }

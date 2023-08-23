@@ -1,6 +1,5 @@
 package com.digitalisationSolde.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,8 +25,6 @@ public class Dossier {
     private int nombrePiece;
     @Column(name="date_depot")
     private LocalDateTime dateDepot;
-    @Column(name="type")
-    private String type;
     @Column(name="nombre_agents_concernes")
     private int nombreAgentsConcernes;
     @Column(name="status")
