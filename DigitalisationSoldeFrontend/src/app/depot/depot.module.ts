@@ -8,6 +8,8 @@ import { AppConfigModule } from 'src/app/layout/config/app.config.module';
 import { DIndexComponent } from './d-index/d-index.component';
 import { DAddComponent } from './d-add/d-add.component';
 import { DLayoutComponent } from './d-layout/d-layout.component';
+import { MatTableModule } from '@angular/material/table';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -15,6 +17,7 @@ import { DLayoutComponent } from './d-layout/d-layout.component';
     DIndexComponent,
     DAddComponent,
     DLayoutComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { DLayoutComponent } from './d-layout/d-layout.component';
     ButtonModule,
     RouterModule,
     StyleClassModule,
+    MatTableModule,
     AppConfigModule,
   ]
 })
