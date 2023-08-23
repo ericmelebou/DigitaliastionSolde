@@ -43,7 +43,7 @@ export class LoginComponent {
 					localStorage.setItem('agentId', data.agent.id)
 					this.tokenService.saveToken(data.token)
 
-					this.router.navigate(['/'])
+					this.router.navigate(['/depot'])
 
 				},
 				error: error => {

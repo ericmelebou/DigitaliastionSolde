@@ -6,7 +6,6 @@ import com.digitalisationSolde.model.Agent;
 import com.digitalisationSolde.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,7 +19,6 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    PasswordEncoder passwordEncoder;
     @PostMapping("/role")
     public Role createRole(@RequestBody Role role) {
         return roleService.saveRole(role);
@@ -38,7 +36,6 @@ public class RoleController {
 
     @GetMapping("/roles")
     public Iterable<Role> getRoles() {
-
         return roleService.getRoles();
     }
 

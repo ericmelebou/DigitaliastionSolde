@@ -5,7 +5,6 @@ import com.digitalisationSolde.model.Document;
 import com.digitalisationSolde.service.CategorieDocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class CategorieDocumentController {
     @Autowired
     private CategorieDocumentService categorieDocumentService;
 
-    PasswordEncoder passwordEncoder;
     @PostMapping("/categorieDocument")
     public CategorieDocument createCategorieDocument(@RequestBody CategorieDocument categorieDocument) {
         return categorieDocumentService.saveCategorieDocument(categorieDocument);
