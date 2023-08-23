@@ -1,1 +1,101 @@
-<p>d-add works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content">
+        <div class="tab-pane active">
+          <!-- app.component.html -->
+          <div class="dashboard">
+
+            <div class="main-content">
+              <div class="dashboard-header">
+                <h2>Depot de dossier</h2>
+              </div>
+            </div>
+
+          </div>
+          <div class="d-flex">
+            <div class="card mr-3" style="flex: 1;">
+              <div class="card-body">
+                <h5 class="card-title" style="font-size: 1.25rem;">Demande en ligne</h5>
+                <p class="card-text">
+                  Vous pouvez déposer un dossier pour une demande de passeport en suivant ces étapes :
+                </p>
+                <ol class="card-text">
+                  <li>Préparez les documents requis, tels que votre carte d'identité, votre acte de naissance, etc.</li>
+                  <li>Remplissez le formulaire de demande en ligne.</li>
+                  <li>Téléchargez les documents demandés.</li>
+                  <li>Confirmez les informations et soumettez votre dossier.</li>
+                </ol>
+                <p class="card-text">
+                  Une fois que vous avez suivi ces étapes, vous pouvez cliquer sur le bouton ci-dessous pour déposer votre dossier.
+                </p>
+              </div>
+            </div>
+
+
+            <div class="card" style="flex: 1;">
+              <div class="card-body">
+                <h5 class="card-title" style="font-size: 1.25rem;">Depot</h5>
+                <form>
+                  <fieldset class="mb-3">
+                    <legend>Sélectionnez un type de dossier :</legend>
+                    <select class="form-select">
+                      <option value="meeting">Réunion</option>
+                      <option value="appointment">Rendez-vous</option>
+                      <option value="reminder">Rappel</option>
+                    </select>
+                  </fieldset>
+                  <div class="mb-3">
+                    <label for="file1" class="form-label">Télécharger un fichier (PDF, Word, etc.) :</label>
+                    <input type="file" class="form-control" id="file1" accept=".pdf,.doc,.docx">
+                  </div>
+                  <div class="mb-3">
+                    <label for="file2" class="form-label">Télécharger un autre fichier :</label>
+                    <input type="file" class="form-control" id="file2" accept=".pdf,.doc,.docx">
+                  </div>
+                  <button type="submit" style="background-color: #6366F1;" class="btn btn-primary">Soumettre</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+          <!-- <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col-4">
+                <div class="card" style="flex: 1;">
+                  <div class="card-header">
+                    <h5>Services</h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-unstyled">
+                      <li class="mb-2"><a href="#">Affectation</a></li>
+                      <li class="mb-2"><a href="#">Traitement</a></li>
+                      <li class="mb-2"><a href="#">Consultation</a></li>
+                    </ul>
+                  </div>
+                  <div class="card-footer text-start">
+                    <a href="#" style="background-color: #6366f1;" class="btn btn-primary">Détails</a>
+                  </div>
+                </div>
+
+            </div>
+
+          </div> -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
