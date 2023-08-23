@@ -36,7 +36,7 @@ public class Agent implements UserDetails {
     @UpdateTimestamp
     private Date updatedDate;
     private Boolean activated;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "utilisateur_roles",
             joinColumns = {@JoinColumn(name = "id_agent", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "id_role", referencedColumnName = "id")})

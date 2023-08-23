@@ -22,7 +22,7 @@ public class Role {
     @Column(length = 20)
     private RoleType nom;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     @JsonBackReference
     private Set<Agent> agents;
 
