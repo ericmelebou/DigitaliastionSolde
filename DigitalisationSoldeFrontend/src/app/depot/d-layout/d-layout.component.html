@@ -96,7 +96,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <button class="btn btn-danger nav-link">Déconnexion</button>
+          <button class="btn btn-danger nav-link" [routerLink]="['/depot']" (click)="logOut()">Déconnexion</button>
         </li>
       </ul>
     </div>
