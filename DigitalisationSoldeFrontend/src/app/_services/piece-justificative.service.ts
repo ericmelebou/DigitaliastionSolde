@@ -11,7 +11,7 @@ export class PieceJustificativeService {
 
   constructor(private http: HttpClient) { }
 
-  getPieceJustificatives(): Observable<IPieceJustificative[]> {
+  getPiecesJustificatives(): Observable<IPieceJustificative[]> {
     return this.http.get<IPieceJustificative[]>(apiUrl + '/pieceJustificatives');
   }
   getPieceJustificative(id: number): Observable<IPieceJustificative> {

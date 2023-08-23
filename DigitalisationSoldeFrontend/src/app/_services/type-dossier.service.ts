@@ -11,7 +11,7 @@ export class TypeDossierService {
 
   constructor(private http: HttpClient) { }
 
-  getTypeDossiers(): Observable<ITypeDossier[]> {
+  getTypesDossiers(): Observable<ITypeDossier[]> {
     return this.http.get<ITypeDossier[]>(apiUrl + '/typeDossiers');
   }
   getTypeDossier(id: number): Observable<ITypeDossier> {

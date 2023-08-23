@@ -34,20 +34,12 @@ export class DAddComponent {
       typeDossier: ['', Validators.required],
     });
 
-    this.typeDossierService.getTypeDossiers().subscribe({
+    this.typeDossierService.getTypesDossiers().subscribe({
       next: (typesDossiers) => {
         this.typeDossierList = typesDossiers;
         console.log('ma liste des types dossiers', this.typeDossierList);
       },
     });
-
-    this.pieceJustificatifService.getPieceJustificatives().subscribe({
-      next: (pieces) => {
-        this.pieceJustificatifs = pieces;
-        console.log('ma liste des pièces justificatives', this.pieceJustificatifs);
-      },
-    });
-
 
   }
 
