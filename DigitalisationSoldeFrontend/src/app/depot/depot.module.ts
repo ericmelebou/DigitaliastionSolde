@@ -10,6 +10,7 @@ import { DAddComponent } from './d-add/d-add.component';
 import { DLayoutComponent } from './d-layout/d-layout.component';
 import { MatTableModule } from '@angular/material/table';
 import { ModalComponent } from './modal/modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ModalComponent } from './modal/modal.component';
   imports: [
     CommonModule,
     DepotRoutingModule,
+    ReactiveFormsModule,
     CommonModule,
     ButtonModule,
     RouterModule,

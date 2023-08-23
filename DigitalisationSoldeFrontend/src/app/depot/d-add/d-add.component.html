@@ -26,14 +26,12 @@
             <div class="card mr-3" style="flex: 1;">
               <div class="card-body">
                 <h5 class="card-title" style="font-size: 1.25rem;">Demande en ligne</h5>
-                <p class="card-text">
-                  Vous pouvez déposer un dossier pour une demande de passeport en suivant ces étapes :
+                <p class="card-text" style="text-align: justify;">
+                  Les pieces recquises pour votre dépot exste en fonction de votre type de dossier;Veuillez voir les pieces justificatives
+                  afin de savoir quelle pieces joindre
                 </p>
                 <ol class="card-text">
-                  <li>Préparez les documents requis, tels que votre carte d'identité, votre acte de naissance, etc.</li>
-                  <li>Remplissez le formulaire de demande en ligne.</li>
-                  <li>Téléchargez les documents demandés.</li>
-                  <li>Confirmez les informations et soumettez votre dossier.</li>
+                  <li *ngFor="let piece of pieceJustificatifs">{{ piece.libelle }}</li>
                 </ol>
                 <p class="card-text">
                   Une fois que vous avez suivi ces étapes, vous pouvez cliquer sur le bouton ci-dessous pour déposer votre dossier.
@@ -45,13 +43,13 @@
             <div class="card" style="flex: 1;">
               <div class="card-body">
                 <h5 class="card-title" style="font-size: 1.25rem;">Depot</h5>
-                <form>
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
                   <fieldset class="mb-3">
                     <legend>Sélectionnez un type de dossier :</legend>
-                    <select class="form-select">
-                      <option value="meeting">Réunion</option>
-                      <option value="appointment">Rendez-vous</option>
-                      <option value="reminder">Rappel</option>
+                    <select class="form-select" formControlName="typeDossier">
+                      <option *ngFor="let typeDossier of typeDossierList" [value]="typeDossier.id">
+                        {{ typeDossier.libelle }}
+                      </option>
                     </select>
                   </fieldset>
                   <div class="mb-3">
@@ -67,31 +65,8 @@
               </div>
             </div>
 
+
           </div>
-          <!-- <div class="row">
-            <div class="col-8">
-
-            </div>
-            <div class="col-4">
-                <div class="card" style="flex: 1;">
-                  <div class="card-header">
-                    <h5>Services</h5>
-                  </div>
-                  <div class="card-body">
-                    <ul class="list-unstyled">
-                      <li class="mb-2"><a href="#">Affectation</a></li>
-                      <li class="mb-2"><a href="#">Traitement</a></li>
-                      <li class="mb-2"><a href="#">Consultation</a></li>
-                    </ul>
-                  </div>
-                  <div class="card-footer text-start">
-                    <a href="#" style="background-color: #6366f1;" class="btn btn-primary">Détails</a>
-                  </div>
-                </div>
-
-            </div>
-
-          </div> -->
 
         </div>
 
