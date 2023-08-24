@@ -44,11 +44,8 @@ public class Agent implements UserDetails {
     private Set<Role> roles;
 
 
-    @OneToMany(mappedBy = "agent")
-    private Set<Dossier> dossiers;
     private String resetPasswordToken;
     private int deleted;
-
 
     @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
     private Collection<AffectationDossier> affectationDossiers;

@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,7 +45,7 @@ public class Dossier {
     private List<Document> documents;
     @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
     private Collection<AffectationDossier> affectationDossiers;
-    @ManyToOne
-    @JoinColumn(name = "id_agent")
-    private Agent agent;
+
+    @Column(name = "id_agent")
+    private Long idAgent;
 }
