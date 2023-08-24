@@ -11,7 +11,8 @@ import { DLayoutComponent } from './d-layout/d-layout.component';
 import { MatTableModule } from '@angular/material/table';
 import { ModalComponent } from './modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     CommonModule,
     ButtonModule,
+    NgbPaginationModule,
     RouterModule,
     StyleClassModule,
     MatTableModule,

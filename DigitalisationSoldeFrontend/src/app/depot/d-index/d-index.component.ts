@@ -1,20 +1,48 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { IDossier } from 'src/app/_interfaces/dossier';
+import { DossierService } from 'src/app/_services/dossier.service';
+import { TokenService } from 'src/app/_services/token.service';
 
 @Component({
   selector: 'app-d-index',
   templateUrl: './d-index.component.html',
-  styleUrls: ['./d-index.component.scss']
+  styleUrls: ['./d-index.component.scss'],
 })
 export class DIndexComponent {
   displayedColumns: string[] = ['name', 'date'];
 
+  dossiersList: IDossier[] = [];
+  totalItems: any = 3;
+  isDataEmpty: boolean;
+
+  searchTerm: string = '';
+  items: string[] = ['apple', 'banana', 'cherry', 'grape', 'orange'];
+
+  constructor(
+    private router: Router,
+    private dossierService: DossierService,
+    private tokenService: TokenService
+  ) {
+    this.isDataEmpty = this.dossiersList.length===0;
+  }
+
   // Exemple de données statiques
   dataSource = new MatTableDataSource([
-    { name: 'Dossier 1', date: '2023-08-25' },
-    { name: 'Dossier 2', date: '2023-08-26' },
-    { name: 'Dossier 3', date: '2023-08-27' },
+    { name: 'Type de dossier', date: '2023-08-25' },
+    { name: 'Origine', date: '2023-08-26' },
+    { name: 'Code identification', date: '2023-08-27' },
+    { name: 'Code identification', date: '2023-08-27' },
     // Ajoutez plus de données si nécessaire
   ]);
 
+  ngOnInit(): void {
+    this.dossierService.getDossiers().subscribe({
+      next: (dossiers) => {
+        this.dossiersList = dossiers;
+        console.log('ma liste des dossiers', this.dossiersList);
+      },
+    });
+  }
 }
