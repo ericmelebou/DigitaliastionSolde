@@ -1,6 +1,6 @@
 package com.digitalisationSolde.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,11 +42,14 @@ public class Agent implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "id_role", referencedColumnName = "id")})
     @JsonManagedReference
     private Set<Role> roles;
-    @OneToMany(targetEntity = Dossier.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_agent", referencedColumnName = "id")
-    private List<Dossier> dossiers;
+
+
+    @OneToMany(mappedBy = "agent")
+    private Set<Dossier> dossiers;
     private String resetPasswordToken;
     private int deleted;
+
+
     @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
     private Collection<AffectationDossier> affectationDossiers;
 

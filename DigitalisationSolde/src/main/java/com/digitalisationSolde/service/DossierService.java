@@ -4,13 +4,18 @@ import com.digitalisationSolde.model.Dossier;
 import com.digitalisationSolde.repository.DossierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
 public class DossierService {
     @Autowired
     private DossierRepository dossierRepository;
+
+    private final String FOLDER_PATH = "C:\\DGTCP-Project\\";
 
     public Optional<Dossier> getDossier(final Long id){
         return dossierRepository.findById(id);
@@ -24,7 +29,7 @@ public class DossierService {
         dossierRepository.deleteById(id);
     }
 
-    public Dossier saveDossier(Dossier dossier){
+    public Dossier saveDossier(Dossier dossier) {
         return dossierRepository.save(dossier);
     }
 }

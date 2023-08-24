@@ -6,8 +6,11 @@ import com.digitalisationSolde.model.Dossier;
 import com.digitalisationSolde.service.DossierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -21,9 +24,10 @@ public class DossierController {
     @Autowired
     private DossierService dossierService;
 
-    @PostMapping("/dossier")
-    public Dossier createDossier(@RequestBody Dossier Dossier) {
-        return dossierService.saveDossier(Dossier);
+    @PostMapping(value="/dossier")
+    public Dossier createDossier(@RequestBody Dossier dossier
+                                )  {
+        return dossierService.saveDossier(dossier);
     }
 
     @GetMapping("/dossier/{id}")
@@ -41,7 +45,7 @@ public class DossierController {
         return dossierService.getDossiers();
     }
 
-    @PutMapping("/dossier/{id}")
+   @PutMapping("/dossier/{id}")
     public Dossier updateDossier(@PathVariable("id") final Long id, @RequestBody Dossier dossier) {
         Optional<Dossier> p = dossierService.getDossier(id);
         if(p.isPresent()) {

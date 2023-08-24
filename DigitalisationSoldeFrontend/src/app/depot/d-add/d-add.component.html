@@ -17,7 +17,8 @@
               <div class="card-body">
                 <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold;">Demande en ligne</h5>
                 <p class="card-text" style="font-size: 1.1rem; text-align: justify;">
-                  Les pièces requises pour votre dépôt existent en fonction de votre type de dossier. Veuillez consulter les pièces
+                  Les pièces requises pour votre dépôt existent en fonction de votre type de dossier. Veuillez consulter
+                  les pièces
                   justificatives pour savoir quelles pièces joindre.
                 </p>
                 <div class="jumbotron bg-light p-4">
@@ -34,7 +35,8 @@
                   </ul>
                 </div>
                 <p class="card-text">
-                  Une fois que vous avez suivi ces étapes, vous pouvez cliquer sur le bouton ci-dessous pour déposer votre dossier.
+                  Une fois que vous avez suivi ces étapes, vous pouvez cliquer sur le bouton ci-dessous pour déposer
+                  votre dossier.
                 </p>
               </div>
             </div>
@@ -52,11 +54,13 @@
                   </fieldset>
                   <div class="mb-3">
                     <label for="file1" class="form-label">Télécharger un fichier (PDF, Word, etc.) :</label>
-                    <input type="file" class="form-control" id="file1" accept=".pdf,.doc,.docx">
+                    <input type="file" class="form-control" id="file1" accept=".pdf,.doc,.docx"
+                      (change)="getFichierDemande($event)">
                   </div>
                   <div class="mb-3">
                     <label for="file2" class="form-label">Télécharger un autre fichier :</label>
-                    <input type="file" class="form-control" id="file2" accept=".pdf,.doc,.docx">
+                    <input type="file" class="form-control" id="file2" accept=".pdf,.doc,.docx"
+                      (change)="getFichierPiecesJustificatives($event)">
                   </div>
                   <button type="submit" style="background-color: #6366F1;" class="btn btn-primary">Soumettre</button>
                 </form>

@@ -17,7 +17,7 @@ export class DAddComponent {
   selectedTypeDossier: any;
   typeDossierList: ITypeDossier[] = [];
   typeDossier?: ITypeDossier;
-  pieceJustificatifs : IPieceJustificative[] = [];
+  pieceJustificatifs: IPieceJustificative[] = [];
 
 
   constructor(
@@ -25,8 +25,10 @@ export class DAddComponent {
     private router: Router,
     private typeDossierService: TypeDossierService,
     private tokenService: TokenService,
-    private pieceJustificatifService : PieceJustificativeService
-  ) {}
+    private pieceJustificatifService: PieceJustificativeService
+  ) { }
+  fichierDemande: any;
+  fichierPiecesJustificatives: any;
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -41,6 +43,15 @@ export class DAddComponent {
       },
     });
 
+  }
+
+  getFichierDemande(event: any) {
+    this.fichierDemande = event.target.files[0];
+    console.log(this.fichierDemande);
+  }
+  getFichierPiecesJustificatives(event: any) {
+    this.fichierPiecesJustificatives = event.target.files[0];
+    console.log(this.fichierPiecesJustificatives);
   }
 
   async onSubmit(data: FormGroup) {

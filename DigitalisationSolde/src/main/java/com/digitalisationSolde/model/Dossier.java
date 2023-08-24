@@ -1,14 +1,17 @@
 package com.digitalisationSolde.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
-@Setter
-@Getter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,6 +27,7 @@ public class Dossier {
     @Column(name="nombre_piece")
     private int nombrePiece;
     @Column(name="date_depot")
+    @CreationTimestamp
     private LocalDateTime dateDepot;
     @Column(name="nombre_agents_concernes")
     private int nombreAgentsConcernes;
@@ -40,4 +44,7 @@ public class Dossier {
     private List<Document> documents;
     @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
     private Collection<AffectationDossier> affectationDossiers;
+    @ManyToOne
+    @JoinColumn(name = "id_agent")
+    private Agent agent;
 }
