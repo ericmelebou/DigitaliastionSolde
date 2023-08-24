@@ -32,7 +32,7 @@ export class TokenInterceptor implements HttpInterceptor {
       return next.handle(clone).pipe(
         catchError(error => {
           console.log(error.status)
-
+           
           if (error.status === 401 || error.status === 0 || error.status === 403) {
             this.tokenService.clearTokenExpired()
           }

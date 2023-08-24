@@ -18,8 +18,8 @@ export class DossierService {
     return this.http.get<IDossier>(apiUrl + '/dossier/' + id);
   }
 
-  createDossier(dossier: IDossier): Observable<IDossier> {
-    return this.http.post<IDossier>(apiUrl + '/dossier', dossier);
+  createDossier(dossier: FormData): any {
+    return this.http.post<any>(apiUrl + '/dossier', dossier);
   }
 
   updateDossier(dossier: IDossier): Observable<IDossier> {

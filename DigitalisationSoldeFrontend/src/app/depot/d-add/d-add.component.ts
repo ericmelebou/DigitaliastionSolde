@@ -6,6 +6,7 @@ import { TypeDossierService } from 'src/app/_services/type-dossier.service';
 import { TokenService } from 'src/app/_services/token.service';
 import { IPieceJustificative } from 'src/app/_interfaces/piece-justificative';
 import { PieceJustificativeService } from 'src/app/_services/piece-justificative.service';
+import { DossierService } from 'src/app/_services/dossier.service';
 
 @Component({
   selector: 'app-d-add',
@@ -24,12 +25,12 @@ export class DAddComponent {
     private fb: FormBuilder,
     private router: Router,
     private typeDossierService: TypeDossierService,
+    private dossierService: DossierService,
     private tokenService: TokenService,
     private pieceJustificatifService: PieceJustificativeService
   ) { }
-  fichierDemande: any;
-  fichierPiecesJustificatives: any;
-
+  fichierDemande: File | null = null;
+  fichierPiecesJustificatives: File | null = null;
   ngOnInit(): void {
     this.form = this.fb.group({
       id: [''],
@@ -47,19 +48,36 @@ export class DAddComponent {
 
   getFichierDemande(event: any) {
     this.fichierDemande = event.target.files[0];
-    console.log(this.fichierDemande);
   }
   getFichierPiecesJustificatives(event: any) {
     this.fichierPiecesJustificatives = event.target.files[0];
-    console.log(this.fichierPiecesJustificatives);
   }
 
   async onSubmit(data: FormGroup) {
-    this.typeDossierService.createTypeDossier(data.value).subscribe({
-      next: (typeDossier) => {
-        this.typeDossier = typeDossier;
-        console.log(this.typeDossier);
+    const formData: FormData = new FormData();
+    formData.append('codeIdentification', data.value.codeIdentification);
+    formData.append('idAgent', localStorage.getItem('agentId') as any);
+    formData.append('origine', "Interne");
+    formData.append('codeIdentification', data.value.codeIdentification);
+
+    if (this.fichierDemande) {
+      formData.append('demandeFile', this.fichierDemande);
+    console.log(this.fichierDemande);
+
+    }
+    if (this.fichierPiecesJustificatives) {
+      formData.append('piecesFile', this.fichierPiecesJustificatives);
+    console.log(this.fichierPiecesJustificatives);
+
+    }
+    console.log(formData)
+    this.dossierService.createDossier(formData).subscribe(
+      (response: any) => {
+        console.log('Succès', response);
       },
-    });
+      (error: any) => {
+        console.error('Erreur', error);
+      }
+    );
   }
 }

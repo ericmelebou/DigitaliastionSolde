@@ -6,7 +6,10 @@ import com.digitalisationSolde.model.Dossier;
 import com.digitalisationSolde.service.DossierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,11 +26,18 @@ import java.util.Optional;
 public class DossierController {
     @Autowired
     private DossierService dossierService;
+    @Value("${upload-dir}")
+    private String uploadDir;
 
     @PostMapping(value="/dossier")
-    public Dossier createDossier(@RequestBody Dossier dossier
-                                )  {
-        return dossierService.saveDossier(dossier);
+    public ResponseEntity<String> createDossier(@ModelAttribute Dossier dossier) {
+        try {
+            dossier.saveFiles(uploadDir); // Appelez la méthode pour enregistrer les fichiers
+            dossierService.saveDossier(dossier);
+            return ResponseEntity.ok("Dossier créé avec succès");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Échec de la création du dossier");
+        }
     }
 
     @GetMapping("/dossier/{id}")

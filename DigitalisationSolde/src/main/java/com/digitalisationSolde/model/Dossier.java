@@ -6,7 +6,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -34,10 +41,15 @@ public class Dossier {
     private int nombreAgentsConcernes;
     @Column(name="status")
     private String status;
+
     @Column(name="url_piece")
     private String urlPiece;
     @Column(name="url_demande")
     private String urlDemande;
+    @Transient
+    private MultipartFile demandeFile;
+    @Transient
+    private MultipartFile piecesFile;
     @Column(name="origine")
     private String origine;
     @OneToMany(targetEntity = Document.class, cascade = CascadeType.ALL)
@@ -48,4 +60,21 @@ public class Dossier {
 
     @Column(name = "id_agent")
     private Long idAgent;
+
+    // Méthode pour enregistrer les fichiers dans le dossier
+    public void saveFiles(String uploadDir) throws IOException {
+        if (demandeFile != null) {
+            String demandeFilename = StringUtils.cleanPath(demandeFile.getOriginalFilename());
+            Path demandeFilePath = Paths.get(uploadDir, demandeFilename);
+            Files.copy(demandeFile.getInputStream(), demandeFilePath, StandardCopyOption.REPLACE_EXISTING);
+            urlDemande = demandeFilename;
+        }
+
+        if (piecesFile != null) {
+            String fichierFilename = StringUtils.cleanPath(piecesFile.getOriginalFilename());
+            Path fichierFilePath = Paths.get(uploadDir, fichierFilename);
+            Files.copy(piecesFile.getInputStream(), fichierFilePath, StandardCopyOption.REPLACE_EXISTING);
+            urlPiece = fichierFilename;
+        }
+    }
 }
