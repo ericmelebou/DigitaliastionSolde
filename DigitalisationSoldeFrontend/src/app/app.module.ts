@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptorProvider } from './_helpers/token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,
+    MdbModalModule,
     BrowserAnimationsModule,
   ],
   providers: [TokenInterceptorProvider],

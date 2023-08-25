@@ -32,11 +32,9 @@ export class DIndexComponent {
     this.isDataEmpty = this.dossiersList.length===0;
   }
 
-  openModal() {
-    this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-xl'
-    })
-
+  
+  openModal(dossier: IDossier): void {
+    this.router.navigate(['/depot/show', dossier.id]);
   }
 
 

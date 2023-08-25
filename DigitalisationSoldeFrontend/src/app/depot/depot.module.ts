@@ -15,6 +15,7 @@ import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootst
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { DShowComponent } from './d-show/d-show.component';
 
 
 
@@ -24,6 +25,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     DAddComponent,
     DLayoutComponent,
     ModalComponent,
+    DShowComponent,
   ],
   imports: [
     CommonModule,
