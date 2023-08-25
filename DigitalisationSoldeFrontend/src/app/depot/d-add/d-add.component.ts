@@ -55,10 +55,14 @@ export class DAddComponent {
 
   async onSubmit(data: FormGroup) {
     const formData: FormData = new FormData();
-    formData.append('codeIdentification', data.value.codeIdentification);
     formData.append('idAgent', localStorage.getItem('agentId') as any);
     formData.append('origine', "Interne");
-    formData.append('codeIdentification', data.value.codeIdentification);
+    formData.append('status', "Envoyé");
+    formData.append('typeDossier.id', data.value.typeDossier.id);
+    formData.append('typeDossier.libelle', data.value.typeDossier.libelle);
+    formData.append('typeDossier.informations', data.value.typeDossier.informations);
+
+console.log(data.value.typeDossier)
 
     if (this.fichierDemande) {
       formData.append('demandeFile', this.fichierDemande);
@@ -74,6 +78,7 @@ export class DAddComponent {
     this.dossierService.createDossier(formData).subscribe(
       (response: any) => {
         console.log('Succès', response);
+        this.router.navigate(["/depot"]);
       },
       (error: any) => {
         console.error('Erreur', error);

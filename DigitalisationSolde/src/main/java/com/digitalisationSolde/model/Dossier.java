@@ -2,6 +2,7 @@ package com.digitalisationSolde.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
@@ -46,8 +47,10 @@ public class Dossier {
     private String urlPiece;
     @Column(name="url_demande")
     private String urlDemande;
+    @JsonIgnore
     @Transient
     private MultipartFile demandeFile;
+    @JsonIgnore
     @Transient
     private MultipartFile piecesFile;
     @Column(name="origine")
@@ -57,7 +60,9 @@ public class Dossier {
     private List<Document> documents;
     @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
     private Collection<AffectationDossier> affectationDossiers;
-
+    @ManyToOne
+    @JoinColumn(name = "id_type_dossier")
+    private TypeDossier typeDossier;
     @Column(name = "id_agent")
     private Long idAgent;
 

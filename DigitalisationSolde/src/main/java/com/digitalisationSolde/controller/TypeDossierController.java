@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/")
@@ -53,7 +54,7 @@ public class TypeDossierController {
             if (informations != null) {
                 currentTypeDossier.setInformations(libelle);
             }
-            List<Dossier> dossiers = typeDossier.getDossiers();
+            Set<Dossier> dossiers = typeDossier.getDossiers();
             if (dossiers != null) {
                 currentTypeDossier.setDossiers(dossiers);
             }

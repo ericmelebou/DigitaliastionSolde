@@ -56,17 +56,13 @@
                 <thead>
                   <tr>
                     <th >Type de dossier</th>
-                    <th >Code identification</th>
-                    <th >Origine</th>
                     <th >Date de dépot</th>
                     <th >Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let dossier of dossiersList;">
-                    <td style="text-align: center;">{{ dossier.origine }}</td>
-                    <td style="text-align: center;">{{ dossier.codeIdentification }}</td>
-                    <td style="text-align: center;">{{ dossier.origine }}</td>
+                    <td style="text-align: center;">{{ dossier.typeDossier.libelle }}</td>
                     <td style="text-align: center;">{{ dossier.dateDepot | date:'dd/MM/yyyy' }}</td>
                     <td style="text-align: center;">{{ dossier.status }}</td>
 

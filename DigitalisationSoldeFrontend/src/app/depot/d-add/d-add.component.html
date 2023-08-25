@@ -46,11 +46,12 @@
                 <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
                   <fieldset class="mb-3">
                     <legend>Sélectionnez un type de dossier :</legend>
-                    <select class="form-select" formControlName="typeDossier">
-                      <option *ngFor="let typeDossier of typeDossierList" [value]="typeDossier.id">
+                    <select class="form-select" formControlName="typeDossier" [(ngModel)]="selectedTypeDossier">
+                      <option *ngFor="let typeDossier of typeDossierList" [ngValue]="typeDossier">
                         {{ typeDossier.libelle }}
                       </option>
                     </select>
+                    
                   </fieldset>
                   <div class="mb-3">
                     <label for="file1" class="form-label">Télécharger un fichier (PDF, Word, etc.) :</label>

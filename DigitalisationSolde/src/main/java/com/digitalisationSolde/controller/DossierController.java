@@ -30,13 +30,12 @@ public class DossierController {
     private String uploadDir;
 
     @PostMapping(value="/dossier")
-    public ResponseEntity<String> createDossier(@ModelAttribute Dossier dossier) {
+    public Dossier createDossier(@ModelAttribute Dossier dossier) {
         try {
             dossier.saveFiles(uploadDir); // Appelez la méthode pour enregistrer les fichiers
-            dossierService.saveDossier(dossier);
-            return ResponseEntity.ok("Dossier créé avec succès");
+            return dossierService.saveDossier(dossier);
         } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Échec de la création du dossier");
+            return null;
         }
     }
 

@@ -1,5 +1,6 @@
 package com.digitalisationSolde.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,9 +27,9 @@ public class TypeDossier {
 
     @Column(name="informations")
     private String informations;
-    @OneToMany(targetEntity = Dossier.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_type_dossier", referencedColumnName = "id")
-    private List<Dossier> dossiers;
+    @JsonIgnore
+    @OneToMany(mappedBy = "typeDossier")
+    private Set<Dossier> dossiers;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "type_dossier_pieces",
