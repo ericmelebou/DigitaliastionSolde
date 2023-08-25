@@ -27,3 +27,17 @@
       transform: translateX(0%);
     }
   }
+
+  .custom-link-style {
+    display: inline-block;
+    padding: 10px 20px; /* Ajustez les valeurs de padding selon vos préférences */
+    background-color: #5561aa; /* Couleur de fond */
+    color: white !important; /* Couleur du texte en blanc, "!important" pour forcer la priorité sur d'autres styles */
+    border-radius: 5px; /* Coins arrondis */
+    text-decoration: none; /* Supprimer la soulignement du lien */
+    transition: background-color 0.3s ease; /* Transition de la couleur de fond */
+  }
+
+  .custom-link-style:hover {
+    background-color: #394b90; /* Couleur de fond au survol */
+  }

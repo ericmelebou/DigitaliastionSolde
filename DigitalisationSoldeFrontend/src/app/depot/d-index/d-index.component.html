@@ -21,75 +21,95 @@
             </div>
           </div>
           <div class="d-flex">
-            <div class="card mr-3" style="flex: 1">
-              <div
-                class="card-body d-flex align-items-center justify-content-between"
-              >
-                <h5 class="card-title mb-0" style="font-size: 1.25rem">
-                  Vos dossiers
-                </h5>
-                <a
-                  [routerLink]="['/depot/add']"
-                  style="background-color: #6366f1"
-                  class="btn btn-primary"
-                  >Nouveau dossier</a
+            <div class="col-8">
+              <div class="card mr-3" style="flex: 1">
+                <div
+                  class="card-body d-flex align-items-center justify-content-between"
                 >
-              </div>
+                  <h5 class="card-title mb-0" style="font-size: 1.25rem">
+                    Vos dossiers
+                  </h5>
+                  <a
+                    [routerLink]="['/depot/add']"
+                    style="background-color: #6366f1"
+                    class="btn btn-primary"
+                    >Nouveau dossier</a
+                  >
+                </div>
 
-              <div class="mb-3 row">
-                <label
-                  for="table-complete-search"
-                  class="col-xs-3 col-sm-auto col-form-label"
-                  >Rechercher:</label
-                >
-                <div class="col-xs-3 col-sm-auto">
-                  <input
-                    id="table-complete-search"
-                    type="text"
-                    class="form-control"
-                    name="searchTerm"
-                  />
+                <div class="mb-3 row">
+                  <label
+                    for="table-complete-search"
+                    class="col-xs-3 col-sm-auto col-form-label"
+                    >Rechercher:</label
+                  >
+                  <div class="col-xs-3 col-sm-auto">
+                    <input
+                      id="table-complete-search"
+                      type="text"
+                      class="form-control"
+                      name="searchTerm"
+                    />
+                  </div>
+                </div>
+
+                <table class="table table-striped" style="text-align: center">
+                  <thead>
+                    <tr>
+                      <th>Type de dossier</th>
+                      <th>Date de dépot</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let dossier of dossiersList">
+                      <td style="text-align: center">
+                        {{ dossier.typeDossier.libelle }}
+                      </td>
+                      <td style="text-align: center">
+                        {{ dossier.dateDepot | date : "dd/MM/yyyy" }}
+                      </td>
+                      <td style="text-align: center">{{ dossier.status }}</td>
+                      <td>
+                        <a (click)="openModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="15"
+                        width="5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between p-2">
+                  <ngb-pagination
+                    [collectionSize]="totalItems"
+                  ></ngb-pagination>
+                  <select
+                    class="form-select"
+                    style="width: auto"
+                    name="pageSize"
+                  >
+                    <option [ngValue]="2">2 items per page</option>
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                  </select>
                 </div>
               </div>
-
-              <table class="table table-striped" style="text-align: center;">
-                <thead>
-                  <tr>
-                    <th >Type de dossier</th>
-                    <th >Date de dépot</th>
-                    <th >Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let dossier of dossiersList;">
-                    <td style="text-align: center;">{{ dossier.typeDossier.libelle }}</td>
-                    <td style="text-align: center;">{{ dossier.dateDepot | date:'dd/MM/yyyy' }}</td>
-                    <td style="text-align: center;">{{ dossier.status }}</td>
-
-                  </tr>
-                </tbody>
-              </table>
-
-
-              <div class="d-flex justify-content-between p-2">
-                <ngb-pagination [collectionSize]="totalItems"></ngb-pagination>
-
-                <select class="form-select" style="width: auto" name="pageSize">
-                  <option [ngValue]="2">2 items per page</option>
-                  <option [ngValue]="4">4 items per page</option>
-                  <option [ngValue]="6">6 items per page</option>
-                </select>
-              </div>
             </div>
-
-            <div class="card" style="flex: 1; height: 170px">
-              <div
-                class="card-body d-flex align-items-center justify-content-between"
-              >
-                <h5 class="card-title mb-0" style="font-size: 1.25rem">
-                  Mon agenda
-                </h5>
-                <a href="#" class="card-link">0</a>
+            <div class="col-4">
+              <div class="card" style="flex: 1; height: 170px">
+                <div
+                  class="card-body d-flex align-items-center justify-content-between"
+                >
+                  <h5 class="card-title mb-0" style="font-size: 1.25rem">
+                    Mon agenda
+                  </h5>
+                  <a href="#" class="card-link">0</a>
+                </div>
               </div>
             </div>
           </div>

@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DIndexComponent } from './d-index/d-index.component';
 import { DAddComponent } from './d-add/d-add.component';
 import { DLayoutComponent } from './d-layout/d-layout.component';
+import { ModalComponent } from './modal/modal.component';
 
 const routes: Routes = [
   {
     path: '', component: DLayoutComponent, children: [
       { path: '', component: DIndexComponent },
       { path: 'add', component: DAddComponent },
+      { path: 'show/:id', component: ModalComponent },
     ]
   },
 

@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { IDossier } from 'src/app/_interfaces/dossier';
 import { DossierService } from 'src/app/_services/dossier.service';
 import { TokenService } from 'src/app/_services/token.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-d-index',
   templateUrl: './d-index.component.html',
   styleUrls: ['./d-index.component.scss'],
 })
+
 export class DIndexComponent {
   displayedColumns: string[] = ['name', 'date'];
-
+  modalRef?: MdbModalRef<ModalComponent>;
   dossiersList: IDossier[] = [];
   totalItems: any = 3;
   isDataEmpty: boolean;
@@ -21,12 +24,21 @@ export class DIndexComponent {
   items: string[] = ['apple', 'banana', 'cherry', 'grape', 'orange'];
 
   constructor(
+    private modalService: MdbModalService,
     private router: Router,
     private dossierService: DossierService,
     private tokenService: TokenService
   ) {
     this.isDataEmpty = this.dossiersList.length===0;
   }
+
+  openModal() {
+    this.modalRef = this.modalService.open(ModalComponent, {
+      modalClass: 'modal-xl'
+    })
+
+  }
+
 
   // Exemple de données statiques
   dataSource = new MatTableDataSource([

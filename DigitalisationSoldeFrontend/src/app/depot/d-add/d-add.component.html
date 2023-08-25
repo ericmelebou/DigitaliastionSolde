@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Depot de dossier</a>
+          <a class="nav-link active" [routerLink]="['/depot']">Depot de dossier</a>
         </li>
       </ul>
     </div>
@@ -51,7 +51,7 @@
                         {{ typeDossier.libelle }}
                       </option>
                     </select>
-                    
+
                   </fieldset>
                   <div class="mb-3">
                     <label for="file1" class="form-label">Télécharger un fichier (PDF, Word, etc.) :</label>

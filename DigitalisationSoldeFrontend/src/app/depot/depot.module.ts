@@ -13,6 +13,10 @@ import { ModalComponent } from './modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+
+
 
 @NgModule({
   declarations: [
@@ -26,8 +30,12 @@ import { BrowserModule } from '@angular/platform-browser';
     DepotRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    MdbModalModule,
     CommonModule,
     ButtonModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
     NgbPaginationModule,
     RouterModule,
     StyleClassModule,
