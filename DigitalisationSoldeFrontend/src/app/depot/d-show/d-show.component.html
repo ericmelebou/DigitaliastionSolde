@@ -43,11 +43,11 @@
                       </li>
                       <li class="list-group-item">
                         <strong>Piece:</strong>
-                        <a [href]="dossier?.urlPiece" target="_blank"> {{ dossier?.urlPiece }}</a>
+                        <a href="/assets/{{dossier?.urlPiece}}" target="_blank"> {{ dossier?.urlPiece }}</a>
                       </li>
                       <li class="list-group-item">
                         <strong>Demande:</strong>
-                        <a [href]="dossier?.urlPiece" target="_blank">  {{ dossier?.urlDemande }}</a>
+                        <a href="/assets/{{dossier?.urlDemande}}" target="_blank">  {{ dossier?.urlDemande }}</a>
                       </li>
                       <li class="list-group-item">
                         <strong>Documents:</strong> {{ dossier?.documents }}
