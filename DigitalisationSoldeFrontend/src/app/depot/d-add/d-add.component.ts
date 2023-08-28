@@ -18,8 +18,10 @@ export class DAddComponent {
   public form: any;
   selectedTypeDossier: any;
   typeDossierList: ITypeDossier[] = [];
+  typeDossierFiltedList: ITypeDossier[] = [];
   typeDossier?: ITypeDossier;
   pieceJustificatifs: IPieceJustificative[] = [];
+  pieceJustificatifsFiltered: IPieceJustificative[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -87,6 +89,25 @@ export class DAddComponent {
       }
     );
   }
+
+
+  filteredByTypeDossier(event: any) {
+    const typeId = event.target.value; // Obtenez l'ID du type de dossier sélectionné depuis l'événement
+
+    if (!typeId) {
+      this.pieceJustificatifsFiltered = []; // Réinitialisez la liste si aucun type n'est sélectionné
+      return;
+    }
+
+    const selectedType = this.typeDossierList.find(type => type.id === typeId); // Remplacez 'id' par la propriété appropriée
+
+    if (selectedType) {
+      this.pieceJustificatifsFiltered = selectedType.piecesJustificatives; // Remplacez 'piecesJustificatives' par la propriété appropriée
+    } else {
+      this.pieceJustificatifsFiltered = [];
+    }
+  }
+
 
   showSuccessAlert() {
     const alert = document.createElement('div');

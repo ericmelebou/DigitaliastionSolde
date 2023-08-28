@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/depot']">Depot de dossier</a>
+          <a class="nav-link active" [routerLink]="['/depot']">Tableau de bord</a>
         </li>
       </ul>
     </div>
@@ -13,6 +13,33 @@
       <div class="tab-content">
         <div class="tab-pane active">
           <div class="d-flex">
+            <div class="card" style="flex: 1;height: 400px;">
+              <div class="card-body">
+                <h5 class="card-title" style="font-size: 1.25rem;">Depot</h5>
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                  <fieldset class="mb-3">
+                    <legend>Sélectionnez un type de dossier :</legend>
+                    <select class="form-select"  (change)="filteredByTypeDossier($event)"  formControlName="typeDossier" [(ngModel)]="selectedTypeDossier">
+                      <option *ngFor="let typeDossier of typeDossierList" [ngValue]="typeDossier">
+                        {{ typeDossier.libelle }}
+                      </option>
+                    </select>
+
+                  </fieldset>
+                  <div class="mb-3">
+                    <label for="file1" class="form-label">Demande (PDF) :</label>
+                    <input type="file" class="form-control" id="file1" accept=".pdf,.doc,.docx"
+                      (change)="getFichierDemande($event)">
+                  </div>
+                  <div class="mb-3">
+                    <label for="file2" class="form-label">Pièces jointes (PDF) :</label>
+                    <input type="file" class="form-control" id="file2" accept=".pdf,.doc,.docx"
+                      (change)="getFichierPiecesJustificatives($event)">
+                  </div>
+                  <button type="submit" style="background-color: #6366F1;" class="btn btn-primary">Soumettre</button>
+                </form>
+              </div>
+            </div>
             <div class="card mr-3" style="flex: 1;">
               <div class="card-body">
                 <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold;">Demande en ligne</h5>
@@ -24,14 +51,11 @@
                 <div class="jumbotron bg-light p-4">
                   <h4 class="display-5 text-center mb-4">Types de Dossiers et Pièces Justificatives</h4>
                   <ul class="list-unstyled">
-                    <li *ngFor="let typeDossier of typeDossierList">
-                      <h3 class="mb-3">{{ typeDossier.libelle }}</h3>
                       <ul>
-                        <li *ngFor="let piece of typeDossier.piecesJustificatives" style="font-weight: bold;">
+                        <li  *ngFor="let piece of selectedTypeDossier?.piecesJustificatives" style="font-weight: bold;">
                           {{ piece.libelle }}
                         </li>
                       </ul>
-                    </li>
                   </ul>
                 </div>
                 <p class="card-text">
@@ -40,33 +64,7 @@
                 </p>
               </div>
             </div>
-            <div class="card" style="flex: 1;height: 400px;">
-              <div class="card-body">
-                <h5 class="card-title" style="font-size: 1.25rem;">Depot</h5>
-                <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
-                  <fieldset class="mb-3">
-                    <legend>Sélectionnez un type de dossier :</legend>
-                    <select class="form-select" formControlName="typeDossier" [(ngModel)]="selectedTypeDossier">
-                      <option *ngFor="let typeDossier of typeDossierList" [ngValue]="typeDossier">
-                        {{ typeDossier.libelle }}
-                      </option>
-                    </select>
 
-                  </fieldset>
-                  <div class="mb-3">
-                    <label for="file1" class="form-label">Télécharger un fichier (PDF, Word, etc.) :</label>
-                    <input type="file" class="form-control" id="file1" accept=".pdf,.doc,.docx"
-                      (change)="getFichierDemande($event)">
-                  </div>
-                  <div class="mb-3">
-                    <label for="file2" class="form-label">Télécharger un autre fichier :</label>
-                    <input type="file" class="form-control" id="file2" accept=".pdf,.doc,.docx"
-                      (change)="getFichierPiecesJustificatives($event)">
-                  </div>
-                  <button type="submit" style="background-color: #6366F1;" class="btn btn-primary">Soumettre</button>
-                </form>
-              </div>
-            </div>
           </div>
         </div>
       </div>

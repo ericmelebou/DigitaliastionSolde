@@ -24,17 +24,17 @@ public class DigitalisationSoldeApplication {
 			Set<Role> roles = new HashSet<>();
 			roles.add(new Role(RoleType.ADMIN));
 			roles.add(new Role(RoleType.USER));
-			Set<PieceJustificative> piecesJustificatives = new HashSet<>();
-			piecesJustificatives.add(new PieceJustificative("Acte de reprise en compte "));
-			piecesJustificatives.add(new PieceJustificative("Acte d’affectation"));
-			piecesJustificatives.add(new PieceJustificative("Certificat de prise de service "));
-			piecesJustificatives.add(new PieceJustificative("Un certificat de cessation de paiement "));
-			piecesJustificatives.add(new PieceJustificative("L’arrêté de remise à la disposition de la Fonction Publique (fin de détachement)"));
-			piecesJustificatives.add(new PieceJustificative("Arrêté portant détachement de l’intéressé"));
-			piecesJustificatives.add(new PieceJustificative("Un bulletin de salaire de l’intéressé(e), facultatif"));
+		Set<PieceJustificative> piecesJustificatives = new HashSet<>();
+	//		piecesJustificatives.add(new PieceJustificative("Acte d’affectation"));
+//			piecesJustificatives.add(new PieceJustificative("Certificat de prise de service"));
+//			piecesJustificatives.add(new PieceJustificative("Un certificat de cessation de paiement"));
+//			piecesJustificatives.add(new PieceJustificative("L’arrêté de remise à la disposition de la Fonction Publique (fin de détachement)"));
+//			piecesJustificatives.add(new PieceJustificative("Un bulletin de salaire de l’intéressé(e), facultatif"));
+//			piecesJustificatives.add(new PieceJustificative("Une photocopie de la CNI"));
+//			piecesJustificatives.add(new PieceJustificative("Une demande de reprise formulée par l’intéressé(e)"));
 
-			typeDossierService.saveTypeDossier(new TypeDossier("Changement de service", piecesJustificatives));
-			agentService.saveAgent(new Agent( "userds@gmail.com","1234",true, roles));
+		//	typeDossierService.saveTypeDossier(new TypeDossier("Changement de service", piecesJustificatives));
+		//	agentService.saveAgent(new Agent( "userds@gmail.com","1234",true, roles));
 
 
 		};
