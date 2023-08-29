@@ -12,10 +12,22 @@ import { MatTableModule } from '@angular/material/table';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserModule } from '@angular/platform-browser';
+import { TableModule } from 'primeng/table';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { RippleModule } from 'primeng/ripple';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ToastModule } from 'primeng/toast';
+import { SliderModule } from 'primeng/slider';
+import { RatingModule } from 'primeng/rating';
 import { ToastrModule } from 'ngx-toastr';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { DShowComponent } from './d-show/d-show.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { CascadeSelectModule } from "primeng/cascadeselect";
+import { MultiSelectModule } from "primeng/multiselect";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -43,6 +55,23 @@ import { DShowComponent } from './d-show/d-show.component';
     StyleClassModule,
     MatTableModule,
     AppConfigModule,
+    DropdownModule,
+		InputNumberModule, 
+		InputTextModule,
+		CascadeSelectModule,
+		MultiSelectModule,
+		InputTextareaModule,
+    TableModule,
+		RatingModule,
+		ButtonModule,
+		SliderModule,
+		InputTextModule,
+		ToggleButtonModule,
+		RippleModule,
+		MultiSelectModule,
+		DropdownModule,
+		ProgressBarModule,
+		ToastModule
   ]
 })
 export class DepotModule { }

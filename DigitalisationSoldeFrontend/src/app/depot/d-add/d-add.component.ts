@@ -23,6 +23,7 @@ export class DAddComponent {
   pieceJustificatifs: IPieceJustificative[] = [];
   pieceJustificatifsFiltered: IPieceJustificative[] = [];
 
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -31,7 +32,7 @@ export class DAddComponent {
     private tokenService: TokenService,
     private pieceJustificatifService: PieceJustificativeService,
     private toastr: ToastrService
-  ) {}
+  ) { }
   fichierDemande: File | null = null;
   fichierPiecesJustificatives: File | null = null;
   ngOnInit(): void {
@@ -128,6 +129,28 @@ export class DAddComponent {
     }, 5000);
   }
 
+  selectedState: any = null;
 
+  states: any[] = [
+    { name: 'Arizona', code: 'Arizona' },
+    { name: 'California', value: 'California' },
+    { name: 'Florida', code: 'Florida' },
+    { name: 'Ohio', code: 'Ohio' },
+    { name: 'Washington', code: 'Washington' }
+  ];
+
+  dropdownItems = [
+    { name: 'Option 1', code: 'Option 1' },
+    { name: 'Option 2', code: 'Option 2' },
+    { name: 'Option 3', code: 'Option 3' }
+  ];
+
+  cities1: any[] = [];
+
+  cities2: any[] = [];
+
+  city1: any = null;
+
+  city2: any = null;
 
 }
