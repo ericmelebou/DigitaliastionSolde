@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAgent } from 'src/app/_interfaces/agent';
+import { IRole } from 'src/app/_interfaces/role';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenService } from 'src/app/_services/token.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
@@ -12,8 +13,10 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 export class LoginComponent {
 
 	rememberMe: boolean = false;
-
-	constructor(private layoutService: LayoutService, private fb: FormBuilder, private router: Router, private authService: AuthService, private tokenService: TokenService) { }
+	agentRoles?: IRole[];
+	constructor(private layoutService: LayoutService, private fb: FormBuilder,
+		private router: Router, private authService: AuthService,
+		private tokenService: TokenService,) { }
 	authDenied = false;
 	noConnection = false;
 	form: any;
@@ -31,19 +34,28 @@ export class LoginComponent {
 		})
 	}
 	async toLogIn(data: FormGroup) {
-		
+
 
 		this.credential.email = data.value['email']
 		this.credential.password = data.value['password']
 		await this.authService.logIn(this.credential).subscribe(
 			{
 				next: data => {
-					console.log(data.agent)
 					this.agent = data.agent
 					localStorage.setItem('agentId', data.agent.id)
 					this.tokenService.saveToken(data.token)
+					this.agentRoles = data.agent.roles
+					console.log(this.agentRoles)
+					if (this.agentRoles!.length === 1 && this.agentRoles![0].nom === "USAGER") {
+						this.router.navigate(['/depot'])
+					} else {
 
-					this.router.navigate(['/depot'])
+						this.router.navigate(['/admin'])
+
+
+					}
+
+
 
 				},
 				error: error => {
@@ -51,7 +63,7 @@ export class LoginComponent {
 					if (error.status == 0) {
 						this.noConnection = true
 						this.authDenied = false
-					} else if(error.status == 403){
+					} else if (error.status == 403) {
 						this.authDenied = true
 						this.noConnection = false
 					}

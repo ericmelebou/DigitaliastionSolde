@@ -1,0 +1,58 @@
+<div class="card">
+    <p-table #dt [value]="dossiers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]"
+        [globalFilterFields]="['codeIdentification','origine','typeDossier.libelle','status']">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+                <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Rechercher dans la liste..."
+                        class="w-full" />
+                </span>
+
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="matricule" class="white-space-nowrap" style="width:25%">Matricule <p-sortIcon
+                        field="matricule"></p-sortIcon></th>
+                <th pSortableColumn="origine" class="white-space-nowrap" style="width:25%">Origine <p-sortIcon
+                        field="origine"></p-sortIcon></th>
+                <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width:25%">Type de dossier
+                    <p-sortIcon field="typeDossier"></p-sortIcon>
+                </th>
+                <th pSortableColumn="statut" class="white-space-nowrap" style="width:25%">Statut <p-sortIcon
+                        field="statut"></p-sortIcon></th>
+                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Date de soumission
+                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                </th>
+                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dossier>
+            <tr>
+                <td>{{dossier.codeIdentification}}</td>
+                <td>
+                    {{dossier.origine}}
+                </td>
+                <td>{{dossier.typeDossier.libelle }}</td>
+                <td>
+                    {{dossier.status}}
+                </td>
+                <td>
+                    {{dossier.dateDepot | date: 'dd/MM/yyyy'}}
+                </td>
+                <td>
+                    <button pButton pRipple type="button" label="Info" class="p-button-info p-button-text" (click)="showDetails(dossier)"></button>
+                    <button pButton pRipple type="button" label="Affecter"
+                        class="p-button-success p-button-text"></button>
+
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

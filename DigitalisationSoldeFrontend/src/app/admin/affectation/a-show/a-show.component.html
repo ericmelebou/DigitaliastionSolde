@@ -1,0 +1,127 @@
+<div class="p-grid p-justify-center">
+    <div class="p-col-12">
+        <h3 class="mb-4">Détails du Dossier <span class="underline text-danger"> {{ dossier!.codeIdentification }}
+            </span></h3>
+            <div class="p-col-12">
+                <button pButton pRipple type="button" label="Retour" (click)="backToList()" class="p-button-success float-end mt-2 me-2"></button>
+            </div>
+
+    </div>
+
+    <div class="p-col-12 p-md-6">
+        <p-card>
+            <ng-template pTemplate="title">
+                Informations du Dossier
+            </ng-template>
+            <div class="p-fluid">
+
+                <div class="p-field">
+                    <label for="codeIdentification">Code d'Identification</label>
+                    <input id="codeIdentification" type="text" pInputText [(ngModel)]="dossier!.codeIdentification"
+                        readonly>
+                </div>
+                <div class="p-field">
+                    <label for="nombrePiece">Nombre de Pièces</label>
+                    <input id="nombrePiece" type="text" pInputText [(ngModel)]="dossier!.nombrePiece" readonly>
+                </div>
+                <div class="p-field">
+                    <label for="dateDepot">Date de Dépôt</label>
+                    <input id="dateDepot" type="text" pInputText [(ngModel)]="dossier!.dateDepot" readonly>
+                </div>
+                <div class="p-field">
+                    <label for="nombreAgentsConcernes">Nombre d'Agents Concernés</label>
+                    <input id="nombreAgentsConcernes" type="text" pInputText
+                        [(ngModel)]="dossier!.nombreAgentsConcernes" readonly>
+                </div>
+                <div class="p-field">
+                    <label for="status">Statut</label>
+                    <input id="status" type="text" pInputText [(ngModel)]="dossier!.status" readonly>
+                </div>
+                <div class="p-field">
+                    <label for="origine">Origine</label>
+                    <input id="origine" type="text" pInputText [(ngModel)]="dossier!.origine" readonly>
+                </div>
+            </div>
+        </p-card>
+    </div>
+    <br>
+    <div class="p-col-12">
+        <p-card>
+            <ng-template pTemplate="title">
+                Type de Dossier
+            </ng-template>
+            <div>{{ dossier!.typeDossier.libelle }}</div>
+        </p-card>
+    </div>
+    <br>
+    <div class="p-col-12">
+        <p-card>
+            <ng-template pTemplate="title">
+                Pièces Jointes et Demandes
+            </ng-template>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6">
+                    <label>Pièce Jointe : </label>
+                    <a href="/assets/{{dossier?.urlPiece}}" target="_blank"> {{ dossier!.urlPiece }}</a>
+                </div>
+                <div class="p-col-12 p-md-6">
+                    <label>Demande : </label>
+                    <a href="/assets/{{dossier?.urlDemande}}" target="_blank"> {{ dossier!.urlDemande }}</a>
+                </div>
+            </div>
+        </p-card>
+    </div>
+    <br>
+    <div class="p-col-12 p-md-6">
+        <p-card>
+            <ng-template pTemplate="title">
+                Documents
+            </ng-template>
+            <!-- Vérifiez si la liste de documents est vide -->
+            <ng-container *ngIf="dossier!.documents && dossier!.documents.length > 0; else noDocuments">
+                <ul>
+                    <li *ngFor="let document of dossier!.documents">{{ document.id }}</li>
+                </ul>
+            </ng-container>
+            <!-- Si la liste est vide, affiche un message -->
+            <ng-template #noDocuments>
+                <p>Pas de documents.</p>
+            </ng-template>
+        </p-card>
+    </div>
+
+    <br>
+    <div class="p-col-12">
+        <p-card>
+            <ng-template pTemplate="title">
+                Affectations
+            </ng-template>
+            <!-- Vérifiez si la liste d'affectations est vide -->
+            <ng-container
+                *ngIf="dossier!.affectationDossiers && dossier!.affectationDossiers.length > 0; else noAffectations">
+                <p-table [value]="dossier!.affectationDossiers">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Agent</th>
+                            <th>Date</th>
+                            <th>Commentaires</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-affectation>
+                        <tr>
+                            <td>{{ affectation.agentName }}</td>
+                            <td>{{ affectation.date }}</td>
+                            <td>{{ affectation.commentaires }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
+            <!-- Si la liste est vide, affiche un message -->
+            <ng-template #noAffectations>
+                <p>Aucun agent affecté sur ce dossier pour le moment.</p>
+            </ng-template>
+        </p-card>
+    </div>
+
+    <br>
+</div>

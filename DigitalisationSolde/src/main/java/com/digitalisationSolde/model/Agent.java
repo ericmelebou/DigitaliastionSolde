@@ -37,7 +37,7 @@ public class Agent implements UserDetails {
     private Date updatedDate;
     private Boolean activated;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "utilisateur_roles",
+    @JoinTable(name = "agent_roles",
             joinColumns = {@JoinColumn(name = "id_agent", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "id_role", referencedColumnName = "id")})
     @JsonManagedReference

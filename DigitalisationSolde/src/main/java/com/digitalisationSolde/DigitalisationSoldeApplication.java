@@ -23,7 +23,7 @@ public class DigitalisationSoldeApplication {
 		return  args -> {
 			Set<Role> roles = new HashSet<>();
 			roles.add(new Role(RoleType.ADMIN));
-			roles.add(new Role(RoleType.USER));
+			roles.add(new Role(RoleType.USAGER));
 		Set<PieceJustificative> piecesJustificatives = new HashSet<>();
  	piecesJustificatives.add(new PieceJustificative("Acte d’affectation"));
  		piecesJustificatives.add(new PieceJustificative("Certificat de prise de service"));
