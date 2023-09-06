@@ -14,6 +14,9 @@ export class DossierService {
   getDossiers(): Observable<IDossier[]> {
     return this.http.get<IDossier[]>(apiUrl + '/dossiers');
   }
+  getDossiersByAgent(idAgent : number): Observable<IDossier[]> {
+    return this.http.get<IDossier[]>(apiUrl + '/dossiers/' + idAgent);
+  }
   getDossier(id: number): Observable<IDossier> {
     return this.http.get<IDossier>(apiUrl + '/dossier/' + id);
   }

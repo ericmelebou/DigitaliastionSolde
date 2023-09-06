@@ -53,6 +53,10 @@ public class DossierController {
     public Iterable<Dossier> getDossiers() {
         return dossierService.getDossiers();
     }
+    @GetMapping("/dossiers/{idAgent}")
+    public Iterable<Dossier> getDossiersByAgent(@PathVariable Long idAgent) {
+        return dossierService.getDossiersByAgent(idAgent);
+    }
 
    @PutMapping("/dossier/{id}")
     public Dossier updateDossier(@PathVariable("id") final Long id, @RequestBody Dossier dossier) {

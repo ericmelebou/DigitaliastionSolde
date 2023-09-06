@@ -32,4 +32,8 @@ public class DossierService {
     public Dossier saveDossier(Dossier dossier) {
         return dossierRepository.save(dossier);
     }
+    public Iterable<Dossier> getDossiersByAgent(Long idAgent) {
+        return dossierRepository.findByIdAgent(idAgent);
+    }
+
 }

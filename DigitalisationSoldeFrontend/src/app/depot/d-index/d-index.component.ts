@@ -57,66 +57,66 @@ export class DIndexComponent {
   loading: boolean = true;
   onSort() {
     this.updateRowGroupMetaData();
-}
+  }
 
-updateRowGroupMetaData() {
-  this.rowGroupMetadata = {};
+  updateRowGroupMetaData() {
+    this.rowGroupMetadata = {};
 
-  if (this.customers3) {
+    if (this.customers3) {
       for (let i = 0; i < this.customers3.length; i++) {
-          const rowData = this.customers3[i];
-          const representativeName = rowData?.representative?.name || '';
+        const rowData = this.customers3[i];
+        const representativeName = rowData?.representative?.name || '';
 
-          if (i === 0) {
-              this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
+        if (i === 0) {
+          this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
+        }
+        else {
+          const previousRowData = this.customers3[i - 1];
+          const previousRowGroup = previousRowData?.representative?.name;
+          if (representativeName === previousRowGroup) {
+            this.rowGroupMetadata[representativeName].size++;
           }
           else {
-              const previousRowData = this.customers3[i - 1];
-              const previousRowGroup = previousRowData?.representative?.name;
-              if (representativeName === previousRowGroup) {
-                  this.rowGroupMetadata[representativeName].size++;
-              }
-              else {
-                  this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
-              }
+            this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
           }
+        }
       }
+    }
   }
-}
 
-expandAll() {
-  if (!this.isExpanded) {
+  expandAll() {
+    if (!this.isExpanded) {
       this.products.forEach(product => product && product.name ? this.expandedRows[product.name] = true : '');
 
-  } else {
+    } else {
       this.expandedRows = {};
+    }
+    this.isExpanded = !this.isExpanded;
   }
-  this.isExpanded = !this.isExpanded;
-}
 
-formatCurrency(value: number) {
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
+  formatCurrency(value: number) {
+    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
 
-onGlobalFilter(table: Table, event: Event) {
-  table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-}
-@ViewChild('filter') filter!: ElementRef;
+  onGlobalFilter(table: Table, event: Event) {
+    table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  }
+  @ViewChild('filter') filter!: ElementRef;
 
-clear(table: Table) {
-  table.clear();
-  this.filter.nativeElement.value = '';
-}
+  clear(table: Table) {
+    table.clear();
+    this.filter.nativeElement.value = '';
+  }
   constructor(
     private modalService: MdbModalService,
     private router: Router,
     private dossierService: DossierService,
     private tokenService: TokenService
   ) {
-    this.isDataEmpty = this.dossiersList.length===0;
+    this.isDataEmpty = this.dossiersList.length === 0;
   }
 
-  
+
   openModal(dossier: IDossier): void {
     this.router.navigate(['/depot/show', dossier.id]);
   }
@@ -132,10 +132,12 @@ clear(table: Table) {
   ]);
 
   ngOnInit(): void {
-    this.dossierService.getDossiers().subscribe({
+    const idAgent = localStorage.getItem('agentId') as unknown as number;
+    this.dossierService.getDossiersByAgent(idAgent).subscribe({
       next: (dossiers) => {
+
         this.dossiersList = dossiers;
-        console.log('ma liste des dossiers', this.dossiersList);
+        console.log('ma liste des dossiers de cet agent', this.dossiersList);
       },
     });
   }

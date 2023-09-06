@@ -6,16 +6,12 @@
       </div>
       <div>
         <div [ngClass]="metric.color" class="border-round" style="height: 6px">
-          <div
-            [ngClass]="metric.fieldColor"
-            class="h-full border-round"
-            style="width: 34%"
-          ></div>
+          <div [ngClass]="metric.fieldColor" class="h-full border-round" style="width: 34%"></div>
         </div>
         <div class="flex align-item-center justify-content-between">
           <span class="text-900 mt-3 text-md font-medium">{{
             metric.files
-          }}</span>
+            }}</span>
         </div>
       </div>
     </div>
@@ -25,84 +21,43 @@
       <div class="text-900 text-xl font-semibold mb-3">
         Dossiers non traités
       </div>
-      <p-table
-        #dt
-        [value]="dossiersNonTraiter"
-        [paginator]="true"
-        [rows]="10"
-        [showCurrentPageReport]="true"
-        responsiveLayout="scroll"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[10, 25, 50]"
-        [globalFilterFields]="[
+      <p-table #dt [value]="dossiersNonTraiter" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10, 25, 50]" [globalFilterFields]="[
           'codeIdentification',
           'origine',
           'typeDossier.libelle',
           'status'
-        ]"
-      >
+        ]">
         <ng-template pTemplate="caption">
-          <div
-            class="flex flex-wrap gap-2 align-items-center justify-content-between"
-          >
-            <span
-              class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0"
-            >
+          <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+            <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
               <i class="pi pi-search"></i>
-              <input
-                pInputText
-                type="text"
-                (input)="onGlobalFilter(dt, $event)"
-                placeholder="Rechercher dans la liste..."
-                class="w-full"
-              />
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                placeholder="Rechercher dans la liste..." class="w-full" />
             </span>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th
-              pSortableColumn="matricule"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="matricule" class="white-space-nowrap" style="width: 25%">
               Matricule <p-sortIcon field="matricule"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="origine"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="origine" class="white-space-nowrap" style="width: 25%">
               Origine <p-sortIcon field="origine"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="typeDossier"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width: 25%">
               Type de dossier
               <p-sortIcon field="typeDossier"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="statut"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="statut" class="white-space-nowrap" style="width: 25%">
               Statut <p-sortIcon field="statut"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="dateDepot"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
               Date de soumission
               <p-sortIcon field="dateDepot"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="dateDepot"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
               Action
               <p-sortIcon field="dateDepot"></p-sortIcon>
             </th>
@@ -116,34 +71,19 @@
             </td>
             <td>{{ dossier.typeDossier.libelle }}</td>
             <td>
-              <span
-                  [class]="
+              <span [class]="
                       'order-badge order-' +
                       dossier.status
-                  "
-                  >{{ dossier.status }}</span
-              >
-          </td>
+                  ">{{ dossier.status }}</span>
+            </td>
 
             <td>
               {{ dossier.dateDepot | date : "dd/MM/yyyy" }}
             </td>
             <td>
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Info"
-                class="p-button-info p-button-text"
-                (click)="showDetails(dossier)"
-              ></button>
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Affecter"
-                class="p-button-success p-button-text"
-              ></button>
+              <button pButton pRipple type="button" label="Info" class="p-button-info p-button-text"
+                (click)="showDetails(dossier)"></button>
+              <button pButton pRipple type="button" label="Affecter" class="p-button-success p-button-text"></button>
             </td>
           </tr>
         </ng-template>
@@ -151,194 +91,14 @@
     </div>
   </div>
 
-  <div class="col-12">
-    <div class="card">
-      <h4>Dossiers et documents</h4>
-      <p-toast></p-toast>
-      <p-table
-          [value]="dossiers"
-          dataKey="dossiers.id"
-          [expandedRowKeys]="expandedRows"
-          responsiveLayout="scroll"
-      >
-          <ng-template pTemplate="caption">
-              <button
-                  pButton
-                  icon="pi pi-fw {{
-                      isExpanded ? 'pi-minus' : 'pi-plus'
-                  }}"
-                  label="{{ isExpanded ? 'Collapse All' : 'Expand All' }}"
-                  (click)="expandAll()"
-              ></button>
-              <div class="flex table-header"></div>
-          </ng-template>
-          <ng-template pTemplate="header">
-              <tr>
-                  <th style="width: 3rem"></th>
-                  <th pSortableColumn="name">
-                      Type dossier <p-sortIcon field="typeDossier"></p-sortIcon>
-                  </th>
-                  <th>Code dossier </th>
-                  <th pSortableColumn="price">
-                      Origine <p-sortIcon field="origine"></p-sortIcon>
-                  </th>
-                  <th pSortableColumn="category">
-                      Date <p-sortIcon field="dateDepot"></p-sortIcon>
-                  </th>
-                  <th pSortableColumn="rating">
-                      Status <p-sortIcon field="status"></p-sortIcon>
-                  </th>
-              </tr>
-          </ng-template>
-          <ng-template
-              pTemplate="body"
-              let-product
-              let-expanded="expanded"
-          >
-              <tr>
-                  <td>
-                      <button
-                          type="button"
-                          pButton
-                          pRipple
-                          [pRowToggler]="dossiers"
-                          class="p-button-text p-button-rounded p-button-plain"
-                          [icon]="
-                              expanded
-                                  ? 'pi pi-chevron-down'
-                                  : 'pi pi-chevron-right'
-                          "
-                      ></button>
-                  </td>
-                  <td style="min-width: 12rem">{{ product.name }}</td>
-                  <td>
-                      <img
-                          [src]="
-                              'assets/demo/images/product/' +
-                              product.image
-                          "
-                          [alt]="product.name"
-                          width="100"
-                          class="shadow-4"
-                      />
-                  </td>
-                  <td style="min-width: 8rem">
-                      {{ product.price | currency : "USD" }}
-                  </td>
-                  <td style="min-width: 10rem">{{ product.category }}</td>
-                  <td style="min-width: 10rem">
-                      <p-rating
-                          [ngModel]="product.rating"
-                          [readonly]="true"
-                          [cancel]="false"
-                      ></p-rating>
-                  </td>
-                  <td>
-                      <span
-                          [class]="
-                              'product-badge status-' +
-                              product.inventoryStatus.toLowerCase()
-                          "
-                          >{{ product.inventoryStatus }}</span
-                      >
-                  </td>
-              </tr>
-          </ng-template>
-          <ng-template pTemplate="rowexpansion" let-product>
-              <tr>
-                  <td colspan="7">
-                      <div class="p-3">
-                          <p-table
-                              [value]="product.orders"
-                              dataKey="id"
-                              responsiveLayout="scroll"
-                          >
-                              <ng-template pTemplate="header">
-                                  <tr>
-                                      <th pSortableColumn="id">
-                                          Id
-                                          <p-sortIcon
-                                              field="price"
-                                          ></p-sortIcon>
-                                      </th>
-                                      <th pSortableColumn="customer">
-                                          Customer
-                                          <p-sortIcon
-                                              field="customer"
-                                          ></p-sortIcon>
-                                      </th>
-                                      <th pSortableColumn="date">
-                                          Date
-                                          <p-sortIcon
-                                              field="date"
-                                          ></p-sortIcon>
-                                      </th>
-                                      <th pSortableColumn="amount">
-                                          Amount
-                                          <p-sortIcon
-                                              field="amount"
-                                          ></p-sortIcon>
-                                      </th>
-                                      <th pSortableColumn="status">
-                                          Status
-                                          <p-sortIcon
-                                              field="status"
-                                          ></p-sortIcon>
-                                      </th>
-                                      <th style="width: 4rem"></th>
-                                  </tr>
-                              </ng-template>
-                              <ng-template pTemplate="body" let-order>
-                                  <tr>
-                                      <td>{{ order.id }}</td>
-                                      <td>{{ order.customer }}</td>
-                                      <td>{{ order.date }}</td>
-                                      <td>
-                                          {{
-                                              order.amount
-                                                  | currency : "USD"
-                                          }}
-                                      </td>
-                                      <td>
-                                          <span
-                                              [class]="
-                                                  'order-badge order-' +
-                                                  order.status.toLowerCase()
-                                              "
-                                              >{{ order.status }}</span
-                                          >
-                                      </td>
-                                      <td>
-                                          <p-button
-                                              type="button"
-                                              icon="pi pi-search"
-                                          ></p-button>
-                                      </td>
-                                  </tr>
-                              </ng-template>
-                              <ng-template pTemplate="emptymessage">
-                                  <tr>
-                                      <td colspan="6">
-                                         Aucune donnée disponible
-                                      </td>
-                                  </tr>
-                              </ng-template>
-                          </p-table>
-                      </div>
-                  </td>
-              </tr>
-          </ng-template>
-      </p-table>
-  </div>
-  </div>
+
 
   <div class="col-12 md:col-5 xl:col-3">
     <div class="card">
       <div class="text-900 text-xl font-semibold mb-3">Categories</div>
       <ul class="list-none p-0 m-0">
         <li
-          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-indigo-50 text-indigo-900"
-        >
+          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-indigo-50 text-indigo-900">
           <div class="flex align-items-center">
             <i class="pi pi-file text-2xl mr-3"></i>
             <span class="ext-lg font-medium">Dossiers Internes</span>
@@ -346,8 +106,7 @@
           <span class="text-lg font-bold">{{ nbrDossierInterne }}</span>
         </li>
         <li
-          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-purple-50 text-purple-900"
-        >
+          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-purple-50 text-purple-900">
           <div class="flex align-items-center">
             <i class="pi pi-file text-2xl mr-3"></i>
             <span class="ext-lg font-medium">Dossiers externes</span>
@@ -361,22 +120,20 @@
       <div class="text-900 text-xl font-semibold mb-3">Affectations</div>
       <ul class="list-none p-0 m-0">
         <li
-          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-indigo-50 text-indigo-900"
-        >
+          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-indigo-50 text-indigo-900">
           <div class="flex align-items-center">
             <i class="pi pi-file text-2xl mr-3"></i>
             <span class="ext-lg font-medium">Dossiers affectés</span>
           </div>
-          <span class="text-lg font-bold">{{ nbrDossierInterne }}</span>
+          <span class="text-lg font-bold">{{ dossiersAffecter.length }}</span>
         </li>
         <li
-          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-purple-50 text-purple-900"
-        >
+          class="p-3 mb-3 flex align-items-center justify-content-between cursor-pointer border-round bg-purple-50 text-purple-900">
           <div class="flex align-items-center">
             <i class="pi pi-file text-2xl mr-3"></i>
             <span class="ext-lg font-medium">Dossiers non affectés</span>
           </div>
-          <span class="text-lg font-bold">{{ nbrDossierExterne }}</span>
+          <span class="text-lg font-bold">{{dossiers.length - dossiersAffecter.length }}</span>
         </li>
       </ul>
     </div>
@@ -388,63 +145,34 @@
       <div class="text-900 text-xl font-semibold mb-3">
         Dossiers et affectations
       </div>
-      <p-table
-        #dt
-        [value]="dossiers"
-        [paginator]="true"
-        [rows]="10"
-        [rowHover]="true"
-        styleClass="p-datatable-gridlines"
-        responsiveLayout="scroll"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="[
+      <p-table #dt [value]="dossiersAffecter" [paginator]="true" [rows]="10" [rowHover]="true"
+        styleClass="p-datatable-gridlines" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [globalFilterFields]="[
           'codeIdentification',
           'origine',
           'typeDossier.libelle',
           'status'
-        ]"
-      >
+        ]">
         <ng-template pTemplate="caption">
-          <div
-            class="flex flex-wrap gap-2 align-items-center justify-content-between"
-          >
-            <span
-              class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0"
-            >
+          <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+            <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
               <i class="pi pi-search"></i>
-              <input
-                pInputText
-                type="text"
-                (input)="onGlobalFilter(dt, $event)"
-                placeholder="Rechercher dans la liste..."
-                class="w-full"
-              />
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                placeholder="Rechercher dans la liste..." class="w-full" />
             </span>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th
-              pSortableColumn="typeDossier"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width: 25%">
               Type de dossier
               <p-sortIcon field="typeDossier"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="typeDossier"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width: 25%">
               Code du dossier
               <p-sortIcon field="typeDossier"></p-sortIcon>
             </th>
-            <th
-              pSortableColumn="dateDepot"
-              class="white-space-nowrap"
-              style="width: 25%"
-            >
+            <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
               Agent
               <p-sortIcon field="dateDepot"></p-sortIcon>
             </th>
@@ -455,7 +183,10 @@
             <td>{{ dossier.typeDossier.libelle }}</td>
 
             <td>{{ dossier.codeIdentification }}</td>
-            <td>{{ dossier.idAgent }}</td>
+
+            <td>{{
+              getAgentById(getAffectationDossierByLatestAffectation(dossier.id)!.idAffectationDossier.idAgent)!.nom }}
+            </td>
           </tr>
         </ng-template>
       </p-table>

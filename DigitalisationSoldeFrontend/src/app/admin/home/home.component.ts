@@ -13,6 +13,8 @@ import { IDossier } from 'src/app/_interfaces/dossier';
 import { Router } from '@angular/router';
 import { AgentService } from 'src/app/_services/agent.service';
 import { IAgent } from 'src/app/_interfaces/agent';
+import { AffectationDossierService } from 'src/app/_services/affectation-dossier.service';
+import { IAffectationDossier } from 'src/app/_interfaces/affectation-dossier';
 
 interface expandedRows {
   [key: string]: boolean;
@@ -54,21 +56,25 @@ export class HomeComponent {
   nbrDossierRecu: any;
 
   dossiers: IDossier[] = [];
+  agents: IAgent[] = [];
 
+  affectationDossiers: IAffectationDossier[] = [];
   dossiersNonTraiter: IDossier[] = [];
+  dossiersAffecter: IDossier[] = [];
 
   expandedRows: expandedRows = {};
 
   isExpanded: boolean = false;
 
 
-  agent : IAgent | undefined
+  agent: IAgent | undefined
 
   constructor(
     private fileService: FileAppService,
     private layoutService: LayoutService,
     private dossierService: DossierService,
-    private agentService : AgentService,
+    private agentService: AgentService,
+    private affectationDossierService: AffectationDossierService,
     private router: Router
   ) {
     this.subscription = this.layoutService.configUpdate$.subscribe((config) => {
@@ -85,22 +91,78 @@ export class HomeComponent {
   navigateToCreateUser() {
     this.router.navigate(['profile/create'])
   }
-  showDetails(dossier: IDossier){
+  showDetails(dossier: IDossier) {
     this.router.navigate(["/admin/affectation/show/" + dossier.id])
+  }
+  getAgentById(idAgent: number) {
+    return this.agents.find(agent => agent.id === idAgent)
+  }
+  getDossierAffecter(affectationDossiers: IAffectationDossier[], dossiers: IDossier[]) {
+
+    for (const dossier of dossiers) {
+      for (const affectationDossier of affectationDossiers) {
+        if (affectationDossier.idAffectationDossier.idDossier === dossier.id) {
+          this.dossiersAffecter.push(dossier)
+          return;
+        }
+      }
+
+    }
+  }
+  getAffectationDossierByLatestAffectation(idDossier: number) {
+    let latestAffectationDossier = null;
+    let latestDate = null;
+
+    for (const affectationDossier of this.affectationDossiers) {
+      if (affectationDossier.idAffectationDossier.idDossier === idDossier) {
+        const date = new Date(affectationDossier.dateAffectation);
+        if (!latestDate || date > latestDate) {
+
+          latestDate = date;
+          latestAffectationDossier = affectationDossier;
+        }
+      }
+    }
+    return latestAffectationDossier;
   }
 
   ngOnInit() {
 
+    this.agentService.getAgents().subscribe({
+      next: (agents) => {
+        this.agents = agents;
+      }
+    })
+    this.affectationDossierService.getAffectationDossiers().subscribe({
+      next: (affectationDossiers) => {
+        this.affectationDossiers = affectationDossiers;
+
+      }
+    })
+    const dossiersNon = this.dossiers.filter(
+      (dossier => dossier.status === 'Envoyé')
+    )
+    this.dossiersNonTraiter = dossiersNon
+    console.log("Dossier non traiter", this.dossiersNonTraiter);
 
     this.dossierService.getDossiers().subscribe({
       next: (dossiers) => {
         this.dossiers = dossiers;
+        this.affectationDossierService.getAffectationDossiers().subscribe({
+          next: (affectationDossiers) => {
+            this.affectationDossiers = affectationDossiers;
+            this.getDossierAffecter(this.affectationDossiers, this.dossiers)
+            console.log(this.dossiersAffecter)
 
-        const dossiersNon =this.dossiers.filter(
-          (dossier => dossier.status==='Envoyé')
+          }
+        })
+
+
+        const dossiersNon = this.dossiers.filter(
+          (dossier => dossier.status === 'Envoyé')
         )
-        this.dossiersNonTraiter =dossiersNon
-        console.log("Dossier non traiter",this.dossiersNonTraiter);
+        this.dossiersNonTraiter = dossiersNon
+        console.log("Dossier non traiter", this.dossiersNonTraiter);
 
         // Filtrer les dossiers internes
         const dossiersInternes = this.dossiers.filter(
@@ -246,13 +308,13 @@ export class HomeComponent {
 
   expandAll() {
     if (!this.isExpanded) {
-        this.dossiers.forEach(dossier => dossier && dossier.codeIdentification ? this.expandedRows[dossier.codeIdentification] = true : '');
+      this.dossiers.forEach(dossier => dossier && dossier.codeIdentification ? this.expandedRows[dossier.codeIdentification] = true : '');
 
     } else {
-        this.expandedRows = {};
+      this.expandedRows = {};
     }
     this.isExpanded = !this.isExpanded;
-}
+  }
 
 
 }
