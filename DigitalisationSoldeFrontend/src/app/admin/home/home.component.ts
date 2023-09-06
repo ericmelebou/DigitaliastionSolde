@@ -4,185 +4,258 @@ import { Subscription } from 'rxjs';
 import { Product } from 'src/app/api/product';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ProductService } from 'src/app/service/product.service';
+import { FileAppService } from '../service/file.app.service';
+import { Folder } from 'src/app/api/folder';
+import { Metric } from 'src/app/api/metric';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { DossierService } from 'src/app/_services/dossier.service';
+import { IDossier } from 'src/app/_interfaces/dossier';
+import { Router } from '@angular/router';
+import { AgentService } from 'src/app/_services/agent.service';
+import { IAgent } from 'src/app/_interfaces/agent';
+
+interface expandedRows {
+  [key: string]: boolean;
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class HomeComponent {
-  knobValue: number = 90;
+  fileChart: any;
 
-  selectedWeek: any;
+  fileChartOptions: any;
 
-  weeks: any[] = [];
+  chartPlugins: any;
 
-  barData: any;
+  files: File[] = [];
 
-  barOptions: any;
+  metrics: Metric[] = [];
 
-  pieData: any;
+  folders: Folder[] = [];
 
-  pieOptions: any;
-
-  products: Product[] = [];
+  menuitems: MenuItem[] = [];
 
   subscription: Subscription;
 
-  cols: any[] = [];
+  nbrDossierInterne: any;
 
-  constructor(private productService: ProductService, private layoutService: LayoutService) {
-      this.subscription = this.layoutService.configUpdate$.subscribe(config => {
-          this.initCharts();
-      });
+  nbrDossierExterne: any;
+
+  nbrDossierTraiter: any;
+
+  nbrDossierRejeter: any;
+
+  nbrDossierPriseCompte: any;
+
+  nbrDossierRecu: any;
+
+  dossiers: IDossier[] = [];
+
+  dossiersNonTraiter: IDossier[] = [];
+
+  expandedRows: expandedRows = {};
+
+  isExpanded: boolean = false;
+
+
+  agent : IAgent | undefined
+
+  constructor(
+    private fileService: FileAppService,
+    private layoutService: LayoutService,
+    private dossierService: DossierService,
+    private agentService : AgentService,
+    private router: Router
+  ) {
+    this.subscription = this.layoutService.configUpdate$.subscribe((config) => {
+      this.initChart();
+    });
   }
 
-  ngOnInit(): void {
-      this.weeks = [{
-          label: 'Last Week', 
-          value: 0,
-          data: [[65, 59, 80, 81, 56, 55, 40], [28, 48, 40, 19, 86, 27, 90]]
-      }, 
-      {
-          label: 'This Week', 
-          value: 1,
-          data: [[35, 19, 40, 61, 16, 55, 30], [48, 78, 10, 29, 76, 77, 10]]
-      }];
 
-      this.selectedWeek = this.weeks[0];
-      this.initCharts();
-      this.productService.getProductsSmall().then(data => this.products = data);
 
-      this.cols = [
-          {header: 'Name', field: 'name'},
-          {header: 'Category', field: 'category'},
-          {header: 'Price', field: 'price'},
-          {header: 'Status', field: 'inventoryStatus'}
-      ]
-  }
-
-  initCharts() {
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-      
-      this.barData = {
-          labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-          datasets: [
-              {
-                  label: 'Revenue',
-                  backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                  barThickness: 12,
-                  borderRadius: 12,
-                  data: this.selectedWeek.data[0]
-              },
-              {
-                  label: 'Profit',
-                  backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                  barThickness: 12,
-                  borderRadius: 12,
-                  data: this.selectedWeek.data[1]
-              }
-          ]
-      };
-  
-      this.pieData = {
-          labels: ['Electronics', 'Fashion', 'Household'],
-          datasets: [
-              {
-                  data: [300, 50, 100],
-                  backgroundColor: [
-                      documentStyle.getPropertyValue('--primary-700'),
-                      documentStyle.getPropertyValue('--primary-400'),
-                      documentStyle.getPropertyValue('--primary-100')
-                  ],
-                  hoverBackgroundColor: [
-                      documentStyle.getPropertyValue('--primary-600'),
-                      documentStyle.getPropertyValue('--primary-300'),
-                      documentStyle.getPropertyValue('--primary-200')
-                  ]
-              }
-          ]
-      };
-
-      this.barOptions = {
-          animation: {
-              duration: 0
-          },
-          plugins: {
-              legend: {
-                  labels: {
-                      color: textColor,
-                      usePointStyle: true,
-                      font: {
-                          weight: 700,
-                      },
-                      padding: 28
-                  },
-                  position: 'bottom'
-              }
-          },
-          scales: {
-              x: {
-                  ticks: {
-                      color: textColorSecondary,
-                      font: {
-                          weight: 500
-                      }
-                  },
-                  grid: {
-                      display: false,
-                      drawBorder: false
-                  }
-              },
-              y: {
-                  ticks: {
-                      color: textColorSecondary
-                  },
-                  grid: {
-                      color: surfaceBorder,
-                      drawBorder: false
-                  }
-              }
-          }
-      };
-
-      this.pieOptions = {
-          animation: {
-              duration: 0
-          },
-          plugins: {
-              legend: {
-                  labels: {
-                      color: textColor,
-                      usePointStyle: true,
-                      font: {
-                          weight: 700,
-                      },
-                      padding: 28
-                  },
-                  position: 'bottom'
-              }
-          }
-      };
-  }
-
-  onWeekChange() {
-      let newBarData = {...this.barData};
-      newBarData.datasets[0].data = this.selectedWeek.data[0];
-      newBarData.datasets[1].data = this.selectedWeek.data[1];
-      this.barData = newBarData;
-  }
-  
   onGlobalFilter(table: Table, event: Event) {
-      table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    table.filterGlobal((event.target as HTMLInputElement).value, 'contains')
   }
 
-  ngOnDestroy(): void {
-      if (this.subscription) {
-          this.subscription.unsubscribe();
-      }
+  navigateToCreateUser() {
+    this.router.navigate(['profile/create'])
   }
+  showDetails(dossier: IDossier){
+    this.router.navigate(["/admin/affectation/show/" + dossier.id])
+  }
+
+  ngOnInit() {
+
+
+    this.dossierService.getDossiers().subscribe({
+      next: (dossiers) => {
+        this.dossiers = dossiers;
+
+        const dossiersNon =this.dossiers.filter(
+          (dossier => dossier.status==='Envoyé')
+        )
+        this.dossiersNonTraiter =dossiersNon
+        console.log("Dossier non traiter",this.dossiersNonTraiter);
+
+        // Filtrer les dossiers internes
+        const dossiersInternes = this.dossiers.filter(
+          (dossier) => dossier.origine === 'Interne'
+        );
+        this.nbrDossierInterne = dossiersInternes.length;
+
+        // Filtrer les dossiers externes
+        const dossiersExternes = this.dossiers.filter(
+          (dossier) => dossier.origine === 'Externe'
+        );
+
+        this.nbrDossierExterne = dossiersExternes.length;
+
+        // Filtrer les dossiers recus
+        const dossiersRecus = this.dossiers.filter(
+          (dossier) => dossier.status === 'Envoyé'
+        );
+        this.nbrDossierRecu = dossiersRecus.length;
+
+        // Filtrer les dossiers traiter
+        const dossiersTraiter = this.dossiers.filter(
+          (dossier) => dossier.status === 'Traité'
+        );
+        this.nbrDossierTraiter = dossiersTraiter.length;
+
+        // Filtrer les dossiers prise en compte
+        const dossiersPriseCompte = this.dossiers.filter(
+          (dossier) => dossier.status === 'Prise en compte'
+        );
+        this.nbrDossierPriseCompte = dossiersPriseCompte.length;
+
+        // Filtrer les dossiers rejeter
+        const dossiersRejeter = this.dossiers.filter(
+          (dossier) => dossier.status === 'Rejeté'
+        );
+        this.nbrDossierRejeter = dossiersRejeter.length;
+
+        console.log('Liste de tous les dossiers : ', this.dossiers);
+        console.log('Nombre de dossiers internes : ', this.nbrDossierInterne);
+        console.log('Nombre de dossiers externes : ', this.nbrDossierExterne);
+      },
+    });
+
+    this.fileService.getFiles().then((data) => (this.files = data));
+
+
+
+    this.fileService.getMetrics().then((data) => {
+      this.metrics = data;
+
+      if (this.metrics.length > 0) {
+
+        this.metrics[0].files = this.nbrDossierRecu;
+        this.metrics[1].files = this.nbrDossierRejeter;
+        this.metrics[2].files = this.nbrDossierTraiter;
+        this.metrics[3].files = this.nbrDossierPriseCompte;
+      }
+
+      // Après la modification, this.metrics aura été mis à jour
+      console.log(this.metrics);
+    });
+
+
+    this.fileService.getFoldersLarge().then((data) => (this.folders = data));
+
+    this.initChart();
+
+    this.menuitems = [
+      { label: 'View', icon: 'pi pi-search' },
+      { label: 'Refresh', icon: 'pi pi-refresh' },
+    ];
+  }
+
+
+
+  initChart() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+
+    this.chartPlugins = [
+      {
+        beforeDraw: function (chart: any) {
+          let ctx = chart.ctx;
+          let width = chart.width;
+          let height = chart.height;
+          let fontSize = 1.5;
+          let oldFill = ctx.fillStyle;
+
+          ctx.restore();
+          ctx.font = fontSize + 'rem sans-serif';
+          ctx.textBaseline = 'middle';
+
+          let text = 'Free Space';
+          let text2 = 50 + 'GB / ' + 80 + 'GB';
+          let textX = Math.round((width - ctx.measureText(text).width) / 2);
+          let textY = (height + chart.chartArea.top) / 2.25;
+
+          let text2X = Math.round((width - ctx.measureText(text).width) / 2.1);
+          let text2Y = (height + chart.chartArea.top) / 1.75;
+
+          ctx.fillStyle = chart.config.data.datasets[0].backgroundColor[0];
+          ctx.fillText(text, textX, textY);
+          ctx.fillText(text2, text2X, text2Y);
+          ctx.fillStyle = oldFill;
+          ctx.save();
+        },
+      },
+    ];
+
+    this.fileChart = {
+      datasets: [
+        {
+          data: [300, 100],
+          backgroundColor: [
+            documentStyle.getPropertyValue('--primary-600'),
+            documentStyle.getPropertyValue('--primary-100'),
+          ],
+          hoverBackgroundColor: [
+            documentStyle.getPropertyValue('--primary-700'),
+            documentStyle.getPropertyValue('--primary-200'),
+          ],
+          borderColor: 'transparent',
+          fill: true,
+        },
+      ],
+    };
+
+    this.fileChartOptions = {
+      animation: {
+        duration: 0,
+      },
+      cutout: '90%',
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
+      },
+    };
+  }
+
+  expandAll() {
+    if (!this.isExpanded) {
+        this.dossiers.forEach(dossier => dossier && dossier.codeIdentification ? this.expandedRows[dossier.codeIdentification] = true : '');
+
+    } else {
+        this.expandedRows = {};
+    }
+    this.isExpanded = !this.isExpanded;
+}
+
 
 }
+
+
+

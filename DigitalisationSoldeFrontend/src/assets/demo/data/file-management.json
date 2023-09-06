@@ -94,36 +94,32 @@
 
     "metrics": [
         {
-            "title": "Cloud Storage",
+            "title": "Dossiers reçus",
             "icon": "pi pi-ellipsis-v",
             "fieldColor": "bg-yellow-500",
             "color": "bg-yellow-100",
-            "files": "412 Files",
-            "fileSize": "1.5GB"
+            "files": "412"
         },
         {
-            "title": "Dropbox Storage",
+            "title": "Dossiers rejeter",
             "icon": "pi pi-ellipsis-v",
             "fieldColor": "bg-pink-500",
             "color": "bg-pink-100",
-            "files": "200 Files",
-            "fileSize": "4.1GB"
+            "files": "200"
         },
         {
-            "title": "Google Drive Storage",
+            "title": "Dossiers traités ",
             "icon": "pi pi-ellipsis-v",
             "fieldColor": "bg-green-500",
             "color": "bg-green-100",
-            "files": "24 Files",
-            "fileSize": "1.3GB"
+            "files": "24"
         },
         {
-            "title": "Internal Storage",
+            "title": "Dossier prise en charge",
             "icon": "pi pi-ellipsis-v",
             "fieldColor": "bg-indigo-500",
             "color": "bg-indigo-100",
-            "files": "82 Files",
-            "fileSize": "5.3GB"
+            "files": "82"
         }
     ],
 
@@ -132,7 +128,7 @@
             "name": "Document Files",
             "icon": "pi pi-folder",
             "size": "1.8 GB"
-        }, 
+        },
         {
             "name": "Document Files",
             "icon": "pi pi-images",
@@ -155,7 +151,7 @@
             "name": "Miami 2022",
             "icon": "pi pi-folder",
             "size": "12"
-        }, 
+        },
         {
             "name": "Protoype",
             "icon": "pi pi-folder",

@@ -8,11 +8,13 @@ import { IPieceJustificative } from 'src/app/_interfaces/piece-justificative';
 import { PieceJustificativeService } from 'src/app/_services/piece-justificative.service';
 import { DossierService } from 'src/app/_services/dossier.service';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-d-add',
   templateUrl: './d-add.component.html',
   styleUrls: ['./d-add.component.scss'],
+  providers: [MessageService]
 })
 export class DAddComponent {
   public form: any;
@@ -22,7 +24,7 @@ export class DAddComponent {
   typeDossier?: ITypeDossier;
   pieceJustificatifs: IPieceJustificative[] = [];
   pieceJustificatifsFiltered: IPieceJustificative[] = [];
-
+  uploadedFiles: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -31,8 +33,9 @@ export class DAddComponent {
     private dossierService: DossierService,
     private tokenService: TokenService,
     private pieceJustificatifService: PieceJustificativeService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private messageService: MessageService
+  ) {}
   fichierDemande: File | null = null;
   fichierPiecesJustificatives: File | null = null;
   ngOnInit(): void {
@@ -46,6 +49,26 @@ export class DAddComponent {
         this.typeDossierList = typesDossiers;
         console.log('ma liste des types dossiers', this.typeDossierList);
       },
+    });
+  }
+
+  onUpload(event: any) {
+    for (const file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'File Uploaded',
+    });
+  }
+
+  onBasicUpload() {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'File Uploaded with Basic Mode',
     });
   }
 
@@ -83,14 +106,12 @@ export class DAddComponent {
       (response: any) => {
         console.log('Succès', response);
         this.showSuccessAlert();
-
       },
       (error: any) => {
         console.error('Erreur', error);
       }
     );
   }
-
 
   filteredByTypeDossier(event: any) {
     const typeId = event.target.value; // Obtenez l'ID du type de dossier sélectionné depuis l'événement
@@ -100,7 +121,9 @@ export class DAddComponent {
       return;
     }
 
-    const selectedType = this.typeDossierList.find(type => type.id === typeId); // Remplacez 'id' par la propriété appropriée
+    const selectedType = this.typeDossierList.find(
+      (type) => type.id === typeId
+    ); // Remplacez 'id' par la propriété appropriée
 
     if (selectedType) {
       this.pieceJustificatifsFiltered = selectedType.piecesJustificatives; // Remplacez 'piecesJustificatives' par la propriété appropriée
@@ -108,7 +131,6 @@ export class DAddComponent {
       this.pieceJustificatifsFiltered = [];
     }
   }
-
 
   showSuccessAlert() {
     const alert = document.createElement('div');
@@ -136,13 +158,13 @@ export class DAddComponent {
     { name: 'California', value: 'California' },
     { name: 'Florida', code: 'Florida' },
     { name: 'Ohio', code: 'Ohio' },
-    { name: 'Washington', code: 'Washington' }
+    { name: 'Washington', code: 'Washington' },
   ];
 
   dropdownItems = [
     { name: 'Option 1', code: 'Option 1' },
     { name: 'Option 2', code: 'Option 2' },
-    { name: 'Option 3', code: 'Option 3' }
+    { name: 'Option 3', code: 'Option 3' },
   ];
 
   cities1: any[] = [];
@@ -152,5 +174,4 @@ export class DAddComponent {
   city1: any = null;
 
   city2: any = null;
-
 }

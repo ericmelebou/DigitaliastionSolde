@@ -40,14 +40,20 @@
                 </td>
                 <td>{{dossier.typeDossier.libelle }}</td>
                 <td>
-                    {{dossier.status}}
-                </td>
+                  <span
+                      [class]="
+                          'order-badge order-' +
+                          dossier.status
+                      "
+                      >{{ dossier.status }}</span
+                  >
+              </td>
                 <td>
                     {{dossier.dateDepot | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
                     <button pButton pRipple type="button" label="Info" class="p-button-info p-button-text" (click)="showDetails(dossier)"></button>
-                    <button pButton pRipple type="button" label="Affecter"
+                    <button pButton pRipple type="button" label="Affecter" (click)="openModal()"
                         class="p-button-success p-button-text"></button>
 
                 </td>

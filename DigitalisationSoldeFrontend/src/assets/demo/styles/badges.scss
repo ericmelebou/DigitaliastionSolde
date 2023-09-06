@@ -82,27 +82,26 @@
 .order-badge {
     border-radius: var(--border-radius);
     padding: .25em .5rem;
-    text-transform: uppercase;
     font-weight: 700;
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.order-delivered {
+    &.order-Envoyé {
         background: #C8E6C9;
         color: #256029;
     }
 
-    &.order-cancelled {
+    &.order-Rejeté {
         background: #FFCDD2;
         color: #C63737;
     }
 
-    &.order-pending {
+    &.order-Traiter {
         background: #FEEDAF;
         color: #8A5340;
     }
 
-    &.order-returned {
+    &.order-Prise-en-compte {
         background: #ECCFFF;
         color: #694382;
     }

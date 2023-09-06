@@ -15,4 +15,5 @@ export interface IDossier {
     documents: IDocument[];
     affectationDossiers: IAffectationDossier[];
     typeDossier : ITypeDossier;
+    idAgent: number;
 }

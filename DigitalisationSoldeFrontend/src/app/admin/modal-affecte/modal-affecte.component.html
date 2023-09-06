@@ -1,0 +1,62 @@
+<form [formGroup]="form">
+  <div class="modal-header">
+    <h4 class="modal-title" id="exampleModalLabel">
+      Affecter un dossier à un agent
+    </h4>
+    <button
+      type="reset"
+      class="btn-close"
+      aria-label="Close"
+      (click)="close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6 my-2">
+          <label for="">Code identification dossier:</label>
+          <input  pInputText
+            type="text"
+            class="form-control mt-2"
+            formControlName="codeIdentification"
+          />
+        </div>
+        <div class="col-6 my-2">
+          <label for="" class="mb-2">Liste des agents</label>
+          <select
+            [(ngModel)]="selectedAgent"
+            class="form-select"
+            aria-label="Default select example"
+            formControlName="agent"
+          >
+            <option selected></option>
+            <option *ngFor="let agent of agentList" [ngValue]="">
+              {{ agent.nom }} {{ agent.prenom }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <button
+      type="submit"
+      pButton
+      pRipple
+      [disabled]="form.invalid"
+    >
+      Ajouter
+    </button>
+    <button
+      type="reset"
+      pButton
+      pRipple
+      class="p-button-raised p-button-secondary ml-4"
+      (click)="close()"
+    >
+      Fermer
+    </button>
+  </div>
+
+</form>
+<!--<mdb-modal-dialog class="modal-dialog-centered"></mdb-modal-dialog>-->

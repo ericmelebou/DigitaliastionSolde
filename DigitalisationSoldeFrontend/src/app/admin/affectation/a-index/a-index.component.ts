@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Table } from 'primeng/table';
 import { IDossier } from 'src/app/_interfaces/dossier';
 import { DossierService } from 'src/app/_services/dossier.service';
+import { ModalComponent } from 'src/app/depot/modal/modal.component';
+import { ModalAffecteComponent } from '../../modal-affecte/modal-affecte.component';
 
 @Component({
   selector: 'app-a-index',
@@ -11,9 +14,11 @@ import { DossierService } from 'src/app/_services/dossier.service';
 })
 export class AIndexComponent {
   dossiers: IDossier[] = [];
+  modalRef?: MdbModalRef<ModalAffecteComponent>;
+  transactionList: any;
 
 
-  constructor(private router: Router, private dossierService: DossierService) { }
+  constructor(private router: Router, private dossierService: DossierService,private modalService: MdbModalService,) { }
 
   ngOnInit() {
     this.dossierService.getDossiers().subscribe({
@@ -33,5 +38,11 @@ export class AIndexComponent {
   }
   showDetails(dossier: IDossier){
     this.router.navigate(["/admin/affectation/show/" + dossier.id])
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.open(ModalAffecteComponent, {
+      modalClass: 'modal-lg'
+    })
   }
 }

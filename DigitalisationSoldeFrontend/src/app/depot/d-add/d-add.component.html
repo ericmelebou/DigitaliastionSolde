@@ -1,180 +1,106 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/depot']">Tableau de bord</a>
-        </li>
-      </ul>
+<div
+  class="grid"
+  style="margin-top: 3rem; margin-left: 1rem; margin-right: 1rem"
+>
+  <div class="col-12 md:col-6">
+    <div class="card p-fluid">
+      <h3>Formulaire de dépot</h3>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+      <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0"
+          >Type dossier</label
+        >
+        <div class="col-12 md:col-10">
+          <select
+            pInputText
+            class="form-select"
+            (change)="filteredByTypeDossier($event)"
+            formControlName="typeDossier"
+            [(ngModel)]="selectedTypeDossier"
+          >
+            <option
+              *ngFor="let typeDossier of typeDossierList"
+              [ngValue]="typeDossier"
+            >
+              {{ typeDossier.libelle }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0"
+          >Demande</label
+        >
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="file"
+            class="form-control"
+            id="file1"
+            accept=".pdf,.doc,.docx"
+            (change)="getFichierDemande($event)"
+          />
+        </div>
+      </div>
+
+      <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0"
+          >Pièces jointes</label
+        >
+        <div class="col-12 md:col-10">
+          <input
+            pInputText
+            type="file"
+            class="form-control"
+            id="file2"
+            accept=".pdf,.doc,.docx"
+            (change)="getFichierPiecesJustificatives($event)"
+          />
+        </div>
+      </div>
+      <div class="p-formgrid grid">
+        <div class="field col">
+          <button pButton pRipple label="Submit"></button>
+        </div>
+        <div class="field col">
+          <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+        </div>
+      </div>
+     
+    </form>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="tab-content">
-        <div class="tab-pane active">
-          <div class="d-flex">
-            <div class="card" style="flex: 1;height: 400px;">
-              <div class="card-body">
-                <h5 class="card-title" style="font-size: 1.25rem;">Depot</h5>
-                <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
-                  <fieldset class="mb-3">
-                    <legend>Sélectionnez un type de dossier :</legend>
-                    <select class="form-select"  (change)="filteredByTypeDossier($event)"  formControlName="typeDossier" [(ngModel)]="selectedTypeDossier">
-                      <option *ngFor="let typeDossier of typeDossierList" [ngValue]="typeDossier">
-                        {{ typeDossier.libelle }}
-                      </option>
-                    </select>
 
-                  </fieldset>
-                  <div class="mb-3">
-                    <label for="file1" class="form-label">Demande (PDF) :</label>
-                    <input type="file" class="form-control" id="file1" accept=".pdf,.doc,.docx"
-                      (change)="getFichierDemande($event)">
-                  </div>
-                  <div class="mb-3">
-                    <label for="file2" class="form-label">Pièces jointes (PDF) :</label>
-                    <input type="file" class="form-control" id="file2" accept=".pdf,.doc,.docx"
-                      (change)="getFichierPiecesJustificatives($event)">
-                  </div>
-                  <button type="submit" style="background-color: #6366F1;" class="btn btn-primary">Soumettre</button>
-                </form>
-              </div>
-            </div>
-            <div class="card mr-3" style="flex: 1;">
-              <div class="card-body">
-                <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold;">Demande en ligne</h5>
-                <p class="card-text" style="font-size: 1.1rem; text-align: justify;">
-                  Les pièces requises pour votre dépôt existent en fonction de votre type de dossier. Veuillez consulter
-                  les pièces
-                  justificatives pour savoir quelles pièces joindre.
-                </p>
-                <div class="jumbotron bg-light p-4">
-                  <h4 class="display-5 text-center mb-4">Types de Dossiers et Pièces Justificatives</h4>
-                  <ul class="list-unstyled">
-                      <ul>
-                        <li  *ngFor="let piece of selectedTypeDossier?.piecesJustificatives" style="font-weight: bold;">
-                          {{ piece.libelle }}
-                        </li>
-                      </ul>
-                  </ul>
-                </div>
-                <p class="card-text">
-                  Une fois que vous avez suivi ces étapes, vous pouvez cliquer sur le bouton ci-dessous pour déposer
-                  votre dossier.
-                </p>
-              </div>
-            </div>
-
-          </div>
+    <div class="card p-fluid">
+      <h2>Consultation</h2>
+      <div class="p-formgrid grid">
+        <div class="field col">
+          <h3>Veuillez cliquer sur ce boutton pour consulter l'état de votre dossier</h3>
+        </div>
+        <div class="field col">
+          <button pButton pRipple      [routerLink]="['/depot/']" class="p-button-raised p-button-info" label="Info"></button>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="grid">
-	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
-			<h5>Vertical</h5>
-			<div class="field">
-				<label htmlFor="name1">Name</label>
-				<input pInputText id="name1" type="text" />
-			</div>
-			<div class="field">
-				<label htmlFor="email1">Email</label>
-				<input pInputText id="email1" type="text" />
-			</div>
-			<div class="field">
-				<label htmlFor="age1">Age</label>
-				<input pInputText id="age1" type="text" />
-			</div>
-		</div>
-		
-		<div class="card p-fluid">
-			<h5>Vertical Grid</h5>
-			<div class="p-formgrid grid">
-				<div class="field col">
-					<label htmlFor="name2">Name</label>
-					<input pInputText id="name2" type="text" />
-				</div>
-				<div class="field col">
-					<label htmlFor="email2">Email</label>
-					<input pInputText id="email2" type="text" />
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="col-12 md:col-6">
-		<div class="card p-fluid">
-			<h5>Horizontal</h5>
-			<div class="field grid">
-				<label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="name3" type="text" />
-				</div>
-			</div>
-			<div class="field grid">
-				<label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label>
-				<div class="col-12 md:col-10">
-					<input pInputText id="email3" type="text" />
-				</div>
-			</div>
-		</div>
-
-		<div class="card">
-			<h5>Inline</h5>
-			<div class="formgroup-inline">
-				<div class="field">
-					<label htmlFor="firstname1" class="p-sr-only">Firstname</label>
-					<input pInputText id="firstname1" type="text" placeholder="Firstname" />
-				</div>
-				<div class="field">
-					<label htmlFor="lastname1" class="p-sr-only">Lastname</label>
-					<input pInputText id="lastname1" type="text" placeholder="Lastname" />
-				</div>
-				<button pButton label="Submit"></button>
-			</div>
-		</div>
-
-		<div class="card">
-			<h5>Help Text</h5>
-			<div class="field p-fluid">
-				<label htmlFor="username">Username</label>
-				<input pInputText id="username" type="text" />
-				<small>Enter your username to reset your password.</small>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-12">
-		<div class="card">
-			<h5>Advanced</h5>
-			<div class="p-fluid p-formgrid grid">
-				<div class="field col-12 md:col-6">
-					<label htmlFor="firstname2">Firstname</label>
-					<input pInputText id="firstname2" type="text" />
-				</div>
-				<div class="field col-12 md:col-6">
-					<label htmlFor="lastname2">Lastname</label>
-					<input pInputText id="lastname2" type="text" />
-				</div>
-				<div class="field col-12">
-					<label htmlFor="address">Address</label>
-					<input pInputTextarea id="address" rows="4" />
-				</div>
-				<div class="field col-12 md:col-6">
-					<label htmlFor="city">City</label>
-					<input pInputText id="city" type="text" />
-				</div>
-				<div class="field col-12 md:col-3">
-					<label htmlFor="state">State</label>
-					<p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
-				</div>
-				<div class="field col-12 md:col-3">
-					<label htmlFor="zip">Zip</label>
-					<input pInputText id="zip" type="text" />
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="col-12 md:col-6">
+    <div class="card p-fluid">
+      <h4 class="display-5 text-center mb-4">
+        Types de Dossiers et Pièces Justificatives
+      </h4>
+      <div class="field grid">
+        <ul class="list-unstyled">
+          <ul>
+            <li
+              *ngFor="let piece of selectedTypeDossier?.piecesJustificatives"
+              style="font-weight: bold"
+            >
+              {{ piece.libelle }}
+            </li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

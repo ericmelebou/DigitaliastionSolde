@@ -28,7 +28,8 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { DropdownModule } from 'primeng/dropdown';
-
+import { AppTopbarComponent } from '../layout/app.topbar.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { DropdownModule } from 'primeng/dropdown';
     DAddComponent,
     DLayoutComponent,
     ModalComponent,
-    DShowComponent,
+    DShowComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +57,7 @@ import { DropdownModule } from 'primeng/dropdown';
     MatTableModule,
     AppConfigModule,
     DropdownModule,
-		InputNumberModule, 
+		InputNumberModule,
 		InputTextModule,
 		CascadeSelectModule,
 		MultiSelectModule,
@@ -71,7 +72,8 @@ import { DropdownModule } from 'primeng/dropdown';
 		MultiSelectModule,
 		DropdownModule,
 		ProgressBarModule,
-		ToastModule
+		ToastModule,
+    FileUploadModule
   ]
 })
 export class DepotModule { }
