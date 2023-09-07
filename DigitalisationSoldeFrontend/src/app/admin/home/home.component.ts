@@ -101,7 +101,7 @@ export class HomeComponent {
 
     for (const dossier of dossiers) {
       for (const affectationDossier of affectationDossiers) {
-        if (affectationDossier.idAffectationDossier.idDossier === dossier.id) {
+        if (affectationDossier.idDossier === dossier.id) {
           this.dossiersAffecter.push(dossier)
           return;
         }
@@ -114,7 +114,7 @@ export class HomeComponent {
     let latestDate = null;
 
     for (const affectationDossier of this.affectationDossiers) {
-      if (affectationDossier.idAffectationDossier.idDossier === idDossier) {
+      if (affectationDossier.idDossier === idDossier) {
         const date = new Date(affectationDossier.dateAffectation);
         if (!latestDate || date > latestDate) {
 

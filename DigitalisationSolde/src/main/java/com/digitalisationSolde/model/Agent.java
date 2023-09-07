@@ -47,8 +47,7 @@ public class Agent implements UserDetails {
     private String resetPasswordToken;
     private int deleted;
 
-    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
-    private Collection<AffectationDossier> affectationDossiers;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

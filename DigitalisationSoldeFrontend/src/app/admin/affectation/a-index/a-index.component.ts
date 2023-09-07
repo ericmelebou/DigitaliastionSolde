@@ -14,6 +14,8 @@ import { ModalAffecteComponent } from '../../modal-affecte/modal-affecte.compone
 })
 export class AIndexComponent {
   dossiers: IDossier[] = [];
+  dossier?: IDossier;
+
   modalRef?: MdbModalRef<ModalAffecteComponent>;
   transactionList: any;
 
@@ -40,9 +42,12 @@ export class AIndexComponent {
     this.router.navigate(["/admin/affectation/show/" + dossier.id])
   }
 
-  openModal() {
+  openModal(dossier : IDossier) {
+    this.dossier = dossier
     this.modalRef = this.modalService.open(ModalAffecteComponent, {
-      modalClass: 'modal-lg'
+      modalClass: 'modal-lg',
+      data : dossier
     })
+   
   }
 }

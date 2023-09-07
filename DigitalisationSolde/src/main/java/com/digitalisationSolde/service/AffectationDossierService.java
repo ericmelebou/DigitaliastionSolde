@@ -13,7 +13,7 @@ public class AffectationDossierService {
     @Autowired
     private AffectationDossierRepository affectationDossierRepository;
 
-    public Optional<AffectationDossier> getAffectationDossier(final IdAffectationDossier id){
+    public Optional<AffectationDossier> getAffectationDossier(final Long id){
         return affectationDossierRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class AffectationDossierService {
         return affectationDossierRepository.findAll();
     }
 
-    public void deleteAffectationDossier(final IdAffectationDossier id){
+    public void deleteAffectationDossier(final Long id){
         affectationDossierRepository.deleteById(id);
     }
 

@@ -1,5 +1,6 @@
 package com.digitalisationSolde.controller;
 
+import com.digitalisationSolde.model.AffectationDossier;
 import com.digitalisationSolde.model.Agent;
 import com.digitalisationSolde.model.Role;
 import com.digitalisationSolde.service.AgentService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
@@ -74,7 +76,6 @@ public class AgentController {
             if(roles != null) {
                 currentAgent.setRoles(roles);
             }
-
 
             agentService.saveAgent(currentAgent);
             return currentAgent;

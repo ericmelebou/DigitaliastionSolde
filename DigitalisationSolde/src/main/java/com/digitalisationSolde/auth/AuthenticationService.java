@@ -33,7 +33,7 @@ public class AuthenticationService {
   public AuthenticationResponse register(RegisterRequest request) {
     Set<Role> roles = new HashSet<>();
     if(request.getRoles() == null){
-      Role defaultRole = roleService.getRoleByNom(RoleType.valueOf("USER"));
+      Role defaultRole = roleService.getRoleByNom(RoleType.valueOf("USAGER"));
       roles.add(defaultRole);
     } else {
       for (String roleName : request.getRoles()) {

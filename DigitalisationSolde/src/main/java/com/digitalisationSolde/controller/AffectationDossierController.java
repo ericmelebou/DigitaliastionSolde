@@ -23,7 +23,7 @@ public class AffectationDossierController {
     }
 
     @GetMapping("/affectationDossier/{id}")
-    public AffectationDossier getAffectationDossier(@PathVariable("id") final IdAffectationDossier id) {
+    public AffectationDossier getAffectationDossier(@PathVariable("id") final Long id) {
         Optional<AffectationDossier> AffectationDossier = affectationDossierService.getAffectationDossier(id);
         if(AffectationDossier.isPresent()) {
             return AffectationDossier.get();
@@ -44,7 +44,7 @@ public class AffectationDossierController {
     }
 
     @PutMapping("/affectationDossier/{id}")
-    public AffectationDossier updateAffectationDossier(@PathVariable("id") final IdAffectationDossier id, @RequestBody AffectationDossier affectationDossier) {
+    public AffectationDossier updateAffectationDossier(@PathVariable("id") final Long id, @RequestBody AffectationDossier affectationDossier) {
         Optional<AffectationDossier> s = affectationDossierService.getAffectationDossier(id);
         if (s.isPresent()) {
             AffectationDossier currentAffectationDossier = s.get();
@@ -65,7 +65,7 @@ public class AffectationDossierController {
     }
 
     @DeleteMapping ("/affectationDossier/{id}")
-    public void deleteAffectationDossier(@PathVariable ("id") final IdAffectationDossier id) {
+    public void deleteAffectationDossier(@PathVariable ("id") final Long id) {
         affectationDossierService.deleteAffectationDossier(id);
     }
 }

@@ -1,9 +1,6 @@
 package com.digitalisationSolde.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -58,8 +55,7 @@ public class Dossier {
     @OneToMany(targetEntity = Document.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_dossier", referencedColumnName = "id")
     private List<Document> documents;
-    @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL)
-    private Collection<AffectationDossier> affectationDossiers;
+
     @ManyToOne
     @JoinColumn(name = "id_type_dossier")
     private TypeDossier typeDossier;

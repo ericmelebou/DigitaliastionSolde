@@ -185,7 +185,9 @@
             <td>{{ dossier.codeIdentification }}</td>
 
             <td>{{
-              getAgentById(getAffectationDossierByLatestAffectation(dossier.id)!.idAffectationDossier.idAgent)!.nom }}
+              getAgentById(getAffectationDossierByLatestAffectation(dossier.id)!.idAgent)!.nom }}
+              {{
+                getAgentById(getAffectationDossierByLatestAffectation(dossier.id)!.idAgent)!.prenom }}
             </td>
           </tr>
         </ng-template>

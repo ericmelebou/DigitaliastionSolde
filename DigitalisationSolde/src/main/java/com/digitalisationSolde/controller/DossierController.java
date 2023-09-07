@@ -102,10 +102,7 @@ public class DossierController {
             if(documents != null) {
                 currentDossier.setDocuments(documents);
             }
-            Collection<AffectationDossier> affectationDossiers = dossier.getAffectationDossiers();
-            if(affectationDossiers != null) {
-                currentDossier.setAffectationDossiers(affectationDossiers);
-            }
+
             dossierService.saveDossier(currentDossier);
             return currentDossier;
         } else {

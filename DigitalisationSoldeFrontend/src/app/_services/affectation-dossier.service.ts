@@ -25,6 +25,6 @@ export class AffectationDossierService {
   }
 
   updateAffectationDossier(affectationDossier: IAffectationDossier): Observable<IAffectationDossier> {
-    return this.http.put<IAffectationDossier>(apiUrl + '/affectationDossier/' + affectationDossier.idAffectationDossier, affectationDossier);
+    return this.http.put<IAffectationDossier>(apiUrl + '/affectationDossier/' + affectationDossier.id, affectationDossier);
   }
 }

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AffectationDossierRepository extends CrudRepository<AffectationDossier, IdAffectationDossier> {
-    @Query("SELECT ad FROM AffectationDossier ad WHERE ad.dossier.id = ?1 ORDER BY ad.dateAffectation DESC")
+public interface AffectationDossierRepository extends CrudRepository<AffectationDossier, Long> {
+    @Query("SELECT ad FROM AffectationDossier ad WHERE ad.idDossier = ?1 ORDER BY ad.dateAffectation DESC")
     Optional<AffectationDossier> findLatestByDossierId(Long dossierId);
 
 }
