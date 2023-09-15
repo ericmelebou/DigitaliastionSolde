@@ -1,5 +1,8 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { IAgent } from '../_interfaces/agent';
+import { AgentService } from '../_services/agent.service';
+import { TokenService } from '../_services/token.service';
 
 @Component({
     selector: 'app-menu',
@@ -8,6 +11,8 @@ import { Component } from '@angular/core';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
+    agent?: IAgent;
+    constructor(private agentService: AgentService, private tokenService: TokenService) { }
 
     ngOnInit() {
         this.model = [
@@ -19,11 +24,6 @@ export class AppMenuComponent implements OnInit {
                         label: 'Accueil',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/admin']
-                    },
-                    {
-                        label: 'Affectations',
-                        icon: 'pi pi-fw pi-image',
-                        routerLink: ['/admin/affectation']
                     },
                     {
                         label: 'Espace personnel',
@@ -486,5 +486,27 @@ export class AppMenuComponent implements OnInit {
                  ]
              }*/
         ];
+        this.agentService.getAgent(localStorage.getItem('agentId') as unknown as number).subscribe({
+            next: (agent) => {
+                this.agent = agent;
+                for (let role of this.agent.roles!) {
+                    if (role.nom === "SAISIE") {
+                        this.model[0]['items'].push({
+                            label: 'Mes dossiers en charge',
+                            icon: 'pi pi-fw pi-folder',
+                            routerLink: ['/admin/affectation/mes-dossiers']
+                        },)
+                    }
+                    if (role.nom === "ADMIN") {
+                        this.model[0]['items'].push({
+                            label: 'Affectations',
+                            icon: 'pi pi-fw pi-image',
+                            routerLink: ['/admin/affectation']
+                        },)
+                    }
+                }
+            },
+        });
+
     }
 }

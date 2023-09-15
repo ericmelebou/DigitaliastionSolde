@@ -11,12 +11,14 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { AShowComponent } from './a-show/a-show.component';
 import { CardModule } from 'primeng/card'; 
 import { FormsModule } from '@angular/forms';
+import { MesDossiersComponent } from './mes-dossiers/mes-dossiers.component';
 
 
 @NgModule({
   declarations: [
     AIndexComponent,
-    AShowComponent
+    AShowComponent,
+    MesDossiersComponent
   ],
   imports: [
     CommonModule,

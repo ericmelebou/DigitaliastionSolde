@@ -43,10 +43,7 @@ public class DocumentController {
         if (s.isPresent()) {
             Document currentDocument = s.get();
 
-            String type = document.getType();
-            if (type != null) {
-                currentDocument.setType(type);
-            }
+
             documentService.saveDocument(currentDocument);
             return currentDocument;
         } else {

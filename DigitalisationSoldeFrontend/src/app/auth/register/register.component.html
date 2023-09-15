@@ -16,33 +16,46 @@
             <div class="text-900 text-xl font-bold mb-2">Création de compte</div>
             <span class="text-600 font-medium">Renseignez vos Informations</span>
         </div>
+
         <div class="flex flex-column">
-            <span class="p-input-icon-left w-full mb-4">
-                <i class="pi pi-user"></i>
-                <input id="username" type="text" pInputText class="w-full md:w-25rem" placeholder="Nom">
-            </span>
-            <span class="p-input-icon-left w-full mb-4">
-                <i class="pi pi-user"></i>
-                <input id="username" type="text" pInputText class="w-full md:w-25rem" placeholder="Prénom">
-            </span>
-            <span class="p-input-icon-left w-full mb-4">
-                <i class="pi pi-envelope"></i>
-                <input id="email" type="text" pInputText class="w-full md:w-25rem" placeholder="Email">
-            </span>
-            <span class="p-input-icon-left w-full mb-4">
-                <i class="pi pi-lock z-2"></i>
-                <p-password id="password" placeholder="Password" styleClass="w-full"
-                    [inputStyle]="{paddingLeft: '2.5rem'}" inputStyleClass="w-full md:w-25rem"
-                    [toggleMask]="true"></p-password>
-            </span>
-            <!-- <div class="mb-4 flex flex-wrap">
+            <form class="flex flex-column" [formGroup]="form" (ngSubmit)="toSignUp(form)">
+                <div class="bg-red-300 w-1/3  p-2 rounded-md mb-4" *ngIf="noConnection"><span class="italic">Pas
+                        de
+                        connexion...
+                        Reessayez
+                        plustard..</span> : ( !</div>
+                <span class="p-input-icon-left w-full mb-4">
+                    <i class="pi pi-user"></i>
+                    <input id="username" type="text" pInputText class="w-full md:w-25rem" placeholder="Nom"
+                        formControlName="nom">
+                </span>
+                <span class="p-input-icon-left w-full mb-4">
+                    <i class="pi pi-user"></i>
+                    <input id="username" type="text" pInputText class="w-full md:w-25rem" placeholder="Prénom"
+                        formControlName="prenom">
+                </span>
+                <span class="p-input-icon-left w-full mb-4">
+                    <i class="pi pi-envelope"></i>
+                    <input id="email" type="text" pInputText class="w-full md:w-25rem" placeholder="Email"
+                        formControlName="email">
+                </span>
+                <span class="p-input-icon-left w-full mb-4">
+                    <i class="pi pi-lock z-2"></i>
+                    <p-password id="password" placeholder="Password" styleClass="w-full"
+                        [inputStyle]="{paddingLeft: '2.5rem'}" inputStyleClass="w-full md:w-25rem" [toggleMask]="true"
+                        formControlName="password"></p-password>
+                </span>
+                <!-- <div class="mb-4 flex flex-wrap">
                 <p-checkbox name="checkbox" value="val" [(ngModel)]="confirmed" styleClass="mr-2" [binary]="true"></p-checkbox>
                 <label for="checkbox" class="text-900 font-medium mr-2">I have read the</label>
                 <a class="text-600 cursor-pointer hover:text-primary cursor-pointer">Terms and Conditions</a>
             </div>-->
-            <button pButton pRipple label="Sign Up" class="w-full mb-4" [routerLink]="['/']"></button>
+                <button pButton pRipple label="Sign Up" class="w-full mb-4" type="submit"
+                    [disabled]="form.invalid"></button>
+            </form>
             <span class="font-medium text-600">Vous avez déjà un compte ? <a [routerLink]="['/auth/login']"
-                    class="font-semibold cursor-pointer text-900 hover:text-primary transition-colors transition-duration-300">Se connecter</a></span>
+                    class="font-semibold cursor-pointer text-900 hover:text-primary transition-colors transition-duration-300">Se
+                    connecter</a></span>
         </div>
     </div>
 </div>

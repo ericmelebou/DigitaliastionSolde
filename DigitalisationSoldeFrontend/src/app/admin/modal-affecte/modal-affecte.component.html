@@ -31,7 +31,7 @@
             formControlName="agent"
           >
             <option selected></option>
-            <option *ngFor="let agent of agentList" [ngValue]="agent">
+            <option *ngFor="let agent of agentSaisieList" [ngValue]="agent">
               {{ agent.nom }} {{ agent.prenom }}
             </option>
           </select>

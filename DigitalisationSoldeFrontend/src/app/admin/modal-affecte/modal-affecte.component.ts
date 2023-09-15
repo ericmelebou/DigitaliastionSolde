@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { IDossier } from 'src/app/_interfaces/dossier';
-import { DossierService } from 'src/app/_services/dossier.service';
 import { IAgent } from 'src/app/_interfaces/agent';
 import { AgentService } from 'src/app/_services/agent.service';
 import { AffectationDossierService } from 'src/app/_services/affectation-dossier.service';
@@ -18,6 +17,7 @@ export class ModalAffecteComponent {
   form: any;
   selectedAgent: any;
   agentList: IAgent[] = [];
+  agentSaisieList: IAgent[] = [];
   dossier?: IDossier;
   agentId: number = localStorage.getItem('agentId') as unknown as number;
   affectationDossier: IAffectationDossier = {
@@ -61,7 +61,13 @@ export class ModalAffecteComponent {
     this.agentService.getAgents().subscribe({
       next: (agents) => {
         this.agentList = agents;
-        console.log('ma liste des agents', this.agentList);
+        for (const agent of this.agentList) {
+          for (let role of agent.roles!) {
+            if (role.nom === "SAISIE") {
+              this.agentSaisieList.push(agent);
+            }
+          }
+        }
       },
     });
     this.affectationDossierService.getAffectationDossiers().subscribe({
