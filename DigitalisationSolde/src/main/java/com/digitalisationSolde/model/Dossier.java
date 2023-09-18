@@ -15,6 +15,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -52,10 +53,8 @@ public class Dossier {
     private MultipartFile piecesFile;
     @Column(name="origine")
     private String origine;
-    @OneToMany(targetEntity = Document.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_dossier", referencedColumnName = "id")
-    private List<Document> documents;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_type_dossier")
     private TypeDossier typeDossier;

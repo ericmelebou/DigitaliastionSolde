@@ -1,6 +1,10 @@
 package com.digitalisationSolde.model;
-import java.util.*;
+import jakarta.persistence.Entity;
+import lombok.Data;
 
+import java.util.*;
+@Entity
+@Data
 public class Document2011 extends Document {
    private int codePoste;
    private Date dateDebut;

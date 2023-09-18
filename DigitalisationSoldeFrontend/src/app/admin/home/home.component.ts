@@ -100,14 +100,15 @@ export class HomeComponent {
   getDossierAffecter(affectationDossiers: IAffectationDossier[], dossiers: IDossier[]) {
 
     for (const dossier of dossiers) {
+      console.log(dossier)
       for (const affectationDossier of affectationDossiers) {
-        if (affectationDossier.idDossier === dossier.id) {
+        if (affectationDossier.idDossier == dossier.id && !this.dossiersAffecter.some(item => item.id === dossier.id)) {
           this.dossiersAffecter.push(dossier)
-          return;
         }
       }
 
     }
+
   }
   getAffectationDossierByLatestAffectation(idDossier: number) {
     let latestAffectationDossier = null;

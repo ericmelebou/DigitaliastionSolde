@@ -1,0 +1,48 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Document2021</h3>
+        <div class="p-fluid p-formgrid grid">
+
+            <div class="field col-12 md:col-6">
+                <label for="tauxRappel" class="form-label">Taux de Rappel</label>
+                <input type="text" pInputText id="tauxRappel" name="tauxRappel">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="pointsRappel" class="form-label">Points de Rappel</label>
+                <input type="text" pInputText id="pointsRappel" name="pointsRappel">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="dateDebutRappel" class="form-label">Date de Début de Rappel</label>
+                <p-calendar [showIcon]="true" inputId="icon"></p-calendar>            
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="dateFinRappel" class="form-label">Date de Fin de Rappel</label>
+                <p-calendar [showIcon]="true" inputId="icon"></p-calendar>            
+            </div>
+                <div class="field col-12 md:col-6">
+                <label for="nombreJoursRappel" class="form-label">Nombre de Jours de Rappel</label>
+                <input type="text" pInputText id="nombreJoursRappel" name="nombreJoursRappel">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="codePoste3001" class="form-label">Code Poste</label>
+                <input type="text" pInputText id="codePoste3001" name="codePoste3001">
+            </div>
+            <div class="field col-12">
+                <label for="montant3001" class="form-label">Montant</label>
+                <input type="text" pInputText id="montant3001" name="montant3001">
+            </div>
+            <div class="p-formgrid grid" style="text-align: center;margin-left: 250px;">
+                <div class="field col" style="margin: 0 auto;">
+                    <button pButton pRipple label="Ajouter"></button>
+                </div>
+                <div class="field col" style="margin: 0 auto;">
+                    <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
