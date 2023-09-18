@@ -3,9 +3,7 @@ import { ITypeDossier } from 'src/app/_interfaces/type-dossier';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TypeDossierService } from 'src/app/_services/type-dossier.service';
-import { TokenService } from 'src/app/_services/token.service';
 import { IPieceJustificative } from 'src/app/_interfaces/piece-justificative';
-import { PieceJustificativeService } from 'src/app/_services/piece-justificative.service';
 import { DossierService } from 'src/app/_services/dossier.service';
 import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
@@ -31,11 +29,9 @@ export class DAddComponent {
     private router: Router,
     private typeDossierService: TypeDossierService,
     private dossierService: DossierService,
-    private tokenService: TokenService,
-    private pieceJustificatifService: PieceJustificativeService,
     private toastr: ToastrService,
     private messageService: MessageService
-  ) {}
+  ) { }
   fichierDemande: File | null = null;
   fichierPiecesJustificatives: File | null = null;
   ngOnInit(): void {
@@ -83,6 +79,7 @@ export class DAddComponent {
     const formData: FormData = new FormData();
     formData.append('idAgent', localStorage.getItem('agentId') as any);
     formData.append('origine', 'Interne');
+    formData.append('codeIdentification',  "335-FFF");
     formData.append('status', 'Envoyé');
     formData.append('typeDossier.id', data.value.typeDossier.id);
     formData.append('typeDossier.libelle', data.value.typeDossier.libelle);
@@ -95,13 +92,13 @@ export class DAddComponent {
 
     if (this.fichierDemande) {
       formData.append('demandeFile', this.fichierDemande);
-      console.log(this.fichierDemande);
+       
     }
     if (this.fichierPiecesJustificatives) {
       formData.append('piecesFile', this.fichierPiecesJustificatives);
-      console.log(this.fichierPiecesJustificatives);
+      
     }
-    console.log(formData);
+   
     this.dossierService.createDossier(formData).subscribe(
       (response: any) => {
         console.log('Succès', response);
@@ -112,7 +109,7 @@ export class DAddComponent {
       }
     );
   }
-
+ 
   filteredByTypeDossier(event: any) {
     const typeId = event.target.value; // Obtenez l'ID du type de dossier sélectionné depuis l'événement
 

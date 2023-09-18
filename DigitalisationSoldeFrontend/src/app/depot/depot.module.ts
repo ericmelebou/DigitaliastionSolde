@@ -5,8 +5,6 @@ import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigModule } from 'src/app/layout/config/app.config.module';
-import { DIndexComponent } from './d-index/d-index.component';
-import { DAddComponent } from './d-add/d-add.component';
 import { DLayoutComponent } from './d-layout/d-layout.component';
 import { MatTableModule } from '@angular/material/table';
 import { ModalComponent } from './modal/modal.component';
@@ -30,6 +28,8 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { DropdownModule } from 'primeng/dropdown';
 import { AppTopbarComponent } from '../layout/app.topbar.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DIndexComponent } from './d-index/d-index.component';
+import { DAddComponent } from './d-add/d-add.component';
 
 
 @NgModule({
