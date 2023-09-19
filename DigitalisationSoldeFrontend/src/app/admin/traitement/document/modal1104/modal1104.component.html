@@ -1,29 +1,30 @@
 <div class="card mb-3">
     <div class="card-body">
         <h3 class="card-title">Document1104</h3>
-        <div class="p-fluid p-formgrid grid">
-           
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="p-fluid p-formgrid grid">
 
-            <div class="field col-12 md:col-6">
-                <label for="codeEmploi" class="form-label">Code Emploi</label>
-                <input type="text" pInputText id="codeEmploi" name="codeEmploi">
-            </div>
-            <div class="field col-12 md:col-6">
-                <label for="dateFinEmploi" class="form-label">Date Fin Emploi</label>
-                <p-calendar [showIcon]="true" id="dateFinEmploi" inputId="icon"></p-calendar>
-            </div>
-            <div class="p-formgrid grid" style="text-align: center;margin-left: 250px;">
-                <div class="field col" style="margin: 0 auto;">
-                    <button pButton pRipple label="Ajouter"></button>
+                <div class="field col-12 md:col-6">
+                    <label for="codeEmploi" class="form-label">Code Emploi</label>
+                    <input type="text" pInputText id="codeEmploi" name="codeEmploi" formControlName="codeEmploi">
                 </div>
-                <div class="field col" style="margin: 0 auto;">
-                    <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                <div class="field col-12 md:col-6">
+                    <label for="dateFinEmploi" class="form-label">Date Fin Emploi</label>
+                    <p-calendar [showIcon]="true" id="dateFinEmploi" inputId="icon"
+                        formControlName="dateFinEmploi"></p-calendar>
                 </div>
+                <div class="p-formgrid grid" style="text-align: center; margin-left: 250px;">
+                    <div class="field col" style="margin: 0 auto;">
+                        <button pButton pRipple label="Ajouter"></button>
+                    </div>
+                    <div class="field col" style="margin: 0 auto;">
+                        <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
-
-
-
+        </form>
 
     </div>
 </div>

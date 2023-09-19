@@ -19,7 +19,7 @@ export class Modal1103Component {
 
   id: any = 0;
   constructor(
-    public modalRef: MdbModalRef<ModalComponent>,
+    public modalRef: MdbModalRef<Modal1103Component>,
     private fb: FormBuilder,
     private router: Router,
     private document1103Service: Document1103Service,

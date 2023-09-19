@@ -1,54 +1,60 @@
 <div class="card mb-3">
     <div class="card-body">
         <h3 class="card-title">Document1101</h3>
-        <div class="p-fluid p-formgrid grid">
-            <div class="field col-12 md:col-6">
-                <label htmlFor="codeTitre">Code Titre</label>
-                <input pInputText id="codeTitre" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="nom">Nom</label>
-                <input pInputText id="nom" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="codeSexe">Code Sexe</label>
-                <input pInputTextarea id="codeSexe" rows="4" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="codeSituationMatrimoniale">Code Situation</label>
-                <input pInputText id="codeSituationMatrimoniale" type="text" />
-            </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="p-fluid p-formgrid grid">
 
-            <div class="field col-12 md:col-6">
-                <label htmlFor="codeStatut">Code Statut</label>
-                <input pInputText id="codeStatut" type="text" />
-
-            </div>
-
-            <div class="field col-12 md:col-6">
-                <label for="nombreEnfantAf" class="form-label">Nombre Enfant Af</label>
-                <input type="text" pInputText id="nombreEnfantAf" name="nombreEnfantAf">
-            </div>
-            <div class="field col-12 md:col-6">
-                <label for="codeSalaireUnique" class="form-label">Code Salaire Unique</label>
-                <input type="text" pInputText id="codeSalaireUnique" name="codeSalaireUnique">
-            </div>
-            <div class="field col-12 md:col-6">
-                <label for="categorieImpIrpp" class="form-label">Catégorie Impôt IRPP</label>
-                <input type="text" pInputText id="categorieImpIrpp" name="categorieImpIrpp">
-            </div>
-
-            <div class="p-formgrid grid" style="text-align: center;margin-left: 250px;">
-                <div class="field col" style="margin: 0 auto;">
-                    <button pButton pRipple label="Ajouter"></button>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="codeTitre">Code Titre</label>
+                    <input pInputText id="codeTitre" type="text" formControlName="codeTitre" />
                 </div>
-                <div class="field col" style="margin: 0 auto;">
-                    <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="nom">Nom</label>
+                    <input pInputText id="nom" type="text" formControlName="nom" />
                 </div>
-            </div>
-            
-        </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="codeSexe">Code Sexe</label>
+                    <input pInputTextarea id="codeSexe" rows="4" formControlName="codeSexe" />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="codeSituationMatrimoniale">Code Situation</label>
+                    <input pInputText id="codeSituationMatrimoniale" type="text"
+                        formControlName="codeSituationMatrimoniale" />
+                </div>
 
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="codeStatut">Code Statut</label>
+                    <input pInputText id="codeStatut" type="text" formControlName="codeStatut" />
+
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="nombreEnfantAf" class="form-label">Nombre Enfant Af</label>
+                    <input type="text" pInputText id="nombreEnfantAf" name="nombreEnfantAf"
+                        formControlName="nombreEnfantAf">
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="codeSalaireUnique" class="form-label">Code Salaire Unique</label>
+                    <input type="text" pInputText id="codeSalaireUnique" name="codeSalaireUnique"
+                        formControlName="codeSalaireUnique">
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="categorieImpIrpp" class="form-label">Catégorie Impôt IRPP</label>
+                    <input type="text" pInputText id="categorieImpIrpp" name="categorieImpIrpp"
+                        formControlName="categorieImpIrpp">
+                </div>
+
+                <div class="p-formgrid grid" style="text-align: center;margin-left: 250px;">
+                    <div class="field col" style="margin: 0 auto;">
+                        <button pButton pRipple label="Ajouter"></button>
+                    </div>
+                    <div class="field col" style="margin: 0 auto;">
+                        <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
 
 
 
