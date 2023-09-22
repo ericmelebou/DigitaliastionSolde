@@ -34,7 +34,7 @@ public class DigitalisationSoldeApplication {
  		piecesJustificatives.add(new PieceJustificative("Une demande de reprise formulée par l’intéressé(e)"));
 
 	 typeDossierService.saveTypeDossier(new TypeDossier("Changement de service", piecesJustificatives));
-			//agentService.saveAgent(new Agent( "userds@gmail.com","1234",true, roles));
+			agentService.saveAgent(new Agent( "userds@gmail.com","1234",true, roles));
 
 
 		};

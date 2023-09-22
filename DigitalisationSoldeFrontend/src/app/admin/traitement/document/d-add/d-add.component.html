@@ -3,7 +3,7 @@
     <form>
         <div class="row">
             <!-- Section Document1101 -->
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="text-900 text-xl font-semibold mb-3">
                         Document1101
@@ -88,74 +88,138 @@
             </div>
 
             <!-- Section Document1102 -->
-            <div class="col-md-6 mb-3">
-                <div class="card">
-                    <div class="text-900 text-xl font-semibold mb-3">
-                        Document1102
-                    </div>
-                    <p-table #dt [value]="document1102s" [paginator]="true" [rows]="10" [rowHover]="true"
-                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Catégorie Anc
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Échelle Corps Anc
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Grade Anc
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Indice Anc
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Catégorie Nv
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Échelle Corps Nv
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Grade Nv
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Indice Nv
-                                </th>
-                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button [disabled]="isFull1102" pButton pRipple type="button" icon="pi pi-plus"
-                                        label="Nouveau" (click)="openModal1102()"
-                                        class="p-button-outlined p-button-sm"></button>
-                                </th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-document1102>
-                            <tr>
-                                <td>{{document1102.codeCategorieAnc}}</td>
-                                <td>{{document1102.codeEchelleCorpsAnc}}</td>
-                                <td>{{document1102.codeGradeAnc}}</td>
-                                <td>{{document1102.codeIndiceAnc}}</td>
-                                <td>{{document1102.codeCategorieNv}}</td>
-                                <td>{{document1102.codeEchelleCorpsNv}}</td>
-                                <td>{{document1102.codeGradeNv}}</td>
-                                <td>{{document1102.codeIndiceNv}}</td>
-                                <td>
-                                    <div class="flex">
-                                        <button pButton pRipple icon="pi pi-pencil"
-                                            class="p-button-rounded p-button-success mr-2"
-                                            (click)="edit1102(document1102)"></button>
-                                        <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
-                                            (click)="delete1102(document1102)"></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </div>
+
 
         </div>
 
+
+
+        <div class="col-md-12 mb-3">
+          <div class="card">
+              <div class="text-900 text-xl font-semibold mb-3">
+                  Document1102
+              </div>
+              <p-table #dt [value]="document1102s" [paginator]="true" [rows]="10" [rowHover]="true"
+                  styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th class="white-space-nowrap" style="width: 15px">
+                              Catégorie Anc
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Échelle Corps Anc
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Grade Anc
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Indice Anc
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Catégorie Nv
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Échelle Corps Nv
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Grade Nv
+                          </th>
+                          <th class="white-space-nowrap" >
+                              Indice Nv
+                          </th>
+                          <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
+                              <button [disabled]="isFull1102" pButton pRipple type="button" icon="pi pi-plus"
+                                  label="Nouveau" (click)="openModal1102()"
+                                  class="p-button-outlined p-button-sm"></button>
+                          </th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-document1102>
+                      <tr>
+                          <td>{{document1102.codeCategorieAnc}}</td>
+                          <td>{{document1102.codeEchelleCorpsAnc}}</td>
+                          <td>{{document1102.codeGradeAnc}}</td>
+                          <td>{{document1102.codeIndiceAnc}}</td>
+                          <td>{{document1102.codeCategorieNv}}</td>
+                          <td>{{document1102.codeEchelleCorpsNv}}</td>
+                          <td>{{document1102.codeGradeNv}}</td>
+                          <td>{{document1102.codeIndiceNv}}</td>
+                          <td>
+                              <div class="flex">
+                                  <button pButton pRipple icon="pi pi-pencil"
+                                      class="p-button-rounded p-button-success mr-2"
+                                      (click)="edit1102(document1102)"></button>
+                                  <button pButton pRipple icon="pi pi-trash"
+                                      class="p-button-rounded p-button-warning"
+                                      (click)="delete1102(document1102)"></button>
+                              </div>
+                          </td>
+                      </tr>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <div class="card">
+            <div class="text-900 text-xl font-semibold mb-3">
+                Document3001
+            </div>
+            <p-table #dt [value]="document3001s" [paginator]="true" [rows]="10" [rowHover]="true"
+                styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Taux Rappel
+                        </th>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Points Rappel
+                        </th>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Date Début Rappel
+                        </th>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Date Fin Rappel
+                        </th>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Nombre Jours Rappel
+                        </th>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Code Poste
+                        </th>
+                        <th class="white-space-nowrap" style="width: 10%">
+                            Montant
+                        </th>
+                        <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
+                            <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
+                                (click)="openModal3001()" class="p-button-outlined p-button-sm"></button>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-document3001>
+                    <tr>
+                        <td>{{ document3001.tauxRappel }}</td>
+                        <td>{{ document3001.pointsRappel }}</td>
+                        <td>{{ document3001.dateDebutRappel | date: 'yyyy-MM-dd' }}</td>
+                        <td>{{ document3001.dateFinRappel | date: 'yyyy-MM-dd' }}</td>
+                        <td>{{ document3001.nombreJoursRappel }}</td>
+                        <td>{{ document3001.codePoste }}</td>
+                        <td>{{ document3001.montant }}</td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"
+                                    (click)="edit3001(document3001)"></button>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning"
+                                    (click)="delete3001(document3001)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
         <div class="row">
             <!-- Section Document1103 -->
             <div class="col-md-6 mb-3">
@@ -334,7 +398,7 @@
 
         <div class="row">
             <!-- Section Document1107 -->
-            <div class="col-md-6 mb-3 mb-3">
+            <div class="col-md-8 mb-3 mb-3">
                 <div class="card">
                     <div class="text-900 text-xl font-semibold mb-3">
                         Document1107
@@ -385,7 +449,7 @@
             </div>
 
             <!-- Section Document1109-->
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="text-900 text-xl font-semibold mb-3">
                         Document1109
@@ -426,7 +490,7 @@
         </div>
         <div class="row">
             <!-- Section Document2021 -->
-            <div class="col-md-6 mb-3">
+            <div class="col-md-7 mb-3">
                 <div class="card">
                     <div class="text-900 text-xl font-semibold mb-3">
                         Document2021
@@ -480,7 +544,7 @@
             </div>
 
             <!-- Section Document2101-->
-            <div class="col-md-6 mb-3">
+            <div class="col-md-5 mb-3">
                 <div class="card">
                     <div class="text-900 text-xl font-semibold mb-3">
                         Document2101
@@ -529,66 +593,7 @@
 
         <div class="row">
             <!-- Section Document3001 -->
-            <div class="col-md-6 mb-3">
-                <div class="card">
-                    <div class="text-900 text-xl font-semibold mb-3">
-                        Document3001
-                    </div>
-                    <p-table #dt [value]="document3001s" [paginator]="true" [rows]="10" [rowHover]="true"
-                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Taux Rappel
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Points Rappel
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Date Début Rappel
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Date Fin Rappel
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Nombre Jours Rappel
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Code Poste
-                                </th>
-                                <th class="white-space-nowrap" style="width: 10%">
-                                    Montant
-                                </th>
-                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal3001()" class="p-button-outlined p-button-sm"></button>
-                                </th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-document3001>
-                            <tr>
-                                <td>{{ document3001.tauxRappel }}</td>
-                                <td>{{ document3001.pointsRappel }}</td>
-                                <td>{{ document3001.dateDebutRappel | date: 'yyyy-MM-dd' }}</td>
-                                <td>{{ document3001.dateFinRappel | date: 'yyyy-MM-dd' }}</td>
-                                <td>{{ document3001.nombreJoursRappel }}</td>
-                                <td>{{ document3001.codePoste }}</td>
-                                <td>{{ document3001.montant }}</td>
-                                <td>
-                                    <div class="flex">
-                                        <button pButton pRipple icon="pi pi-pencil"
-                                            class="p-button-rounded p-button-success mr-2"
-                                            (click)="edit3001(document3001)"></button>
-                                        <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
-                                            (click)="delete3001(document3001)"></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </div>
+
 
             <!-- Section Document2011 -->
             <div class="col-md-6 mb-3">
