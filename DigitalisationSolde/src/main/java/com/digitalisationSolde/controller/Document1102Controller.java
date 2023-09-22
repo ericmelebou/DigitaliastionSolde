@@ -42,7 +42,38 @@ public class Document1102Controller {
         Optional<Document1102> s = document1102Service.getDocument1102(id);
         if (s.isPresent()) {
             Document1102 currentDocument1102 = s.get();
-
+            String codeCategorieAnc = document1102.getCodeCategorieAnc();
+            if (codeCategorieAnc != null) {
+                currentDocument1102.setCodeCategorieAnc(codeCategorieAnc);
+            }
+            String codeEchelleCorpsAnc = document1102.getCodeEchelleCorpsAnc();
+            if (codeEchelleCorpsAnc != null) {
+                currentDocument1102.setCodeEchelleCorpsAnc(codeEchelleCorpsAnc);
+            }
+            int codeGradeAnc = document1102.getCodeGradeAnc();
+            if (codeGradeAnc != 0) {
+                currentDocument1102.setCodeGradeAnc(codeGradeAnc);
+            }
+            int codeIndiceAnc = document1102.getCodeIndiceAnc();
+            if (codeIndiceAnc != 0) {
+                currentDocument1102.setCodeIndiceAnc(codeIndiceAnc);
+            }
+            String codeCategorieNv = document1102.getCodeCategorieNv();
+            if (codeCategorieNv != null) {
+                currentDocument1102.setCodeCategorieNv(codeCategorieNv);
+            }
+            String codeEchelleCorpsNv = document1102.getCodeEchelleCorpsNv();
+            if (codeEchelleCorpsNv != null) {
+                currentDocument1102.setCodeEchelleCorpsNv(codeEchelleCorpsNv);
+            }
+            int codeGradeNv = document1102.getCodeGradeNv();
+            if (codeGradeNv != 0) {
+                currentDocument1102.setCodeGradeNv(codeGradeNv);
+            }
+            int codeIndiceNv = document1102.getCodeIndiceNv();
+            if (codeIndiceNv != 0) {
+                currentDocument1102.setCodeIndiceNv(codeIndiceNv);
+            }
 
             document1102Service.saveDocument1102(currentDocument1102);
             return currentDocument1102;

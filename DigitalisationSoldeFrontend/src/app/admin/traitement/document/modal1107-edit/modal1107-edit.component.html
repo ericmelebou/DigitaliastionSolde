@@ -1,0 +1,42 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Document1107</h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="p-fluid p-formgrid grid">
+
+
+                <div class="field col-12">
+                    <label for="codeModeReglement" class="form-label">Code Mode de Règlement</label>
+                    <input type="text" pInputText id="codeModeReglement" name="codeModeReglement"
+                        formControlName="codeModeReglement">
+                </div>
+                <div class="field col-12">
+                    <label for="numeroCompteEnBanque" class="form-label">Numéro de Compte en Banque</label>
+                    <input type="text" pInputText id="numeroCompteEnBanque" name="numeroCompteEnBanque"
+                        formControlName="numeroCompteEnBanque">
+                </div>
+                <div class="field col-12">
+                    <label for="codeAgence" class="form-label">Code Agence</label>
+                    <input type="text" pInputText id="codeAgence" name="codeAgence" formControlName="codeAgence">
+                </div>
+                <div class="field col-12">
+                    <label for="cleRib" class="form-label">Clé RIB</label>
+                    <input type="text" pInputText id="cleRib" name="cleRib" formControlName="cleRib">
+                </div>
+                <div class="p-formgrid grid" style="text-align: center; margin-left: 250px;">
+                    <div class="field col" style="margin: 0 auto;">
+                        <button pButton pRipple label="Ajouter"></button>
+                    </div>
+                    <div class="field col" style="margin: 0 auto;">
+                        <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+
+
+
+    </div>
+</div>

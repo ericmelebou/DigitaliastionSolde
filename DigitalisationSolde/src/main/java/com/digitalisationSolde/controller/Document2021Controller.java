@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -42,7 +43,26 @@ public class Document2021Controller {
         Optional<Document2021> s = document2021Service.getDocument2021(id);
         if (s.isPresent()) {
             Document2021 currentDocument2021 = s.get();
-
+            int codePoste = document2021.getCodePoste();
+            if (codePoste != 0) {
+                currentDocument2021.setCodePoste(codePoste);
+            }
+            Date dateDebut = document2021.getDateDebut();
+            if (dateDebut != null) {
+                currentDocument2021.setDateDebut(dateDebut);
+            }
+            Date dateFin = document2021.getDateFin();
+            if (dateFin != null) {
+                currentDocument2021.setDateFin(dateFin);
+            }
+            int montant = document2021.getMontant();
+            if (montant != 0) {
+                currentDocument2021.setMontant(montant);
+            }
+            int montantGlobal = document2021.getMontantGlobal();
+            if (montantGlobal != 0) {
+                currentDocument2021.setMontantGlobal(montantGlobal);
+            }
 
             document2021Service.saveDocument2021(currentDocument2021);
             return currentDocument2021;

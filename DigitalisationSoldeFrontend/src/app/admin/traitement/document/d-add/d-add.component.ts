@@ -37,6 +37,18 @@ import { IDocument1109 } from 'src/app/_interfaces/document1109';
 import { IDocument2011 } from 'src/app/_interfaces/document2011';
 import { IDocument1107 } from 'src/app/_interfaces/document1107';
 import { IDocument2021 } from 'src/app/_interfaces/document2021';
+import { Modal1101EditComponent } from '../modal1101-edit/modal1101-edit.component';
+import { Modal1102EditComponent } from '../modal1102-edit/modal1102-edit.component';
+import { Modal1103EditComponent } from '../modal1103-edit/modal1103-edit.component';
+import { Modal1104EditComponent } from '../modal1104-edit/modal1104-edit.component';
+import { Modal1105EditComponent } from '../modal1105-edit/modal1105-edit.component';
+import { Modal1106EditComponent } from '../modal1106-edit/modal1106-edit.component';
+import { Modal1109EditComponent } from '../modal1109-edit/modal1109-edit.component';
+import { Modal3001EditComponent } from '../modal3001-edit/modal3001-edit.component';
+import { Modal2101EditComponent } from '../modal2101-edit/modal2101-edit.component';
+import { Modal2021EditComponent } from '../modal2021-edit/modal2021-edit.component';
+import { Modal2011EditComponent } from '../modal2011-edit/modal2011-edit.component';
+import { Modal1107EditComponent } from '../modal1107-edit/modal1107-edit.component';
 
 @Component({
   selector: 'app-d-add',
@@ -91,6 +103,20 @@ export class DAddComponent {
   modalRef2021?: MdbModalRef<Modal2021Component>;
   modalRef2101?: MdbModalRef<Modal2101Component>;
   modalRef3001?: MdbModalRef<Modal3001Component>;
+
+  modalRefEdit1101?: MdbModalRef<Modal1101EditComponent>;
+  modalRefEdit1102?: MdbModalRef<Modal1102EditComponent>;
+  modalRefEdit1103?: MdbModalRef<Modal1103EditComponent>;
+  modalRefEdit1104?: MdbModalRef<Modal1104EditComponent>;
+  modalRefEdit1105?: MdbModalRef<Modal1105EditComponent>;
+  modalRefEdit1106?: MdbModalRef<Modal1106EditComponent>;
+  modalRefEdit1107?: MdbModalRef<Modal1107EditComponent>;
+  modalRefEdit1109?: MdbModalRef<Modal1109EditComponent>;
+  modalRefEdit2011?: MdbModalRef<Modal2011EditComponent>;
+  modalRefEdit2021?: MdbModalRef<Modal2021EditComponent>;
+  modalRefEdit2101?: MdbModalRef<Modal2101EditComponent>;
+  modalRefEdit3001?: MdbModalRef<Modal3001EditComponent>;
+
   id: number = 0;
   document1101s: IDocument1101[] = [];
   document1102s: IDocument1102[] = [];
@@ -130,7 +156,7 @@ export class DAddComponent {
         this.document1101s = document1101s.filter((document1101) => {
           return document1101.idDossier == this.id;
         });
-        this.isFull1101 = this.document1101s.length == 1
+        this.isFull1101 = this.document1101s.length >= 1
       },
     });
     this.document1102Service.getDocument1102s().subscribe({
@@ -138,7 +164,7 @@ export class DAddComponent {
         this.document1102s = document1102s.filter((document1102) => {
           return document1102.idDossier == this.id;
         });
-        this.isFull1102 = this.document1102s.length == 1
+        this.isFull1102 = this.document1102s.length >= 1
       },
     });
     this.document1103Service.getDocument1103s().subscribe({
@@ -146,7 +172,7 @@ export class DAddComponent {
         this.document1103s = document1103s.filter((document1103) => {
           return document1103.idDossier == this.id;
         });
-        this.isFull1103 = this.document1103s.length == 1
+        this.isFull1103 = this.document1103s.length >= 1
       },
     });
     this.document1104Service.getDocument1104s().subscribe({
@@ -154,7 +180,7 @@ export class DAddComponent {
         this.document1104s = document1104s.filter((document1104) => {
           return document1104.idDossier == this.id;
         });
-        this.isFull1104 = this.document1104s.length == 1
+        this.isFull1104 = this.document1104s.length >= 1
       },
     });
     this.document1105Service.getDocument1105s().subscribe({
@@ -162,7 +188,7 @@ export class DAddComponent {
         this.document1105s = document1105s.filter((document1105) => {
           return document1105.idDossier == this.id;
         });
-        this.isFull1105 = this.document1105s.length == 1
+        this.isFull1105 = this.document1105s.length >= 1
       },
     });
     this.document1106Service.getDocument1106s().subscribe({
@@ -170,7 +196,7 @@ export class DAddComponent {
         this.document1106s = document1106s.filter((document1106) => {
           return document1106.idDossier == this.id;
         });
-        this.isFull1106 = this.document1106s.length == 1
+        this.isFull1106 = this.document1106s.length >= 1
       },
     });
     this.document1107Service.getDocument1107s().subscribe({
@@ -178,7 +204,7 @@ export class DAddComponent {
         this.document1107s = document1107s.filter((document1107) => {
           return document1107.idDossier == this.id;
         });
-        this.isFull1107 = this.document1107s.length == 1
+        this.isFull1107 = this.document1107s.length >= 1
       },
     });
     this.document1109Service.getDocument1109s().subscribe({
@@ -186,7 +212,7 @@ export class DAddComponent {
         this.document1109s = document1109s.filter((document1109) => {
           return document1109.idDossier == this.id;
         });
-        this.isFull1109 = this.document1109s.length == 1
+        this.isFull1109 = this.document1109s.length >= 1
       },
     });
     this.document2011Service.getDocument2011s().subscribe({
@@ -307,40 +333,77 @@ export class DAddComponent {
   }
 
   edit1101(document1101: IDocument1101) {
-
+    this.modalRefEdit1101 = this.modalService.open(Modal1101EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1101
+    })
   }
   edit1102(document1102: IDocument1102) {
-
+    this.modalRefEdit1102 = this.modalService.open(Modal1102EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1102
+    });
   }
   edit1103(document1103: IDocument1103) {
-
+    this.modalRefEdit1103 = this.modalService.open(Modal1103EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1103
+    });
   }
   edit1104(document1104: IDocument1104) {
-
+    this.modalRefEdit1104 = this.modalService.open(Modal1104EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1104
+    });
   }
   edit1105(document1105: IDocument1105) {
-
+    this.modalRefEdit1105 = this.modalService.open(Modal1105EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1105
+    });
   }
   edit1106(document1106: IDocument1106) {
-
+    this.modalRefEdit1106 = this.modalService.open(Modal1106EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1106
+    });
   }
   edit1107(document1107: IDocument1107) {
-
+    this.modalRefEdit1107 = this.modalService.open(Modal1107EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1107
+    });
   }
   edit1109(document1109: IDocument1109) {
+    this.modalRefEdit1109 = this.modalService.open(Modal1109EditComponent, {
+      modalClass: 'modal-lg',
+      data: document1109
+    });
 
   }
   edit2011(document2011: IDocument2011) {
-
+    this.modalRefEdit2011 = this.modalService.open(Modal2011EditComponent, {
+      modalClass: 'modal-lg',
+      data: document2011
+    });
   }
   edit2021(document2021: IDocument2021) {
-
+    this.modalRefEdit2021 = this.modalService.open(Modal2021EditComponent, {
+      modalClass: 'modal-lg',
+      data: document2021
+    });
   }
   edit2101(document2101: IDocument2101) {
-
+    this.modalRefEdit2101 = this.modalService.open(Modal2101EditComponent, {
+      modalClass: 'modal-lg',
+      data: document2101
+    });
   }
   edit3001(document3001: IDocument3001) {
-
+    this.modalRefEdit3001 = this.modalService.open(Modal3001EditComponent, {
+      modalClass: 'modal-lg',
+      data: document3001
+    });
   }
   // Pour IDocument1101
   delete1101(document1101: IDocument1101) {

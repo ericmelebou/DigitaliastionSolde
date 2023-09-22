@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -43,7 +44,10 @@ public class Document1109Controller {
         if (s.isPresent()) {
             Document1109 currentDocument1109 = s.get();
 
-
+            Date dateMariage = document1109.getDateMariage();
+            if (dateMariage != null) {
+                currentDocument1109.setDateMariage(dateMariage);
+            }
             document1109Service.saveDocument1109(currentDocument1109);
             return currentDocument1109;
         } else {

@@ -30,6 +30,18 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
+import { Modal1101EditComponent } from './modal1101-edit/modal1101-edit.component';
+import { Modal1102EditComponent } from './modal1102-edit/modal1102-edit.component';
+import { Modal1103EditComponent } from './modal1103-edit/modal1103-edit.component';
+import { Modal1104EditComponent } from './modal1104-edit/modal1104-edit.component';
+import { Modal1105EditComponent } from './modal1105-edit/modal1105-edit.component';
+import { Modal1106EditComponent } from './modal1106-edit/modal1106-edit.component';
+import { Modal1107EditComponent } from './modal1107-edit/modal1107-edit.component';
+import { Modal1109EditComponent } from './modal1109-edit/modal1109-edit.component';
+import { Modal2011EditComponent } from './modal2011-edit/modal2011-edit.component';
+import { Modal2101EditComponent } from './modal2101-edit/modal2101-edit.component';
+import { Modal2021EditComponent } from './modal2021-edit/modal2021-edit.component';
+import { Modal3001EditComponent } from './modal3001-edit/modal3001-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +58,19 @@ import { DialogModule } from 'primeng/dialog';
     Modal3001Component,
     Modal2021Component,
     Modal2101Component,
-    Modal1109Component
+    Modal1109Component,
+    Modal1101EditComponent,
+    Modal1102EditComponent,
+    Modal1103EditComponent,
+    Modal1104EditComponent,
+    Modal1105EditComponent,
+    Modal1106EditComponent,
+    Modal1107EditComponent,
+    Modal1109EditComponent,
+    Modal2011EditComponent,
+    Modal2101EditComponent,
+    Modal2021EditComponent,
+    Modal3001EditComponent
   ],
   imports: [
     CommonModule,

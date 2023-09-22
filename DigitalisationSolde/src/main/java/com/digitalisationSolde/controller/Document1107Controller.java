@@ -42,8 +42,22 @@ public class Document1107Controller {
         Optional<Document1107> s = document1107Service.getDocument1107(id);
         if (s.isPresent()) {
             Document1107 currentDocument1107 = s.get();
-
-
+            int codeModeReglement = document1107.getCodeModeReglement();
+            if (codeModeReglement != 0) {
+                currentDocument1107.setCodeModeReglement(codeModeReglement);
+            }
+            int numeroCompteEnBanque = document1107.getNumeroCompteEnBanque();
+            if (numeroCompteEnBanque != 0) {
+                currentDocument1107.setNumeroCompteEnBanque(numeroCompteEnBanque);
+            }
+            int codeAgence = document1107.getCodeAgence();
+            if (codeAgence != 0) {
+                currentDocument1107.setCodeAgence(codeAgence);
+            }
+            int cleRib = document1107.getCleRib();
+            if (cleRib != 0) {
+                currentDocument1107.setCleRib(cleRib);
+            }
             document1107Service.saveDocument1107(currentDocument1107);
             return currentDocument1107;
         } else {

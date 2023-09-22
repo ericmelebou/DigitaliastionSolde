@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -42,8 +43,22 @@ public class Document2011Controller {
         Optional<Document2011> s = document2011Service.getDocument2011(id);
         if (s.isPresent()) {
             Document2011 currentDocument2011 = s.get();
-
-
+            int codePoste = document2011.getCodePoste();
+            if (codePoste != 0) {
+                currentDocument2011.setCodePoste(codePoste);
+            }
+            Date dateDebut = document2011.getDateDebut();
+            if (dateDebut != null) {
+                currentDocument2011.setDateDebut(dateDebut);
+            }
+            Date dateFin = document2011.getDateFin();
+            if (dateFin != null) {
+                currentDocument2011.setDateFin(dateFin);
+            }
+            int montant = document2011.getMontant();
+            if (montant != 0) {
+                currentDocument2011.setMontant(montant);
+            }
             document2011Service.saveDocument2011(currentDocument2011);
             return currentDocument2011;
         } else {

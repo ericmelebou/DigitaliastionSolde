@@ -43,6 +43,14 @@ public class Document1103Controller {
         if (s.isPresent()) {
             Document1103 currentDocument1103 = s.get();
 
+            int codeServiceAnc = document1103.getCodeServiceAnc();
+            if (codeServiceAnc != 0) {
+                currentDocument1103.setCodeServiceAnc(codeServiceAnc);
+            }
+            int codeServiceNv = document1103.getCodeServiceNv();
+            if (codeServiceNv != 0) {
+                currentDocument1103.setCodeServiceNv(codeServiceNv);
+            }
 
             document1103Service.saveDocument1103(currentDocument1103);
             return currentDocument1103;

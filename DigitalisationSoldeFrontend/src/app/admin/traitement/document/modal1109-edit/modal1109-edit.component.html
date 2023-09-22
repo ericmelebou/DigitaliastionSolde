@@ -1,0 +1,30 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Document1109</h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="p-fluid p-formgrid grid">
+
+
+                <div class="field col-12">
+                    <label for="dateMariage" class="form-label">Date de Mariage</label>
+                    <p-calendar [showIcon]="true" id="dateMariage" inputId="icon"
+                        formControlName="dateMariage"></p-calendar>
+                </div>
+
+                <div class="p-formgrid grid" style="text-align: center; margin-left: 250px;">
+                    <div class="field col" style="margin: 0 auto;">
+                        <button pButton pRipple label="Ajouter"></button>
+                    </div>
+                    <div class="field col" style="margin: 0 auto;">
+                        <button type="reset" class="p-button-secondary" pButton pRipple label="Effacer"></button>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </form>
+
+
+    </div>
+</div>

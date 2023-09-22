@@ -43,7 +43,10 @@ public class Document1106Controller {
         if (s.isPresent()) {
             Document1106 currentDocument1106 = s.get();
 
-
+            int codePositionSolde = document1106.getCodePositionSolde();
+            if (codePositionSolde != 0) {
+                currentDocument1106.setCodePositionSolde(codePositionSolde);
+            }
             document1106Service.saveDocument1106(currentDocument1106);
             return currentDocument1106;
         } else {

@@ -42,8 +42,10 @@ public class Document1105Controller {
         Optional<Document1105> s = document1105Service.getDocument1105(id);
         if (s.isPresent()) {
             Document1105 currentDocument1105 = s.get();
-
-
+            int codeLieuAffectation = document1105.getCodeLieuAffectation();
+            if (codeLieuAffectation != 0) {
+                currentDocument1105.setCodeLieuAffectation(codeLieuAffectation);
+            }
             document1105Service.saveDocument1105(currentDocument1105);
             return currentDocument1105;
         } else {

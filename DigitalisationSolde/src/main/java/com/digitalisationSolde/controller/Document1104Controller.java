@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -42,7 +43,14 @@ public class Document1104Controller {
         Optional<Document1104> s = document1104Service.getDocument1104(id);
         if (s.isPresent()) {
             Document1104 currentDocument1104 = s.get();
-
+            int codeEmploi = document1104.getCodeEmploi();
+            if (codeEmploi != 0) {
+                currentDocument1104.setCodeEmploi(codeEmploi);
+            }
+            Date dateFinEmploi = document1104.getDateFinEmploi();
+            if (dateFinEmploi != null) {
+                currentDocument1104.setDateFinEmploi(dateFinEmploi);
+            }
 
             document1104Service.saveDocument1104(currentDocument1104);
             return currentDocument1104;

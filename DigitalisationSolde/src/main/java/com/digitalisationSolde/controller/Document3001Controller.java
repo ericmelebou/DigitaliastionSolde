@@ -1,11 +1,13 @@
 package com.digitalisationSolde.controller;
 
+import com.digitalisationSolde.model.Document2101;
 import com.digitalisationSolde.model.Document3001;
 import com.digitalisationSolde.service.Document3001Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -42,8 +44,34 @@ public class Document3001Controller {
         Optional<Document3001> s = document3001Service.getDocument3001(id);
         if (s.isPresent()) {
             Document3001 currentDocument3001 = s.get();
-
-
+            int tauxRappel = document3001.getTauxRappel();
+            if (tauxRappel != 0) {
+                currentDocument3001.setTauxRappel(tauxRappel);
+            }
+            int pointsRappel = document3001.getPointsRappel();
+            if (pointsRappel != 0) {
+                currentDocument3001.setPointsRappel(pointsRappel);
+            }
+            Date dateDebutRappel = document3001.getDateDebutRappel();
+            if (dateDebutRappel != null) {
+                currentDocument3001.setDateDebutRappel(dateDebutRappel);
+            }
+            Date dateFinRappel = document3001.getDateFinRappel();
+            if (dateFinRappel != null) {
+                currentDocument3001.setDateFinRappel(dateFinRappel);
+            }
+            int codePoste = document3001.getCodePoste();
+            if (codePoste != 0) {
+                currentDocument3001.setCodePoste(codePoste);
+            }
+            int nombreJoursRappel = document3001.getNombreJoursRappel();
+            if (nombreJoursRappel != 0) {
+                currentDocument3001.setNombreJoursRappel(nombreJoursRappel);
+            }
+            int montant = document3001.getMontant();
+            if (montant != 0) {
+                currentDocument3001.setMontant(montant);
+            }
             document3001Service.saveDocument3001(currentDocument3001);
             return currentDocument3001;
         } else {
