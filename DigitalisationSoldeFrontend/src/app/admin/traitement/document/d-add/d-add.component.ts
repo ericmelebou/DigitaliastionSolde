@@ -44,6 +44,40 @@ import { IDocument2021 } from 'src/app/_interfaces/document2021';
   styleUrls: ['./d-add.component.scss']
 })
 export class DAddComponent {
+  deleteDocument1101: boolean = false;
+  deleteDocument1102: boolean = false;
+  deleteDocument1103: boolean = false;
+  deleteDocument1104: boolean = false;
+  deleteDocument1105: boolean = false;
+  deleteDocument1106: boolean = false;
+  deleteDocument1107: boolean = false;
+  deleteDocument1109: boolean = false;
+  deleteDocument2021: boolean = false;
+  deleteDocument2101: boolean = false;
+  deleteDocument3001: boolean = false;
+  deleteDocument2011: boolean = false;
+
+  isFull1101: boolean = false;
+  isFull1102: boolean = false;
+  isFull1103: boolean = false;
+  isFull1104: boolean = false;
+  isFull1105: boolean = false;
+  isFull1106: boolean = false;
+  isFull1107: boolean = false;
+  isFull1109: boolean = false;
+
+  document1101?: IDocument1101;
+  document1102?: IDocument1102;
+  document1103?: IDocument1103;
+  document1104?: IDocument1104;
+  document1105?: IDocument1105;
+  document1106?: IDocument1106;
+  document1107?: IDocument1107;
+  document1109?: IDocument1109;
+  document2011?: IDocument2011;
+  document2021?: IDocument2021;
+  document2101?: IDocument2101;
+  document3001?: IDocument3001;
 
   modalRef1101?: MdbModalRef<Modal1101Component>;
   modalRef1102?: MdbModalRef<Modal1102Component>;
@@ -96,7 +130,7 @@ export class DAddComponent {
         this.document1101s = document1101s.filter((document1101) => {
           return document1101.idDossier == this.id;
         });
-
+        this.isFull1101 = this.document1101s.length == 1
       },
     });
     this.document1102Service.getDocument1102s().subscribe({
@@ -104,7 +138,7 @@ export class DAddComponent {
         this.document1102s = document1102s.filter((document1102) => {
           return document1102.idDossier == this.id;
         });
-
+        this.isFull1102 = this.document1102s.length == 1
       },
     });
     this.document1103Service.getDocument1103s().subscribe({
@@ -112,7 +146,7 @@ export class DAddComponent {
         this.document1103s = document1103s.filter((document1103) => {
           return document1103.idDossier == this.id;
         });
-
+        this.isFull1103 = this.document1103s.length == 1
       },
     });
     this.document1104Service.getDocument1104s().subscribe({
@@ -120,7 +154,7 @@ export class DAddComponent {
         this.document1104s = document1104s.filter((document1104) => {
           return document1104.idDossier == this.id;
         });
-
+        this.isFull1104 = this.document1104s.length == 1
       },
     });
     this.document1105Service.getDocument1105s().subscribe({
@@ -128,7 +162,7 @@ export class DAddComponent {
         this.document1105s = document1105s.filter((document1105) => {
           return document1105.idDossier == this.id;
         });
-
+        this.isFull1105 = this.document1105s.length == 1
       },
     });
     this.document1106Service.getDocument1106s().subscribe({
@@ -136,7 +170,7 @@ export class DAddComponent {
         this.document1106s = document1106s.filter((document1106) => {
           return document1106.idDossier == this.id;
         });
-
+        this.isFull1106 = this.document1106s.length == 1
       },
     });
     this.document1107Service.getDocument1107s().subscribe({
@@ -144,7 +178,7 @@ export class DAddComponent {
         this.document1107s = document1107s.filter((document1107) => {
           return document1107.idDossier == this.id;
         });
-
+        this.isFull1107 = this.document1107s.length == 1
       },
     });
     this.document1109Service.getDocument1109s().subscribe({
@@ -152,7 +186,7 @@ export class DAddComponent {
         this.document1109s = document1109s.filter((document1109) => {
           return document1109.idDossier == this.id;
         });
-
+        this.isFull1109 = this.document1109s.length == 1
       },
     });
     this.document2011Service.getDocument2011s().subscribe({
@@ -272,4 +306,232 @@ export class DAddComponent {
     })
   }
 
+  edit1101(document1101: IDocument1101) {
+
+  }
+  edit1102(document1102: IDocument1102) {
+
+  }
+  edit1103(document1103: IDocument1103) {
+
+  }
+  edit1104(document1104: IDocument1104) {
+
+  }
+  edit1105(document1105: IDocument1105) {
+
+  }
+  edit1106(document1106: IDocument1106) {
+
+  }
+  edit1107(document1107: IDocument1107) {
+
+  }
+  edit1109(document1109: IDocument1109) {
+
+  }
+  edit2011(document2011: IDocument2011) {
+
+  }
+  edit2021(document2021: IDocument2021) {
+
+  }
+  edit2101(document2101: IDocument2101) {
+
+  }
+  edit3001(document3001: IDocument3001) {
+
+  }
+  // Pour IDocument1101
+  delete1101(document1101: IDocument1101) {
+    this.deleteDocument1101 = true;
+    this.document1101 = document1101;
+  }
+  confirmDelete1101() {
+    this.deleteDocument1101 = false;
+    console.log(this.document1101);
+    const documentIdToDelete = this.document1101?.id as number;
+    this.document1101Service.deleteDocument1101(documentIdToDelete).subscribe(() => {
+      console.log('Document1101 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1101 :', error);
+    });
+  }
+  // Pour IDocument1102
+  delete1102(document1102: IDocument1102) {
+    this.deleteDocument1102 = true;
+    this.document1102 = document1102;
+  }
+  confirmDelete1102() {
+    this.deleteDocument1102 = false;
+    console.log(this.document1102);
+    const documentIdToDelete = this.document1102?.id as number;
+    this.document1102Service.deleteDocument1102(documentIdToDelete).subscribe(() => {
+      console.log('Document1102 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1102 :', error);
+    });
+  }
+  // Pour IDocument1103
+  delete1103(document1103: IDocument1103) {
+    this.deleteDocument1103 = true;
+    this.document1103 = document1103;
+  }
+  confirmDelete1103() {
+    this.deleteDocument1103 = false;
+    console.log(this.document1103);
+    const documentIdToDelete = this.document1103?.id as number;
+    this.document1103Service.deleteDocument1103(documentIdToDelete).subscribe(() => {
+      console.log('Document1103 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1103 :', error);
+    });
+  }
+  // Pour IDocument1104
+  delete1104(document1104: IDocument1104) {
+    this.deleteDocument1104 = true;
+    this.document1104 = document1104;
+  }
+  confirmDelete1104() {
+    this.deleteDocument1104 = false;
+    console.log(this.document1104);
+    const documentIdToDelete = this.document1104?.id as number;
+    this.document1104Service.deleteDocument1104(documentIdToDelete).subscribe(() => {
+      console.log('Document1104 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1104 :', error);
+    });
+  }
+  // Pour IDocument1105
+  delete1105(document1105: IDocument1105) {
+    this.deleteDocument1105 = true;
+    this.document1105 = document1105;
+  }
+  confirmDelete1105() {
+    this.deleteDocument1105 = false;
+    console.log(this.document1105);
+    const documentIdToDelete = this.document1105?.id as number;
+    this.document1105Service.deleteDocument1105(documentIdToDelete).subscribe(() => {
+      console.log('Document1105 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1105 :', error);
+    });
+  }
+  // Pour IDocument1106
+  delete1106(document1106: IDocument1106) {
+    this.deleteDocument1106 = true;
+    this.document1106 = document1106;
+  }
+  confirmDelete1106() {
+    this.deleteDocument1106 = false;
+    console.log(this.document1106);
+    const documentIdToDelete = this.document1106?.id as number;
+    this.document1106Service.deleteDocument1106(documentIdToDelete).subscribe(() => {
+      console.log('Document1106 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1106 :', error);
+    });
+  }
+  // Pour IDocument1107
+  delete1107(document1107: IDocument1107) {
+    this.deleteDocument1107 = true;
+    this.document1107 = document1107;
+  }
+  confirmDelete1107() {
+    this.deleteDocument1107 = false;
+    console.log(this.document1107);
+    const documentIdToDelete = this.document1107?.id as number;
+    this.document1107Service.deleteDocument1107(documentIdToDelete).subscribe(() => {
+      console.log('Document1107 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1107 :', error);
+    });
+  }
+  // Pour IDocument1109
+  delete1109(document1109: IDocument1109) {
+    this.deleteDocument1109 = true;
+    this.document1109 = document1109;
+  }
+  confirmDelete1109() {
+    this.deleteDocument1109 = false;
+    console.log(this.document1109);
+    const documentIdToDelete = this.document1109?.id as number;
+    this.document1109Service.deleteDocument1109(documentIdToDelete).subscribe(() => {
+      console.log('Document1109 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document1109 :', error);
+    });
+  }
+  // Pour IDocument2011
+  delete2011(document2011: IDocument2011) {
+    this.deleteDocument2011 = true;
+    this.document2011 = document2011;
+  }
+  confirmDelete2011() {
+    this.deleteDocument2011 = false;
+    console.log(this.document2011);
+    const documentIdToDelete = this.document2011?.id as number;
+    this.document2011Service.deleteDocument2011(documentIdToDelete).subscribe(() => {
+      console.log('Document2011 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document2011 :', error);
+    });
+  }
+  // Pour IDocument2021
+  delete2021(document2021: IDocument2021) {
+    this.deleteDocument2021 = true;
+    this.document2021 = document2021;
+  }
+  confirmDelete2021() {
+    this.deleteDocument2021 = false;
+    console.log(this.document2021);
+    const documentIdToDelete = this.document2021?.id as number;
+    this.document2021Service.deleteDocument2021(documentIdToDelete).subscribe(() => {
+      console.log('Document2021 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document2021 :', error);
+    });
+  }
+  // Pour IDocument2101
+  delete2101(document2101: IDocument2101) {
+    this.deleteDocument2101 = true;
+    this.document2101 = document2101;
+  }
+  confirmDelete2101() {
+    this.deleteDocument2101 = false;
+    console.log(this.document2101);
+    const documentIdToDelete = this.document2101?.id as number;
+    this.document2101Service.deleteDocument2101(documentIdToDelete).subscribe(() => {
+      console.log('Document2101 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document2101 :', error);
+    });
+  }
+  // Pour IDocument3001
+  delete3001(document3001: IDocument3001) {
+    this.deleteDocument3001 = true;
+    this.document3001 = document3001;
+  }
+  confirmDelete3001() {
+    this.deleteDocument3001 = false;
+    console.log(this.document3001);
+    const documentIdToDelete = this.document3001?.id as number;
+    this.document3001Service.deleteDocument3001(documentIdToDelete).subscribe(() => {
+      console.log('Document3001 supprimé avec succès');
+      window.location.reload();
+    }, error => {
+      console.error('Erreur lors de la suppression du Document3001 :', error);
+    });
+  }
 }

@@ -25,4 +25,8 @@ export class Document2101Service {
   updateDocument2101(document2101: IDocument2101): Observable<IDocument2101> {
     return this.http.put<IDocument2101>(apiUrl + '/document2101/' + document2101.id, document2101);
   }
+  deleteDocument2101(id: number): Observable<void> {
+    return this.http.delete<void>(apiUrl + '/document2101/' + id);
+  }
+
 }

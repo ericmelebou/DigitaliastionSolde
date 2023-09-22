@@ -25,4 +25,7 @@ export class Document3001Service {
   updateDocument3001(document3001: IDocument3001): Observable<IDocument3001> {
     return this.http.put<IDocument3001>(apiUrl + '/document3001/' + document3001.id, document3001);
   }
+  deleteDocument3001(id: number): Observable<void> {
+    return this.http.delete<void>(apiUrl + '/document3001/' + id);
+  }
 }

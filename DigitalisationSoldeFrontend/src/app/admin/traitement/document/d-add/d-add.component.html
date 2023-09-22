@@ -43,8 +43,9 @@
 
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1101()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1101" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1101()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
@@ -68,6 +69,16 @@
                                 </td>
                                 <td>
                                     {{document1101.categorieImpIrpp}}
+                                </td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1101(document1101)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1101(document1101)"></button>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -111,8 +122,9 @@
                                     Code Indice Nv
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1102()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1102" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1102()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
@@ -126,6 +138,16 @@
                                 <td>{{document1102.codeEchelleCorpsNv}}</td>
                                 <td>{{document1102.codeGradeNv}}</td>
                                 <td>{{document1102.codeIndiceNv}}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1102(document1102)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1102(document1102)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -155,8 +177,9 @@
 
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1103()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1103" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1103()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
@@ -167,13 +190,21 @@
                                 <td>{{document1103.codeServiceNv}}</td>
 
                                 <td>
-
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1103(document1103)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1103(document1103)"></button>
+                                    </div>
                                 </td>
                             </tr>
                         </ng-template>
                     </p-table>
                 </div>
             </div>
+
             <!-- Section Document1104 -->
             <div class="col-md-6 mb-3">
                 <div class="card">
@@ -191,8 +222,9 @@
                                     Date Fin Emploi
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1104()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1104" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1104()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
@@ -200,12 +232,21 @@
                             <tr>
                                 <td>{{document1104.codeEmploi}}</td>
                                 <td>{{document1104.dateFinEmploi | date: 'yyyy-MM-dd'}}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1104(document1104)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1104(document1104)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
                 </div>
             </div>
-
 
         </div>
 
@@ -225,19 +266,31 @@
                                     Code Lieu Affectation
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1105()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1105" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1105()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-document1105>
                             <tr>
                                 <td>{{ document1105.codeLieuAffectation }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1105(document1105)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1105(document1105)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
                 </div>
             </div>
+
             <!-- Section Document1106 -->
             <div class="col-md-6 mb-3">
                 <div class="card">
@@ -252,14 +305,25 @@
                                     Code Position Solde
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1106()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1106" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1106()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-document1106>
                             <tr>
                                 <td>{{ document1106.codePositionSolde }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1106(document1106)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1106(document1106)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -292,8 +356,9 @@
                                     Clé RIB
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1107()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1107" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1107()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
@@ -303,11 +368,22 @@
                                 <td>{{ document1107.numeroCompteEnBanque }}</td>
                                 <td>{{ document1107.codeAgence }}</td>
                                 <td>{{ document1107.cleRib }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1107(document1107)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1107(document1107)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
                 </div>
             </div>
+
             <!-- Section Document1109-->
             <div class="col-md-6 mb-3">
                 <div class="card">
@@ -322,14 +398,25 @@
                                     Date Mariage
                                 </th>
                                 <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 10%">
-                                    <button pButton pRipple type="button" icon="pi pi-plus" label="Nouveau"
-                                        (click)="openModal1109()" class="p-button-outlined p-button-sm"></button>
+                                    <button [disabled]="isFull1109" pButton pRipple type="button" icon="pi pi-plus"
+                                        label="Nouveau" (click)="openModal1109()"
+                                        class="p-button-outlined p-button-sm"></button>
                                 </th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-document1109>
                             <tr>
                                 <td>{{ document1109.dateMariage | date: 'yyyy-MM-dd' }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit1109(document1109)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1109(document1109)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -376,11 +463,22 @@
                                 <td>{{ document2021.dateFin | date: 'yyyy-MM-dd' }}</td>
                                 <td>{{ document2021.montant }}</td>
                                 <td>{{ document2021.montantGlobal }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit2021(document2021)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete2021(document2021)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
                 </div>
             </div>
+
             <!-- Section Document2101-->
             <div class="col-md-6 mb-3">
                 <div class="card">
@@ -411,6 +509,16 @@
                                 <td>{{ document2101.numeroEcriture }}</td>
                                 <td>{{ document2101.codePoste }}</td>
                                 <td>{{ document2101.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit2101(document2101)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete2101(document2101)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -466,11 +574,22 @@
                                 <td>{{ document3001.nombreJoursRappel }}</td>
                                 <td>{{ document3001.codePoste }}</td>
                                 <td>{{ document3001.montant }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit3001(document3001)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete3001(document3001)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
                 </div>
             </div>
+
             <!-- Section Document2011 -->
             <div class="col-md-6 mb-3">
                 <div class="card">
@@ -505,6 +624,16 @@
                                 <td>{{ document2011.dateDebut | date: 'yyyy-MM-dd' }}</td>
                                 <td>{{ document2011.dateFin | date: 'yyyy-MM-dd' }}</td>
                                 <td>{{ document2011.montant }}</td>
+                                <td>
+                                    <div class="flex">
+                                        <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-success mr-2"
+                                            (click)="edit2011(document2011)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete2011(document2011)"></button>
+                                    </div>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -515,3 +644,148 @@
 
     </form>
 </div>
+<!-- SECTION DES DIALOGUES DE CONFIRMATIONS DE SUPRESSIONS. -->
+<p-dialog [(visible)]="deleteDocument1101" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1101">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1101 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1101()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1102" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1102">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1102 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1102()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1103" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1103">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1103 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1103()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1104" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1104">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1104 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1104()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1105" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1105">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1105 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1105()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1106" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1106">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1106 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1106()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1107" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1107">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1107 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1107()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1109" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1109">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1109 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete1109()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument2011" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2011">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument2011 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete2011()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument2021" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2021">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+            (click)="deleteDocument2021 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
+            (click)="confirmDelete2021()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument2101" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2101">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument2101 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete2101()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument3001" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document3001">Retirer du tableau ... <b></b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument3001 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmDelete3001()"></button>
+    </ng-template>
+</p-dialog>

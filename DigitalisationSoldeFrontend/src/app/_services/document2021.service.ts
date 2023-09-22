@@ -25,4 +25,9 @@ export class Document2021Service {
   updateDocument2021(document2021: IDocument2021): Observable<IDocument2021> {
     return this.http.put<IDocument2021>(apiUrl + '/document2021/' + document2021.id, document2021);
   }
+  deleteDocument2021(id: number): Observable<void> {
+    return this.http.delete<void>(apiUrl + '/document2021/' + id);
+  }
 }
+
+
