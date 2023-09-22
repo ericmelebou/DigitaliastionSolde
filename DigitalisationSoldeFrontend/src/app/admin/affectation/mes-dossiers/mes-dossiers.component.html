@@ -49,8 +49,10 @@
                     {{dossier.dateDepot | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                    <button pButton pRipple type="button" label="Créer un document" class="p-button-info p-button-text"
+                    <button pButton pRipple type="button" label="Traiter" class="p-button-info p-button-text"
                         (click)="createDocument(dossier)"></button>
+                    <button pButton pRipple type="button" label="Transmettre"
+                        class="p-button-success p-button-text"></button>
                 </td>
 
             </tr>
