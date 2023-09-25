@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DossierRepository extends CrudRepository<Dossier, Long> {
     public Iterable<Dossier> findByIdAgent(Long idAgent);
+
+    public Dossier findByCodeIdentification(String codeIdentification);
 }

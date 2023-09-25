@@ -42,8 +42,10 @@ public class DocumentController {
         Optional<Document> s = documentService.getDocument(id);
         if (s.isPresent()) {
             Document currentDocument = s.get();
-
-
+            String status = document.getStatus();
+            if (status != null) {
+                currentDocument.setStatus(status);
+            }
             documentService.saveDocument(currentDocument);
             return currentDocument;
         } else {

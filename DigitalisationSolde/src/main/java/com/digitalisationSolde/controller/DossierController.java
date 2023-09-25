@@ -15,10 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/")
@@ -33,7 +30,14 @@ public class DossierController {
     @PostMapping(value="/dossier")
     public Dossier createDossier(@ModelAttribute Dossier dossier) {
         try {
-            dossier.saveFiles(uploadDir); // Appelez la méthode pour enregistrer les fichiers
+            String codeIdentification;
+            boolean codeIdentificationExists;
+            do {
+                codeIdentification = UUID.randomUUID().toString();
+                codeIdentificationExists = dossierService.codeIdentificationExists(codeIdentification);
+            } while (codeIdentificationExists);
+            dossier.setCodeIdentification(codeIdentification);
+            dossier.saveFiles(uploadDir);
             return dossierService.saveDossier(dossier);
         } catch (IOException e) {
             return null;
@@ -59,11 +63,12 @@ public class DossierController {
         return dossierService.getDossiersByAgent(idAgent);
     }
 
-   @PutMapping("/dossier/{id}")
-    public Dossier updateDossier(@PathVariable("id") final Long id, @RequestBody Dossier dossier) {
-        Optional<Dossier> p = dossierService.getDossier(id);
+    @PostMapping("/updateDossier")
+    public Dossier updateDossier(@ModelAttribute Dossier dossier) throws IOException {
+        Optional<Dossier> p = dossierService.getDossier(dossier.getId());
         if(p.isPresent()) {
             Dossier currentDossier = p.get();
+            currentDossier.updateFiles(uploadDir, dossier.getDemandeFile(), dossier.getPiecesFile());
 
             String codeIdentification = dossier.getCodeIdentification();
             if(codeIdentification != null) {

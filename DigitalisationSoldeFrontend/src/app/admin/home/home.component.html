@@ -19,7 +19,7 @@
   <div class="col-12">
     <div class="card">
       <div class="text-900 text-xl font-semibold mb-3">
-        Dossiers non traités
+        Dossiers en attente ...
       </div>
       <p-table #dt [value]="dossiersNonTraiter" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
         responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -83,7 +83,6 @@
             <td>
               <button pButton pRipple type="button" label="Info" class="p-button-info p-button-text"
                 (click)="showDetails(dossier)"></button>
-              <button pButton pRipple type="button" label="Affecter" class="p-button-success p-button-text"></button>
             </td>
           </tr>
         </ng-template>

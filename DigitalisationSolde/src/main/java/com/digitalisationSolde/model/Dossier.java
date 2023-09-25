@@ -77,4 +77,34 @@ public class Dossier {
             urlPiece = fichierFilename;
         }
     }
+    public void updateFiles(String uploadDir, MultipartFile newDemandeFile, MultipartFile newPiecesFile) throws IOException {
+        if (newDemandeFile != null) {
+            // Supprimez l'ancien fichier de demande s'il existe
+            if (urlDemande != null) {
+                Path demandeFilePath = Paths.get(uploadDir, urlDemande);
+                Files.deleteIfExists(demandeFilePath);
+            }
+
+            // Enregistrez le nouveau fichier de demande
+            String demandeFilename = StringUtils.cleanPath(newDemandeFile.getOriginalFilename());
+            Path demandeFilePath = Paths.get(uploadDir, demandeFilename);
+            Files.copy(newDemandeFile.getInputStream(), demandeFilePath, StandardCopyOption.REPLACE_EXISTING);
+            urlDemande = demandeFilename;
+        }
+
+        if (newPiecesFile != null) {
+            // Supprimez l'ancien fichier de pièces s'il existe
+            if (urlPiece != null) {
+                Path fichierFilePath = Paths.get(uploadDir, urlPiece);
+                Files.deleteIfExists(fichierFilePath);
+            }
+
+            // Enregistrez le nouveau fichier de pièces
+            String fichierFilename = StringUtils.cleanPath(newPiecesFile.getOriginalFilename());
+            Path fichierFilePath = Paths.get(uploadDir, fichierFilename);
+            Files.copy(newPiecesFile.getInputStream(), fichierFilePath, StandardCopyOption.REPLACE_EXISTING);
+            urlPiece = fichierFilename;
+        }
+    }
+
 }

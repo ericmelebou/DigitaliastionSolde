@@ -31,6 +31,8 @@ public class Document {
    private String userSaisie;
    private String userControle;
    private String userValidation;
+   @Column(name="status")
+   private String status;
    @Column(name = "id_dossier")
    private Long idDossier;
 }

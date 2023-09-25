@@ -36,4 +36,9 @@ public class DossierService {
         return dossierRepository.findByIdAgent(idAgent);
     }
 
+
+        public boolean codeIdentificationExists(String codeIdentification) {
+            return dossierRepository.findByCodeIdentification(codeIdentification) != null;
+
+    }
 }

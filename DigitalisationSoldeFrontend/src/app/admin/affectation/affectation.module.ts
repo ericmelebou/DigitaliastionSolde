@@ -12,6 +12,7 @@ import { AShowComponent } from './a-show/a-show.component';
 import { CardModule } from 'primeng/card'; 
 import { FormsModule } from '@angular/forms';
 import { MesDossiersComponent } from './mes-dossiers/mes-dossiers.component';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MesDossiersComponent } from './mes-dossiers/mes-dossiers.component';
 		TableModule,
 		ProgressBarModule,
     CardModule,
+    DialogModule
   ]
 })
 export class AffectationModule { }

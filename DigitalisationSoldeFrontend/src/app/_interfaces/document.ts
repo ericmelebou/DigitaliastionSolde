@@ -9,4 +9,5 @@ export interface IDocument {
     userControle?: string;
     userValidation?: string;
     idDossier?: number;
+    status?: string;
 }

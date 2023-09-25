@@ -504,6 +504,20 @@ export class AppMenuComponent implements OnInit {
                             routerLink: ['/admin/affectation']
                         },)
                     }
+                    if (role.nom === "CONTROLLEUR") {
+                        this.model[0]['items'].push({
+                            label: 'Dossiers à controller',
+                            icon: 'pi pi-fw pi-folder',
+                            routerLink: ['/admin/traitement/controle']
+                        },)
+                    }
+                    if (role.nom === "VALIDATEUR") {
+                        this.model[0]['items'].push({
+                            label: 'Validations',
+                            icon: 'pi pi-fw pi-folder',
+                            routerLink: ['/admin/traitement/validation']
+                        },)
+                    }
                 }
             },
         });

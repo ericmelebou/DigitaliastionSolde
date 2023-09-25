@@ -79,7 +79,6 @@ export class DAddComponent {
     const formData: FormData = new FormData();
     formData.append('idAgent', localStorage.getItem('agentId') as any);
     formData.append('origine', 'Interne');
-    formData.append('codeIdentification',  "335-FFF");
     formData.append('status', 'Envoyé');
     formData.append('typeDossier.id', data.value.typeDossier.id);
     formData.append('typeDossier.libelle', data.value.typeDossier.libelle);

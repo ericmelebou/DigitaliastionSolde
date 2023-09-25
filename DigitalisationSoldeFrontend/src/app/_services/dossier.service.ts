@@ -14,7 +14,7 @@ export class DossierService {
   getDossiers(): Observable<IDossier[]> {
     return this.http.get<IDossier[]>(apiUrl + '/dossiers');
   }
-  getDossiersByAgent(idAgent : number): Observable<IDossier[]> {
+  getDossiersByAgent(idAgent: number): Observable<IDossier[]> {
     return this.http.get<IDossier[]>(apiUrl + '/dossiers/' + idAgent);
   }
   getDossier(id: number): Observable<IDossier> {
@@ -25,7 +25,7 @@ export class DossierService {
     return this.http.post<any>(apiUrl + '/dossier', dossier);
   }
 
-  updateDossier(dossier: IDossier): Observable<IDossier> {
-    return this.http.put<IDossier>(apiUrl + '/dossier/' + dossier.id, dossier);
+  updateDossier(dossier: FormData): any {
+    return this.http.post<any>(`${apiUrl}/updateDossier`, dossier);
   }
 }

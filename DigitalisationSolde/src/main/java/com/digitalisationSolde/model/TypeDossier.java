@@ -1,5 +1,6 @@
 package com.digitalisationSolde.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -27,7 +28,7 @@ public class TypeDossier {
 
     @Column(name="informations")
     private String informations;
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "typeDossier")
     private Set<Dossier> dossiers;
 

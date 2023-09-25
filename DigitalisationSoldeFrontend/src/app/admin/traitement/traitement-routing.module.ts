@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TIndexComponent } from './t-index/t-index.component';
 
 const routes: Routes = [
-  { path: '', component: TIndexComponent, },
-  { path: 'document', loadChildren: () => import('./document/document.module').then(m => m.DocumentModule) },
+  { path: 'saisie', loadChildren: () => import('./saisie/saisie.module').then(m => m.SaisieModule) },
+  { path: 'controle', loadChildren: () => import('./controle/controle.module').then(m => m.ControleModule) },
+  { path: 'validation', loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule) },
 ];
 
 @NgModule({

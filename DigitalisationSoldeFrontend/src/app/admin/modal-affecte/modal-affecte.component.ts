@@ -7,6 +7,7 @@ import { IAgent } from 'src/app/_interfaces/agent';
 import { AgentService } from 'src/app/_services/agent.service';
 import { AffectationDossierService } from 'src/app/_services/affectation-dossier.service';
 import { IAffectationDossier } from 'src/app/_interfaces/affectation-dossier';
+import { DossierService } from 'src/app/_services/dossier.service';
 
 @Component({
   selector: 'app-modal-affecte',
@@ -36,7 +37,8 @@ export class ModalAffecteComponent {
     private router: Router,
     private route: ActivatedRoute,
     private agentService: AgentService,
-    private affectationDossierService: AffectationDossierService
+    private affectationDossierService: AffectationDossierService,
+    private dossierService: DossierService
   ) { }
   closeMessage = 'Modal closed';
   close(): void {
@@ -45,7 +47,6 @@ export class ModalAffecteComponent {
   }
   ngOnInit(): void {
     this.dossier = this.modalRef.component as unknown as IDossier
-    console.log(this.dossier.id)
 
     this.form = this.fb.group({
       id: [''],
@@ -91,8 +92,25 @@ export class ModalAffecteComponent {
         this.latestAffectationDossier.status = false;
         this.affectationDossierService.updateAffectationDossier(this.latestAffectationDossier).subscribe({
           next: answer => {
-            this.modalRef.close(this.closeMessage);
-            this.router.navigate(['/admin'])
+            this.dossierService.getDossier(this.dossier!.id).subscribe({
+              next: dossier => {
+                dossier!.status = "Pris en charge"
+                const formData: FormData = new FormData();
+                formData.append('id', dossier.id as any);
+
+                formData.append('status', 'Pris en charge');
+
+                this.dossierService.updateDossier(formData).subscribe(
+                  (response: any) => {
+                    this.modalRef.close(this.closeMessage);
+                    this.router.navigate(['/admin'])
+                  },
+                  (error: any) => {
+                    console.error('Erreur', error);
+                  }
+                )
+              }
+            })
           }
         });
 
