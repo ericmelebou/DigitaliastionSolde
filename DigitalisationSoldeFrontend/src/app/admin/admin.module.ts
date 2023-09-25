@@ -18,10 +18,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SliderModule } from 'primeng/slider';
-import { ModalAffecteComponent } from './modal-affecte/modal-affecte.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [HomeComponent, ModalAffecteComponent],
+  declarations: [HomeComponent],
   providers: [FileAppService],
   imports: [
     CommonModule,

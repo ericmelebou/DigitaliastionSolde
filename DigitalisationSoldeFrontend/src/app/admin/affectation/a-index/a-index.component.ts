@@ -5,7 +5,7 @@ import { Table } from 'primeng/table';
 import { IDossier } from 'src/app/_interfaces/dossier';
 import { DossierService } from 'src/app/_services/dossier.service';
 import { ModalComponent } from 'src/app/depot/modal/modal.component';
-import { ModalAffecteComponent } from '../../modal-affecte/modal-affecte.component';
+import { ModalAffecteComponent } from '../modal-affecte/modal-affecte.component';
 
 @Component({
   selector: 'app-a-index',

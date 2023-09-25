@@ -9,29 +9,33 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { AShowComponent } from './a-show/a-show.component';
-import { CardModule } from 'primeng/card'; 
-import { FormsModule } from '@angular/forms';
+import { CardModule } from 'primeng/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MesDossiersComponent } from './mes-dossiers/mes-dossiers.component';
 import { DialogModule } from 'primeng/dialog';
+import { ModalAffecteComponent } from './modal-affecte/modal-affecte.component';
 
 
 @NgModule({
   declarations: [
     AIndexComponent,
     AShowComponent,
-    MesDossiersComponent
+    MesDossiersComponent,
+    ModalAffecteComponent
   ],
   imports: [
     CommonModule,
     AffectationRoutingModule,
     FormsModule,
     RippleModule,
-		ButtonModule,
-		InputTextModule,
-		TableModule,
-		ProgressBarModule,
+    ButtonModule,
+    InputTextModule,
+    TableModule,
+    ProgressBarModule,
     CardModule,
-    DialogModule
+    DialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AffectationModule { }
