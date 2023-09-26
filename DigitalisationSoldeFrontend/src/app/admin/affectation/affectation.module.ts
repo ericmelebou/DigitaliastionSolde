@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MesDossiersComponent } from './mes-dossiers/mes-dossiers.component';
 import { DialogModule } from 'primeng/dialog';
 import { ModalAffecteComponent } from './modal-affecte/modal-affecte.component';
+import { RouterLink } from '@angular/router';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ModalAffecteComponent } from './modal-affecte/modal-affecte.component';
     CardModule,
     DialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ]
 })
 export class AffectationModule { }

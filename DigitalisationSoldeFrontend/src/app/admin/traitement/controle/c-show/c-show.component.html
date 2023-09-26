@@ -1,0 +1,505 @@
+<div class="container">
+  <h1>Formulaire de saisie</h1>
+  <form>
+      <div class="row">
+          <!-- Section Document1101 -->
+          <div class="col-md-12 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1101
+                  </div>
+                  <p-table #dt [value]="document1101s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th pSortableColumn="codeTitre" class="white-space-nowrap" style="width: 25%">
+                                  Code Titre
+
+                              </th>
+
+                              <th pSortableColumn="nom" class="white-space-nowrap" style="width: 25%">
+                                  Nom et prénoms
+
+                              </th>
+                              <th pSortableColumn="codeSexe" class="white-space-nowrap" style="width: 25%">
+                                  Code Sexe
+
+                              </th>
+                              <th pSortableColumn="codeSituationMatrimoniale" class="white-space-nowrap"
+                                  style="width: 25%">
+                                  Code Statut
+
+                              </th>
+                              <th pSortableColumn="nombreEnfantAf" class="white-space-nowrap" style="width: 25%">
+                                  Nombre Enfant
+
+                              </th>
+                              <th pSortableColumn="codeSalaireUnique" class="white-space-nowrap" style="width: 25%">
+                                  Code Salaire Unique
+
+                              </th>
+                              <th pSortableColumn="categorieImpIrpp" class="white-space-nowrap" style="width: 25%">
+                                  Categorie Imp Irpp
+
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1101>
+                          <tr>
+                              <td>{{document1101.codeTitre}}</td>
+
+                              <td>{{document1101.nom}}</td>
+
+                              <td>
+                                  {{document1101.codeSexe}}
+                              </td>
+                              <td>
+                                  {{document1101.codeStatut}}
+                              </td>
+                              <td>
+                                  {{document1101.nombreEnfantAf}}
+                              </td>
+                              <td>
+                                  {{document1101.codeSalaireUnique}}
+                              </td>
+                              <td>
+                                  {{document1101.categorieImpIrpp}}
+                              </td>
+
+
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+          <!-- Section Document1102 -->
+
+
+      </div>
+
+
+
+      <div class="col-md-12 mb-3">
+          <div class="card">
+              <div class="text-900 text-xl font-semibold mb-3">
+                  Document1102
+              </div>
+              <p-table #dt [value]="document1102s" [paginator]="true" [rows]="10" [rowHover]="true"
+                  styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th class="white-space-nowrap" style="width: 15px">
+                              Catégorie Anc
+                          </th>
+                          <th class="white-space-nowrap">
+                              Échelle Corps Anc
+                          </th>
+                          <th class="white-space-nowrap">
+                              Grade Anc
+                          </th>
+                          <th class="white-space-nowrap">
+                              Indice Anc
+                          </th>
+                          <th class="white-space-nowrap">
+                              Catégorie Nv
+                          </th>
+                          <th class="white-space-nowrap">
+                              Échelle Corps Nv
+                          </th>
+                          <th class="white-space-nowrap">
+                              Grade Nv
+                          </th>
+                          <th class="white-space-nowrap">
+                              Indice Nv
+                          </th>
+
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-document1102>
+                      <tr>
+                          <td>{{document1102.codeCategorieAnc}}</td>
+                          <td>{{document1102.codeEchelleCorpsAnc}}</td>
+                          <td>{{document1102.codeGradeAnc}}</td>
+                          <td>{{document1102.codeIndiceAnc}}</td>
+                          <td>{{document1102.codeCategorieNv}}</td>
+                          <td>{{document1102.codeEchelleCorpsNv}}</td>
+                          <td>{{document1102.codeGradeNv}}</td>
+                          <td>{{document1102.codeIndiceNv}}</td>
+
+                      </tr>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+
+      <div class="col-md-12 mb-3">
+          <div class="card">
+              <div class="text-900 text-xl font-semibold mb-3">
+                  Document3001
+              </div>
+              <p-table #dt [value]="document3001s" [paginator]="true" [rows]="10" [rowHover]="true"
+                  styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Taux Rappel
+                          </th>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Points Rappel
+                          </th>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Date Début Rappel
+                          </th>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Date Fin Rappel
+                          </th>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Nombre Jours Rappel
+                          </th>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Code Poste
+                          </th>
+                          <th class="white-space-nowrap" style="width: 10%">
+                              Montant
+                          </th>
+
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-document3001>
+                      <tr>
+                          <td>{{ document3001.tauxRappel }}</td>
+                          <td>{{ document3001.pointsRappel }}</td>
+                          <td>{{ document3001.dateDebutRappel | date: 'yyyy-MM-dd' }}</td>
+                          <td>{{ document3001.dateFinRappel | date: 'yyyy-MM-dd' }}</td>
+                          <td>{{ document3001.nombreJoursRappel }}</td>
+                          <td>{{ document3001.codePoste }}</td>
+                          <td>{{ document3001.montant }}</td>
+
+                      </tr>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+      <div class="row">
+          <!-- Section Document1103 -->
+          <div class="col-md-6 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1103
+                  </div>
+                  <p-table #dt [value]="document1103s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width: 25%">
+                                  Code Service Anc
+
+                              </th>
+
+                              <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
+                                  Code Service Nv
+
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1103>
+                          <tr>
+                              <td>{{document1103.codeServiceAnc}}</td>
+
+                              <td>{{document1103.codeServiceNv}}</td>
+
+                             
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+          <!-- Section Document1104 -->
+          <div class="col-md-6 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1104
+                  </div>
+                  <p-table #dt [value]="document1104s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Emploi
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Date Fin Emploi
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1104>
+                          <tr>
+                              <td>{{document1104.codeEmploi}}</td>
+                              <td>{{document1104.dateFinEmploi | date: 'yyyy-MM-dd'}}</td>
+
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+      </div>
+
+
+      <div class="row">
+          <!-- Section Document1105 -->
+          <div class="col-md-6 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1105
+                  </div>
+                  <p-table #dt [value]="document1105s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Lieu Affectation
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1105>
+                          <tr>
+                              <td>{{ document1105.codeLieuAffectation }}</td>
+
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+          <!-- Section Document1106 -->
+          <div class="col-md-6 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1106
+                  </div>
+                  <p-table #dt [value]="document1106s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Position Solde
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1106>
+                          <tr>
+                              <td>{{ document1106.codePositionSolde }}</td>
+
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="row">
+          <!-- Section Document1107 -->
+          <div class="col-md-8 mb-3 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1107
+                  </div>
+                  <p-table #dt [value]="document1107s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Mode Règlement
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Numéro Compte en Banque
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Agence
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Clé RIB
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1107>
+                          <tr>
+                              <td>{{ document1107.codeModeReglement }}</td>
+                              <td>{{ document1107.numeroCompteEnBanque }}</td>
+                              <td>{{ document1107.codeAgence }}</td>
+                              <td>{{ document1107.cleRib }}</td>
+
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+          <!-- Section Document1109-->
+          <div class="col-md-4 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document1109
+                  </div>
+                  <p-table #dt [value]="document1109s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Date Mariage
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document1109>
+                          <tr>
+                              <td>{{ document1109.dateMariage | date: 'yyyy-MM-dd' }}</td>
+
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+      </div>
+      <div class="row">
+          <!-- Section Document2021 -->
+          <div class="col-md-7 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document2021
+                  </div>
+                  <p-table #dt [value]="document2021s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Poste
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Date Début
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Date Fin
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Montant
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Montant Global
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document2021>
+                          <tr>
+                              <td>{{ document2021.codePoste }}</td>
+                              <td>{{ document2021.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                              <td>{{ document2021.dateFin | date: 'yyyy-MM-dd' }}</td>
+                              <td>{{ document2021.montant }}</td>
+                              <td>{{ document2021.montantGlobal }}</td>
+                              <td>
+
+                              </td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+          <!-- Section Document2101-->
+          <div class="col-md-5 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document2101
+                  </div>
+                  <p-table #dt [value]="document2101s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Numéro Écriture
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Poste
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Début
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document2101>
+                          <tr>
+                              <td>{{ document2101.numeroEcriture }}</td>
+                              <td>{{ document2101.codePoste }}</td>
+                              <td>{{ document2101.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                              <td>
+
+                              </td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="row">
+          <!-- Section Document3001 -->
+
+
+          <!-- Section Document2011 -->
+          <div class="col-md-6 mb-3">
+              <div class="card">
+                  <div class="text-900 text-xl font-semibold mb-3">
+                      Document2011
+                  </div>
+                  <p-table #dt [value]="document2011s" [paginator]="true" [rows]="10" [rowHover]="true"
+                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Code Poste
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Date Début
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Date Fin
+                              </th>
+                              <th class="white-space-nowrap" style="width: 10%">
+                                  Montant
+                              </th>
+
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-document2011>
+                          <tr>
+                              <td>{{ document2011.codePoste }}</td>
+                              <td>{{ document2011.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                              <td>{{ document2011.dateFin | date: 'yyyy-MM-dd' }}</td>
+                              <td>{{ document2011.montant }}</td>
+                              <td>
+
+                              </td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+
+      </div>
+
+  </form>
+</div>
