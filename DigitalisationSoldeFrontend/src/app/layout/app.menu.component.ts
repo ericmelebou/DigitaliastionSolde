@@ -506,7 +506,7 @@ export class AppMenuComponent implements OnInit {
                     }
                     if (role.nom === "CONTROLLEUR") {
                         this.model[0]['items'].push({
-                            label: 'Dossiers à controller',
+                            label: 'Dossiers à contrôler',
                             icon: 'pi pi-fw pi-folder',
                             routerLink: ['/admin/traitement/controle']
                         },)

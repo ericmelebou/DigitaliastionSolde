@@ -1,505 +1,1045 @@
 <div class="container">
-  <h1>Formulaire de saisie</h1>
-  <form>
-      <div class="row">
-          <!-- Section Document1101 -->
-          <div class="col-md-12 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1101
-                  </div>
-                  <p-table #dt [value]="document1101s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th pSortableColumn="codeTitre" class="white-space-nowrap" style="width: 25%">
-                                  Code Titre
+    <button (click)="backToList()" pButton pRipple type="button" icon="pi pi-arrow-left"
+        class="p-button-rounded p-button-outlined"></button>
+    <div class="d-flex justify-content-between align-items-center p-2">
+        <h1>Documents</h1>
+        <button [disabled]="!toCorrect"  (click)="backToCorrect()" pButton pRipple type="button" label="Renvoyer en correction"
+            class="p-button-warning ml-3"></button>
+    </div>
 
-                              </th>
+    <form>
+        <div class="row">
+            <!-- Section Document1101 -->
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1101
 
-                              <th pSortableColumn="nom" class="white-space-nowrap" style="width: 25%">
-                                  Nom et prénoms
+                    </div>
+                    <p-table #dt [value]="document1101s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="codeTitre" class="white-space-nowrap" style="width: 25%">
+                                    Code Titre
 
-                              </th>
-                              <th pSortableColumn="codeSexe" class="white-space-nowrap" style="width: 25%">
-                                  Code Sexe
+                                </th>
 
-                              </th>
-                              <th pSortableColumn="codeSituationMatrimoniale" class="white-space-nowrap"
-                                  style="width: 25%">
-                                  Code Statut
+                                <th pSortableColumn="nom" class="white-space-nowrap" style="width: 25%">
+                                    Nom et prénoms
 
-                              </th>
-                              <th pSortableColumn="nombreEnfantAf" class="white-space-nowrap" style="width: 25%">
-                                  Nombre Enfant
+                                </th>
+                                <th pSortableColumn="codeSexe" class="white-space-nowrap" style="width: 25%">
+                                    Code Sexe
 
-                              </th>
-                              <th pSortableColumn="codeSalaireUnique" class="white-space-nowrap" style="width: 25%">
-                                  Code Salaire Unique
+                                </th>
+                                <th pSortableColumn="codeSituationMatrimoniale" class="white-space-nowrap"
+                                    style="width: 25%">
+                                    Code Statut
 
-                              </th>
-                              <th pSortableColumn="categorieImpIrpp" class="white-space-nowrap" style="width: 25%">
-                                  Categorie Imp Irpp
+                                </th>
+                                <th pSortableColumn="nombreEnfantAf" class="white-space-nowrap" style="width: 25%">
+                                    Nombre Enfant
 
-                              </th>
+                                </th>
+                                <th pSortableColumn="codeSalaireUnique" class="white-space-nowrap" style="width: 25%">
+                                    Code Salaire Unique
 
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1101>
-                          <tr>
-                              <td>{{document1101.codeTitre}}</td>
+                                </th>
+                                <th pSortableColumn="categorieImpIrpp" class="white-space-nowrap" style="width: 25%">
+                                    Categorie Imp Irpp
 
-                              <td>{{document1101.nom}}</td>
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
 
-                              <td>
-                                  {{document1101.codeSexe}}
-                              </td>
-                              <td>
-                                  {{document1101.codeStatut}}
-                              </td>
-                              <td>
-                                  {{document1101.nombreEnfantAf}}
-                              </td>
-                              <td>
-                                  {{document1101.codeSalaireUnique}}
-                              </td>
-                              <td>
-                                  {{document1101.categorieImpIrpp}}
-                              </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1101>
+                            <tr [ngStyle]="{'background-color': document1101.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{document1101.codeTitre}}</td>
 
+                                <td>{{document1101.nom}}</td>
 
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
+                                <td>
+                                    {{document1101.codeSexe}}
+                                </td>
+                                <td>
+                                    {{document1101.codeStatut}}
+                                </td>
+                                <td>
+                                    {{document1101.nombreEnfantAf}}
+                                </td>
+                                <td>
+                                    {{document1101.codeSalaireUnique}}
+                                </td>
+                                <td>
+                                    {{document1101.categorieImpIrpp}}
+                                </td>
+                                <td>
+                                    <div class="flex">
 
-          <!-- Section Document1102 -->
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1101(document1101)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1101(document1101)"></button>
+                                    </div>
+                                </td>
 
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
 
-      </div>
-
-
-
-      <div class="col-md-12 mb-3">
-          <div class="card">
-              <div class="text-900 text-xl font-semibold mb-3">
-                  Document1102
-              </div>
-              <p-table #dt [value]="document1102s" [paginator]="true" [rows]="10" [rowHover]="true"
-                  styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                  <ng-template pTemplate="header">
-                      <tr>
-                          <th class="white-space-nowrap" style="width: 15px">
-                              Catégorie Anc
-                          </th>
-                          <th class="white-space-nowrap">
-                              Échelle Corps Anc
-                          </th>
-                          <th class="white-space-nowrap">
-                              Grade Anc
-                          </th>
-                          <th class="white-space-nowrap">
-                              Indice Anc
-                          </th>
-                          <th class="white-space-nowrap">
-                              Catégorie Nv
-                          </th>
-                          <th class="white-space-nowrap">
-                              Échelle Corps Nv
-                          </th>
-                          <th class="white-space-nowrap">
-                              Grade Nv
-                          </th>
-                          <th class="white-space-nowrap">
-                              Indice Nv
-                          </th>
-
-                      </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-document1102>
-                      <tr>
-                          <td>{{document1102.codeCategorieAnc}}</td>
-                          <td>{{document1102.codeEchelleCorpsAnc}}</td>
-                          <td>{{document1102.codeGradeAnc}}</td>
-                          <td>{{document1102.codeIndiceAnc}}</td>
-                          <td>{{document1102.codeCategorieNv}}</td>
-                          <td>{{document1102.codeEchelleCorpsNv}}</td>
-                          <td>{{document1102.codeGradeNv}}</td>
-                          <td>{{document1102.codeIndiceNv}}</td>
-
-                      </tr>
-                  </ng-template>
-              </p-table>
-          </div>
-      </div>
-
-      <div class="col-md-12 mb-3">
-          <div class="card">
-              <div class="text-900 text-xl font-semibold mb-3">
-                  Document3001
-              </div>
-              <p-table #dt [value]="document3001s" [paginator]="true" [rows]="10" [rowHover]="true"
-                  styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                  <ng-template pTemplate="header">
-                      <tr>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Taux Rappel
-                          </th>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Points Rappel
-                          </th>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Date Début Rappel
-                          </th>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Date Fin Rappel
-                          </th>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Nombre Jours Rappel
-                          </th>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Code Poste
-                          </th>
-                          <th class="white-space-nowrap" style="width: 10%">
-                              Montant
-                          </th>
-
-                      </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-document3001>
-                      <tr>
-                          <td>{{ document3001.tauxRappel }}</td>
-                          <td>{{ document3001.pointsRappel }}</td>
-                          <td>{{ document3001.dateDebutRappel | date: 'yyyy-MM-dd' }}</td>
-                          <td>{{ document3001.dateFinRappel | date: 'yyyy-MM-dd' }}</td>
-                          <td>{{ document3001.nombreJoursRappel }}</td>
-                          <td>{{ document3001.codePoste }}</td>
-                          <td>{{ document3001.montant }}</td>
-
-                      </tr>
-                  </ng-template>
-              </p-table>
-          </div>
-      </div>
-      <div class="row">
-          <!-- Section Document1103 -->
-          <div class="col-md-6 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1103
-                  </div>
-                  <p-table #dt [value]="document1103s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width: 25%">
-                                  Code Service Anc
-
-                              </th>
-
-                              <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
-                                  Code Service Nv
-
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1103>
-                          <tr>
-                              <td>{{document1103.codeServiceAnc}}</td>
-
-                              <td>{{document1103.codeServiceNv}}</td>
-
-                             
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-          <!-- Section Document1104 -->
-          <div class="col-md-6 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1104
-                  </div>
-                  <p-table #dt [value]="document1104s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Emploi
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Date Fin Emploi
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1104>
-                          <tr>
-                              <td>{{document1104.codeEmploi}}</td>
-                              <td>{{document1104.dateFinEmploi | date: 'yyyy-MM-dd'}}</td>
-
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-      </div>
+            <!-- Section Document1102 -->
 
 
-      <div class="row">
-          <!-- Section Document1105 -->
-          <div class="col-md-6 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1105
-                  </div>
-                  <p-table #dt [value]="document1105s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Lieu Affectation
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1105>
-                          <tr>
-                              <td>{{ document1105.codeLieuAffectation }}</td>
-
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-          <!-- Section Document1106 -->
-          <div class="col-md-6 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1106
-                  </div>
-                  <p-table #dt [value]="document1106s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Position Solde
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1106>
-                          <tr>
-                              <td>{{ document1106.codePositionSolde }}</td>
-
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-      </div>
-
-      <div class="row">
-          <!-- Section Document1107 -->
-          <div class="col-md-8 mb-3 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1107
-                  </div>
-                  <p-table #dt [value]="document1107s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Mode Règlement
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Numéro Compte en Banque
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Agence
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Clé RIB
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1107>
-                          <tr>
-                              <td>{{ document1107.codeModeReglement }}</td>
-                              <td>{{ document1107.numeroCompteEnBanque }}</td>
-                              <td>{{ document1107.codeAgence }}</td>
-                              <td>{{ document1107.cleRib }}</td>
-
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-          <!-- Section Document1109-->
-          <div class="col-md-4 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document1109
-                  </div>
-                  <p-table #dt [value]="document1109s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Date Mariage
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document1109>
-                          <tr>
-                              <td>{{ document1109.dateMariage | date: 'yyyy-MM-dd' }}</td>
-
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-      </div>
-      <div class="row">
-          <!-- Section Document2021 -->
-          <div class="col-md-7 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document2021
-                  </div>
-                  <p-table #dt [value]="document2021s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Poste
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Date Début
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Date Fin
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Montant
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Montant Global
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document2021>
-                          <tr>
-                              <td>{{ document2021.codePoste }}</td>
-                              <td>{{ document2021.dateDebut | date: 'yyyy-MM-dd' }}</td>
-                              <td>{{ document2021.dateFin | date: 'yyyy-MM-dd' }}</td>
-                              <td>{{ document2021.montant }}</td>
-                              <td>{{ document2021.montantGlobal }}</td>
-                              <td>
-
-                              </td>
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-          <!-- Section Document2101-->
-          <div class="col-md-5 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document2101
-                  </div>
-                  <p-table #dt [value]="document2101s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Numéro Écriture
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Poste
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Début
-                              </th>
-
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document2101>
-                          <tr>
-                              <td>{{ document2101.numeroEcriture }}</td>
-                              <td>{{ document2101.codePoste }}</td>
-                              <td>{{ document2101.dateDebut | date: 'yyyy-MM-dd' }}</td>
-                              <td>
-
-                              </td>
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
-
-      </div>
-
-      <div class="row">
-          <!-- Section Document3001 -->
+        </div>
 
 
-          <!-- Section Document2011 -->
-          <div class="col-md-6 mb-3">
-              <div class="card">
-                  <div class="text-900 text-xl font-semibold mb-3">
-                      Document2011
-                  </div>
-                  <p-table #dt [value]="document2011s" [paginator]="true" [rows]="10" [rowHover]="true"
-                      styleClass="p-datatable-gridlines" responsiveLayout="scroll">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Code Poste
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Date Début
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Date Fin
-                              </th>
-                              <th class="white-space-nowrap" style="width: 10%">
-                                  Montant
-                              </th>
 
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-document2011>
-                          <tr>
-                              <td>{{ document2011.codePoste }}</td>
-                              <td>{{ document2011.dateDebut | date: 'yyyy-MM-dd' }}</td>
-                              <td>{{ document2011.dateFin | date: 'yyyy-MM-dd' }}</td>
-                              <td>{{ document2011.montant }}</td>
-                              <td>
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="text-900 text-xl font-semibold mb-3">
+                    Document1102
+                </div>
+                <p-table #dt [value]="document1102s" [paginator]="true" [rows]="10" [rowHover]="true"
+                    styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="white-space-nowrap" style="width: 15px">
+                                Catégorie Anc
+                            </th>
+                            <th class="white-space-nowrap">
+                                Échelle Corps Anc
+                            </th>
+                            <th class="white-space-nowrap">
+                                Grade Anc
+                            </th>
+                            <th class="white-space-nowrap">
+                                Indice Anc
+                            </th>
+                            <th class="white-space-nowrap">
+                                Catégorie Nv
+                            </th>
+                            <th class="white-space-nowrap">
+                                Échelle Corps Nv
+                            </th>
+                            <th class="white-space-nowrap">
+                                Grade Nv
+                            </th>
+                            <th class="white-space-nowrap">
+                                Indice Nv
+                            </th>
+                            <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                <p-sortIcon field="dateDepot"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-document1102>
+                        <tr [ngStyle]="{'background-color': document1102.status == 'À rectifier' ? 'yellow' : ''}">
+                            <td>{{document1102.codeCategorieAnc}}</td>
+                            <td>{{document1102.codeEchelleCorpsAnc}}</td>
+                            <td>{{document1102.codeGradeAnc}}</td>
+                            <td>{{document1102.codeIndiceAnc}}</td>
+                            <td>{{document1102.codeCategorieNv}}</td>
+                            <td>{{document1102.codeEchelleCorpsNv}}</td>
+                            <td>{{document1102.codeGradeNv}}</td>
+                            <td>{{document1102.codeIndiceNv}}</td>
+                            <td>
+                                <div class="flex">
 
-                              </td>
-                          </tr>
-                      </ng-template>
-                  </p-table>
-              </div>
-          </div>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                        (click)="delete1102(document1102)"></button>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                        style="margin-left: 10px;" (click)="redDelete1102(document1102)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
 
-      </div>
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="text-900 text-xl font-semibold mb-3">
+                    Document3001
+                </div>
+                <p-table #dt [value]="document3001s" [paginator]="true" [rows]="10" [rowHover]="true"
+                    styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Taux Rappel
+                            </th>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Points Rappel
+                            </th>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Date Début Rappel
+                            </th>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Date Fin Rappel
+                            </th>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Nombre Jours Rappel
+                            </th>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Code Poste
+                            </th>
+                            <th class="white-space-nowrap" style="width: 10%">
+                                Montant
+                            </th>
+                            <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                <p-sortIcon field="dateDepot"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-document3001>
+                        <tr [ngStyle]="{'background-color': document3001.status == 'À rectifier' ? 'yellow' : ''}">
+                            <td>{{ document3001.tauxRappel }}</td>
+                            <td>{{ document3001.pointsRappel }}</td>
+                            <td>{{ document3001.dateDebutRappel | date: 'yyyy-MM-dd' }}</td>
+                            <td>{{ document3001.dateFinRappel | date: 'yyyy-MM-dd' }}</td>
+                            <td>{{ document3001.nombreJoursRappel }}</td>
+                            <td>{{ document3001.codePoste }}</td>
+                            <td>{{ document3001.montant }}</td>
+                            <td>
+                                <div class="flex">
 
-  </form>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                        (click)="delete3001(document3001)"></button>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                        style="margin-left: 10px;" (click)="redDelete3001(document3001)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Section Document1103 -->
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1103
+                    </div>
+                    <p-table #dt [value]="document1103s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="typeDossier" class="white-space-nowrap" style="width: 25%">
+                                    Code Service Anc
+
+                                </th>
+
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width: 25%">
+                                    Code Service Nv
+
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1103>
+                            <tr [ngStyle]="{'background-color': document1103.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{document1103.codeServiceAnc}}</td>
+
+                                <td>{{document1103.codeServiceNv}}</td>
+
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1103(document1103)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1103(document1103)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <!-- Section Document1104 -->
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1104
+                    </div>
+                    <p-table #dt [value]="document1104s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Emploi
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Date Fin Emploi
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1104>
+                            <tr [ngStyle]="{'background-color': document1104.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{document1104.codeEmploi}}</td>
+                                <td>{{document1104.dateFinEmploi | date: 'yyyy-MM-dd'}}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1104(document1104)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1104(document1104)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <!-- Section Document1105 -->
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1105
+                    </div>
+                    <p-table #dt [value]="document1105s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Lieu Affectation
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1105>
+                            <tr [ngStyle]="{'background-color': document1105.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document1105.codeLieuAffectation }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1105(document1105)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1105(document1105)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <!-- Section Document1106 -->
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1106
+                    </div>
+                    <p-table #dt [value]="document1106s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Position Solde
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1106>
+                            <tr [ngStyle]="{'background-color': document1106.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document1106.codePositionSolde }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1106(document1106)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1106(document1106)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <!-- Section Document1107 -->
+            <div class="col-md-8 mb-3 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1107
+                    </div>
+                    <p-table #dt [value]="document1107s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Mode Règlement
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Numéro Compte en Banque
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Agence
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Clé RIB
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1107>
+                            <tr [ngStyle]="{'background-color': document1107.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document1107.codeModeReglement }}</td>
+                                <td>{{ document1107.numeroCompteEnBanque }}</td>
+                                <td>{{ document1107.codeAgence }}</td>
+                                <td>{{ document1107.cleRib }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1107(document1107)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1107(document1107)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <!-- Section Document1109-->
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document1109
+                    </div>
+                    <p-table #dt [value]="document1109s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Date Mariage
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document1109>
+                            <tr [ngStyle]="{'background-color': document1109.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document1109.dateMariage | date: 'yyyy-MM-dd' }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete1109(document1109)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete1109(document1109)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <!-- Section Document2021 -->
+            <div class="col-md-7 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document2021
+                    </div>
+                    <p-table #dt [value]="document2021s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Poste
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Date Début
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Date Fin
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Montant
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Montant Global
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document2021>
+                            <tr [ngStyle]="{'background-color': document2021.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document2021.codePoste }}</td>
+                                <td>{{ document2021.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                                <td>{{ document2021.dateFin | date: 'yyyy-MM-dd' }}</td>
+                                <td>{{ document2021.montant }}</td>
+                                <td>{{ document2021.montantGlobal }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete2021(document2021)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete2021(document2021)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+            <!-- Section Document2101-->
+            <div class="col-md-5 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document2101
+                    </div>
+                    <p-table #dt [value]="document2101s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Numéro Écriture
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Poste
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Début
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document2101>
+                            <tr [ngStyle]="{'background-color': document2101.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document2101.numeroEcriture }}</td>
+                                <td>{{ document2101.codePoste }}</td>
+                                <td>{{ document2101.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete2101(document2101)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete2101(document2101)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <!-- Section Document3001 -->
+
+
+            <!-- Section Document2011 -->
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="text-900 text-xl font-semibold mb-3">
+                        Document2011
+                    </div>
+                    <p-table #dt [value]="document2011s" [paginator]="true" [rows]="10" [rowHover]="true"
+                        styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Code Poste
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Date Début
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Date Fin
+                                </th>
+                                <th class="white-space-nowrap" style="width: 10%">
+                                    Montant
+                                </th>
+                                <th pSortableColumn="dateDepot" class="white-space-nowrap" style="width:25%">Action
+                                    <p-sortIcon field="dateDepot"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document2011>
+                            <tr [ngStyle]="{'background-color': document2011.status == 'À rectifier' ? 'yellow' : ''}">
+                                <td>{{ document2011.codePoste }}</td>
+                                <td>{{ document2011.dateDebut | date: 'yyyy-MM-dd' }}</td>
+                                <td>{{ document2011.dateFin | date: 'yyyy-MM-dd' }}</td>
+                                <td>{{ document2011.montant }}</td>
+                                <td>
+                                    <div class="flex">
+
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning"
+                                            (click)="delete2011(document2011)"></button>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger" style="margin-left: 10px;"
+                                            (click)="redDelete2011(document2011)"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
 </div>
+<!-- SECTION DES DIALOGUES DE CONFIRMATIONS DE SUPRESSIONS. -->
+<p-dialog [(visible)]="deleteDocument1101" header="Renvoyer en correction" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1101" [formGroup]="form1101" (ngSubmit)="onSubmit1101(form1101)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1101 = false"></button>
+        <button [disabled]="form1101.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1101" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1101">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1101 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1101()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1102" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1102" [formGroup]="form1102" (ngSubmit)="onSubmit1102(form1102)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1102 = false"></button>
+        <button [disabled]="form1102.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1102" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1102">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1102 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1102()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1103" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1103" [formGroup]="form1103" (ngSubmit)="onSubmit1103(form1103)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1103 = false"></button>
+        <button [disabled]="form1103.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1103" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1103">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1103 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1103()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1104" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1104" [formGroup]="form1104" (ngSubmit)="onSubmit1104(form1104)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1104 = false"></button>
+        <button [disabled]="form1104.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1104" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1104">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1104 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1104()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1105" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1105" [formGroup]="form1105" (ngSubmit)="onSubmit1105(form1105)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1105 = false"></button>
+        <button [disabled]="form1105.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1105" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1105">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1105 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1105()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1106" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1106" [formGroup]="form1106" (ngSubmit)="onSubmit1106(form1106)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1106 = false"></button>
+        <button [disabled]="form1106.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1106" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1106">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1106 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1106()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1107" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1107" [formGroup]="form1107" (ngSubmit)="onSubmit1107(form1107)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1107 = false"></button>
+        <button [disabled]="form1107.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1107" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1107">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1107 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1107()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument1109" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document1109" [formGroup]="form1109" (ngSubmit)="onSubmit1109(form1109)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument1109 = false"></button>
+        <button [disabled]="form1109.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument1109" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1109">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument1109 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete1109()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument2011" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document2011" [formGroup]="form2011" (ngSubmit)="onSubmit2011(form2011)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument2011 = false"></button>
+        <button [disabled]="form2011.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument2011" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2011">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument2011 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete2011()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument2021" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document2021" [formGroup]="form2021" (ngSubmit)="onSubmit2021(form2021)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument2021 = false"></button>
+        <button [disabled]="form2021.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument2021" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2021">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument2021 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete2021()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument2101" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document2101" [formGroup]="form2101" (ngSubmit)="onSubmit2101(form2101)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument2101 = false"></button>
+        <button [disabled]="form2101.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument2101" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2101">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument2101 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete2101()"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="deleteDocument3001" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <form *ngIf="document3001" [formGroup]="form3001" (ngSubmit)="onSubmit3001(form3001)">
+        <div class="flex align-items-center justify-content-center">
+
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-12">
+                    <label htmlFor="motifRejet">Motif du rejet :</label>
+                    <textarea pInputText id="motifRejet" type="text" formControlName="motifRejet"> </textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteDocument3001 = false"></button>
+        <button [disabled]="form3001.invalid" pButton pRipple icon="pi pi-check" class="p-button-text"
+            label="Renvoyer"></button>
+
+    </form>
+</p-dialog>
+<p-dialog [(visible)]="deleteRedDocument3001" header="Confirmer" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document3001">Rejeter définitivement ... ATTENTION : Cette action ne pourra plus être révoquée
+            <b></b>!</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non"
+            (click)="deleteRedDocument3001 = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
+            (click)="confirmRedDelete3001()"></button>
+    </ng-template>
+</p-dialog>

@@ -10,4 +10,5 @@ export interface IDocument {
     userValidation?: string;
     idDossier?: number;
     status?: string;
+    motifRejet?: string;
 }

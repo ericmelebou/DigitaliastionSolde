@@ -89,7 +89,7 @@ export class ModalAffecteComponent {
       next: response => {
         console.log(response);
         this.latestAffectationDossier = this.getAffectationDossierByLatestAffectation(this.dossier!.id) as unknown as IAffectationDossier;
-        this.latestAffectationDossier.status = false;
+        this.latestAffectationDossier!.status = false;
         this.affectationDossierService.updateAffectationDossier(this.latestAffectationDossier).subscribe({
           next: answer => {
             this.dossierService.getDossier(this.dossier!.id).subscribe({

@@ -5,7 +5,7 @@ import { CShowComponent } from './c-show/c-show.component';
 
 const routes: Routes = [
   { path: '', component: CIndexComponent,},
-    {path: 'c-show', component: CShowComponent}
+    {path: 'c-show/:id', component: CShowComponent}
 
 ];
 

@@ -16,14 +16,17 @@ export class CIndexComponent {
   dossiers: IDossier[] = [];
   dossier?: IDossier;
 
-  constructor(private router: Router, private dossierService: DossierService,private modalService: MdbModalService,) { }
+  constructor(private router: Router, private dossierService: DossierService, private modalService: MdbModalService,) { }
 
 
   ngOnInit() {
     this.dossierService.getDossiers().subscribe({
       next: (dossiers) => {
-        this.dossiers = dossiers;
-        console.log('Liste de tous les dossiers : ', this.dossiers);
+        dossiers.forEach(dossier => {
+          if (dossier.status == "À contrôler") {
+            this.dossiers.push(dossier);
+          }
+        });
       },
     });
   }

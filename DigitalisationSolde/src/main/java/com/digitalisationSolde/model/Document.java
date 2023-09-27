@@ -33,6 +33,9 @@ public class Document {
    private String userValidation;
    @Column(name="status")
    private String status;
+
+   @Column(name="motif_rejet")
+   private String motifRejet;
    @Column(name = "id_dossier")
    private Long idDossier;
 }

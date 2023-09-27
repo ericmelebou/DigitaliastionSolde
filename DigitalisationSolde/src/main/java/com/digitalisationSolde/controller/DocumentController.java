@@ -46,6 +46,10 @@ public class DocumentController {
             if (status != null) {
                 currentDocument.setStatus(status);
             }
+            String motifRejet = document.getMotifRejet();
+            if (motifRejet != null) {
+                currentDocument.setMotifRejet(motifRejet);
+            }
             documentService.saveDocument(currentDocument);
             return currentDocument;
         } else {

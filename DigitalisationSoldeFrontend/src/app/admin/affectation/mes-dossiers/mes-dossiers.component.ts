@@ -35,23 +35,24 @@ export class MesDossiersComponent {
           next: (dossiers) => {
             this.dossiers = dossiers;
             for (let dossier of this.dossiers) {
+              console.log(this.dossiers)
               let latestAffectationDossier = null;
               let latestDate = null;
 
               for (const affectationDossier of this.affectationDossiers) {
-                if (affectationDossier.idDossier === dossier.id) {
+                if (affectationDossier.idDossier == dossier.id) {
                   const date = new Date(affectationDossier.dateAffectation);
                   if (!latestDate || date > latestDate) {
-
                     latestDate = date;
                     latestAffectationDossier = affectationDossier;
                   }
                 }
               }
               const idAgent = localStorage.getItem('agentId') as unknown as number
-              if (latestAffectationDossier!.idAgent == idAgent && dossier.status == "Pris en charge") {
+              if (latestAffectationDossier?.idAgent == idAgent && (dossier.status == "Pris en charge" || dossier.status == "À rectifier")) {
                 this.mesDossiers.push(dossier)
               }
+             
             }
           },
         });
