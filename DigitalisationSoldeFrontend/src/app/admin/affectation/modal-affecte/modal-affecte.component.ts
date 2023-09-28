@@ -85,35 +85,36 @@ export class ModalAffecteComponent {
     this.affectationDossier!.idDossier = this.dossier!.id;
     this.affectationDossier!.idAgent = data.value.agent.id;
     console.log(this.affectationDossier);
-    let res = this.affectationDossierService.createAffectationDossier(this.affectationDossier).subscribe({
+    this.affectationDossierService.createAffectationDossier(this.affectationDossier).subscribe({
       next: response => {
         console.log(response);
         this.latestAffectationDossier = this.getAffectationDossierByLatestAffectation(this.dossier!.id) as unknown as IAffectationDossier;
-        this.latestAffectationDossier!.status = false;
-        this.affectationDossierService.updateAffectationDossier(this.latestAffectationDossier).subscribe({
-          next: answer => {
-            this.dossierService.getDossier(this.dossier!.id).subscribe({
-              next: dossier => {
-                dossier!.status = "Pris en charge"
-                const formData: FormData = new FormData();
-                formData.append('id', dossier.id as any);
+        if (this.latestAffectationDossier) {
+          this.latestAffectationDossier!.status = false;
+          this.affectationDossierService.updateAffectationDossier(this.latestAffectationDossier).subscribe({
+            next: answer => {
+              console.log(answer)
+            }
+          });
+        }
+        this.dossierService.getDossier(this.dossier!.id).subscribe({
+          next: dossier => {
+            dossier!.status = "Pris en charge"
+            const formData: FormData = new FormData();
+            formData.append('id', dossier.id as any);
+            formData.append('status', 'Pris en charge');
 
-                formData.append('status', 'Pris en charge');
-
-                this.dossierService.updateDossier(formData).subscribe(
-                  (response: any) => {
-                    this.modalRef.close(this.closeMessage);
-                    this.router.navigate(['/admin'])
-                  },
-                  (error: any) => {
-                    console.error('Erreur', error);
-                  }
-                )
+            this.dossierService.updateDossier(formData).subscribe(
+              (response: any) => {
+                this.modalRef.close(this.closeMessage);
+                this.router.navigate(['/admin'])
+              },
+              (error: any) => {
+                console.error('Erreur', error);
               }
-            })
+            )
           }
-        });
-
+        })
       }
     });
   }
