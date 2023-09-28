@@ -69,6 +69,19 @@ export class DAddComponent {
   deleteDocument3001: boolean = false;
   deleteDocument2011: boolean = false;
 
+  rejetMotif1101: boolean = false;
+  rejetMotif1102: boolean = false;
+  rejetMotif1103: boolean = false;
+  rejetMotif1104: boolean = false;
+  rejetMotif1105: boolean = false;
+  rejetMotif1106: boolean = false;
+  rejetMotif1107: boolean = false;
+  rejetMotif1109: boolean = false;
+  rejetMotif2021: boolean = false;
+  rejetMotif2101: boolean = false;
+  rejetMotif3001: boolean = false;
+  rejetMotif2011: boolean = false;
+
   isFull1101: boolean = false;
   isFull1102: boolean = false;
   isFull1103: boolean = false;
@@ -331,7 +344,55 @@ export class DAddComponent {
       data: this.id
     })
   }
-
+  // SECTION DES MODALS DE REJET MOTIF
+  openRejetMotif1101(document1101: IDocument1101) {
+    this.rejetMotif1101 = true;
+    this.document1101 = document1101;
+  }
+  openRejetMotif1102(document1102: IDocument1102) {
+    this.rejetMotif1102 = true;
+    this.document1102 = document1102;
+  }
+  openRejetMotif1103(document1103: IDocument1103) {
+    this.rejetMotif1103 = true;
+    this.document1103 = document1103;
+  }
+  openRejetMotif1104(document1104: IDocument1104) {
+    this.rejetMotif1104 = true;
+    this.document1104 = document1104;
+  }
+  openRejetMotif1105(document1105: IDocument1105) {
+    this.rejetMotif1105 = true;
+    this.document1105 = document1105;
+  }
+  openRejetMotif1106(document1106: IDocument1106) {
+    this.rejetMotif1106 = true;
+    this.document1106 = document1106;
+  }
+  openRejetMotif1107(document1107: IDocument1107) {
+    this.rejetMotif1107 = true;
+    this.document1107 = document1107;
+  }
+  openRejetMotif1109(document1109: IDocument1109) {
+    this.rejetMotif1109 = true;
+    this.document1109 = document1109;
+  }
+  openRejetMotif2011(document2011: IDocument2011) {
+    this.rejetMotif2011 = true;
+    this.document2011 = document2011;
+  }
+  openRejetMotif2021(document2021: IDocument2021) {
+    this.rejetMotif2021 = true;
+    this.document2021 = document2021;
+  }
+  openRejetMotif2101(document2101: IDocument2101) {
+    this.rejetMotif2101 = true;
+    this.document2101 = document2101;
+  }
+  openRejetMotif3001(document3001: IDocument3001) {
+    this.rejetMotif3001 = true;
+    this.document3001 = document3001;
+  }
   edit1101(document1101: IDocument1101) {
     this.modalRefEdit1101 = this.modalService.open(Modal1101EditComponent, {
       modalClass: 'modal-lg',
@@ -596,5 +657,8 @@ export class DAddComponent {
     }, error => {
       console.error('Erreur lors de la suppression du Document3001 :', error);
     });
+  }
+  backToList() {
+    this.router.navigate(['/admin/affectation/mes-dossiers']);
   }
 }

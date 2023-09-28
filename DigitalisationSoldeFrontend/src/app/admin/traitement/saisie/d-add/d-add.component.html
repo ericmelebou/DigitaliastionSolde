@@ -1,5 +1,10 @@
 <div class="container">
-    <h1>Formulaire de saisie</h1>
+    <button (click)="backToList()" pButton pRipple type="button" icon="pi pi-arrow-left"
+        class="p-button-rounded p-button-outlined"></button>
+    <div class="d-flex justify-content-between align-items-center p-2">
+        <h1>Formulaire de saisie</h1>
+    </div>
+
     <form>
         <div class="row">
             <!-- Section Document1101 -->
@@ -77,8 +82,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1101(document1101)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1101(document1101)"></button>
+                                        <button *ngIf="document1101.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1101(document1101)"></button>
                                     </div>
                                 </td>
 
@@ -150,8 +158,12 @@
                                     <button pButton pRipple icon="pi pi-pencil"
                                         class="p-button-rounded p-button-success mr-2"
                                         (click)="edit1102(document1102)"></button>
-                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    <button pButton pRipple icon="pi pi-trash"
+                                        class="p-button-rounded p-button-warning mr-2"
                                         (click)="delete1102(document1102)"></button>
+                                    <button *ngIf="document1102.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                        class="p-button-rounded p-button-danger"
+                                        (click)="openRejetMotif1102(document1102)"></button>
                                 </div>
                             </td>
                         </tr>
@@ -210,8 +222,12 @@
                                     <button pButton pRipple icon="pi pi-pencil"
                                         class="p-button-rounded p-button-success mr-2"
                                         (click)="edit3001(document3001)"></button>
-                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    <button pButton pRipple icon="pi pi-trash"
+                                        class="p-button-rounded p-button-warning mr-2"
                                         (click)="delete3001(document3001)"></button>
+                                    <button *ngIf="document3001.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                        class="p-button-rounded p-button-danger"
+                                        (click)="openRejetMotif3001(document3001)"></button>
                                 </div>
                             </td>
                         </tr>
@@ -258,8 +274,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1103(document1103)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1103(document1103)"></button>
+                                        <button *ngIf="document1103.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1103(document1103)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -301,8 +320,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1104(document1104)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1104(document1104)"></button>
+                                        <button *ngIf="document1104.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1104(document1104)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -344,8 +366,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1105(document1105)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1105(document1105)"></button>
+                                        <button *ngIf="document1105.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1105(document1105)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -383,8 +408,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1106(document1106)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1106(document1106)"></button>
+                                        <button *ngIf="document1106.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1106(document1106)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -437,8 +465,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1107(document1107)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1107(document1107)"></button>
+                                        <button *ngIf="document1107.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1107(document1107)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -476,8 +507,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit1109(document1109)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete1109(document1109)"></button>
+                                        <button *ngIf="document1109.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif1109(document1109)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -532,8 +566,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit2021(document2021)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete2021(document2021)"></button>
+                                        <button *ngIf="document2021.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif2021(document2021)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -578,8 +615,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit2101(document2101)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete2101(document2101)"></button>
+                                        <button *ngIf="document2101.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif2101(document2101)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -634,8 +674,11 @@
                                             class="p-button-rounded p-button-success mr-2"
                                             (click)="edit2011(document2011)"></button>
                                         <button pButton pRipple icon="pi pi-trash"
-                                            class="p-button-rounded p-button-warning"
+                                            class="p-button-rounded p-button-warning mr-2"
                                             (click)="delete2011(document2011)"></button>
+                                        <button *ngIf="document2011.motifRejet" pButton pRipple icon="pi pi-info-circle"
+                                            class="p-button-rounded p-button-danger"
+                                            (click)="openRejetMotif2011(document2011)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -792,4 +835,77 @@
         <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui"
             (click)="confirmDelete3001()"></button>
     </ng-template>
+</p-dialog>
+<!-- SECTION DES DIALOGUES DE REJET MOTIF. -->
+<p-dialog [(visible)]="rejetMotif1101" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1101">{{document1101.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1102" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1102">{{document1102.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1103" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1103">{{document1103.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1104" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1104">{{document1104.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1105" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1105">{{document1105.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1106" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1106">{{document1106.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1107" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1107">{{document1107.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif1109" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document1109">{{document1109.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif2011" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2011">{{document2011.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif2021" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2021">{{document2021.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif2101" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document2101">{{document2101.motifRejet}}</span>
+    </div>
+</p-dialog>
+<p-dialog [(visible)]="rejetMotif3001" header="Correction à faire :" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="document3001">{{document3001.motifRejet}}</span>
+    </div>
 </p-dialog>
