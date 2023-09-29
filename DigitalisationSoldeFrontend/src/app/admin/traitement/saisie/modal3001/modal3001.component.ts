@@ -12,7 +12,7 @@ import { Document3001Service } from 'src/app/_services/document3001.service';
 export class Modal3001Component {
   public form: any;
   id: any = 0;
- 
+
 
   constructor(
     public modalRef: MdbModalRef<Modal3001Component>,
@@ -22,7 +22,7 @@ export class Modal3001Component {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.modalRef.component as unknown as any;
+    this.id = (this.modalRef.component as unknown as any).idDossier
     this.form = this.fb.group({
       tauxRappel: ['', Validators.required],
       pointsRappel: ['', Validators.required],
@@ -34,7 +34,7 @@ export class Modal3001Component {
     });
   }
   async onSubmit(data: FormGroup) {
-    data.value.idDossier = this.id['0']
+    data.value.idDossier = this.id
     data.value.status = "À saisir"
     this.document3001Service.createDocument3001(data.value).subscribe({
       next: document => {

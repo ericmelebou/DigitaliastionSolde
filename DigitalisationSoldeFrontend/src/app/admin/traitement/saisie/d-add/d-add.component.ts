@@ -162,13 +162,13 @@ export class DAddComponent {
 
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id') as unknown as number
-
     });
     this.document1101Service.getDocument1101s().subscribe({
       next: (document1101s) => {
         this.document1101s = document1101s.filter((document1101) => {
           return document1101.idDossier == this.id;
         });
+
         this.isFull1101 = this.document1101s.length >= 1
       },
     });
@@ -264,84 +264,86 @@ export class DAddComponent {
   openModal1101() {
     this.modalRef1101 = this.modalService.open(Modal1101Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
+
   }
 
   openModal1102() {
     this.modalRef1102 = this.modalService.open(Modal1102Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
+
   }
 
   openModal1103() {
     this.modalRef1103 = this.modalService.open(Modal1103Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal1104() {
     this.modalRef1104 = this.modalService.open(Modal1104Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal1105() {
     this.modalRef1105 = this.modalService.open(Modal1105Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal1106() {
     this.modalRef1106 = this.modalService.open(Modal1106Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal1107() {
     this.modalRef1107 = this.modalService.open(Modal1107Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal1109() {
     this.modalRef1109 = this.modalService.open(Modal1109Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal2011() {
     this.modalRef2011 = this.modalService.open(Modal2011Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal2021() {
     this.modalRef2021 = this.modalService.open(Modal2021Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal2101() {
     this.modalRef2101 = this.modalService.open(Modal2101Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
 
   openModal3001() {
     this.modalRef3001 = this.modalService.open(Modal3001Component, {
       modalClass: 'modal-lg',
-      data: this.id
+      data: { idDossier: this.id }
     })
   }
   // SECTION DES MODALS DE REJET MOTIF

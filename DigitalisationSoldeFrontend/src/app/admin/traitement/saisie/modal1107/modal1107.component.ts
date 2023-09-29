@@ -12,8 +12,8 @@ import { Document1107Service } from 'src/app/_services/document1107.service';
 export class Modal1107Component {
   public form: any;
   id: any = 0;
- 
- 
+
+
   constructor(
     public modalRef: MdbModalRef<Modal1107Component>,
     private fb: FormBuilder,
@@ -22,7 +22,7 @@ export class Modal1107Component {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.modalRef.component as unknown as any;
+    this.id = (this.modalRef.component as unknown as any).idDossier
     this.form = this.fb.group({
       codeModeReglement: ['', Validators.required],
       numeroCompteEnBanque: ['', Validators.required],
@@ -32,7 +32,7 @@ export class Modal1107Component {
   }
 
   async onSubmit(data: FormGroup) {
-    data.value.idDossier = this.id['0']
+    data.value.idDossier = this.id
     data.value.status = "À saisir"
     this.document1107Service.createDocument1107(data.value).subscribe({
       next: document => {

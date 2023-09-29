@@ -12,8 +12,8 @@ import { Document1109Service } from 'src/app/_services/document1109.service';
 export class Modal1109Component {
   public form: any;
   id: any = 0;
- 
- 
+
+
   constructor(
     public modalRef: MdbModalRef<Modal1109Component>,
     private fb: FormBuilder,
@@ -22,14 +22,14 @@ export class Modal1109Component {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.modalRef.component as unknown as any;
+    this.id = (this.modalRef.component as unknown as any).idDossier
     this.form = this.fb.group({
       dateMariage: ['', Validators.required],
     });
   }
 
   async onSubmit(data: FormGroup) {
-    data.value.idDossier = this.id['0']
+    data.value.idDossier = this.id
     data.value.status = "À saisir"
     this.document1109Service.createDocument1109(data.value).subscribe({
       next: document => {

@@ -13,7 +13,7 @@ import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MesDossiersComponent } from './mes-dossiers/mes-dossiers.component';
 import { DialogModule } from 'primeng/dialog';
-import { ModalAffecteComponent } from './modal-affecte/modal-affecte.component';
+import { ModalAffecteComponent } from '../modal-affecte/modal-affecte.component';
 import { RouterLink } from '@angular/router';
 
 

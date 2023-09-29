@@ -20,14 +20,14 @@ export class Modal1105Component {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.modalRef.component as unknown as any;
+    this.id = (this.modalRef.component as unknown as any).idDossier
     this.form = this.fb.group({
       codeLieuAffectation: ['', Validators.required],
     });
   }
 
   async onSubmit(data: FormGroup) {
-    data.value.idDossier = this.id['0']
+    data.value.idDossier = this.id
     data.value.status = "À saisir"
     this.document1105Service.createDocument1105(data.value).subscribe({
       next: document => {
